@@ -1,0 +1,3 @@
+[submodule "delight_hp/php/zend"]
+	path = delight_hp/php/zend
+	url = https://github.com/zendframework/zf2.git
