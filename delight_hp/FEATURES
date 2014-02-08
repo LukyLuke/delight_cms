@@ -1,0 +1,64 @@
+******************************************************************************
+Demonstrations-System:
+******************************************************************************
+  URL: http://cms.delight.ch/
+  Benutzer: cmstest
+  Passwort: cmstest
+  Login: Unten links auf das Vorhängeschloss (teilw. schwer zu treffen)
+  Browser: Firefox - IE und andere weisen teilw. noch Probleme auf
+
+Das Demonstrations-CMS ist die momentan aktuellste Version, Anfang 2008 wird
+eine neue Version erscheinen mit einigen Features mehr.
+
+
+******************************************************************************
+Haupt-Features:
+******************************************************************************
+ - Inline-WYSIWYG-Texteditor (Wie eine Textverarbeitung)
+ - Bilderverwaltung
+ - Dokumentenverwaltung
+ - Newsverwaltung
+ - Dynamische Menüs
+ - Dynamisch-Statische Seiten
+ - Umordnung von Texten (auf der jeweiligen Seite)
+ - Umordnung von Menüs (innerhalb der aktuellen Stufe)
+ - Verschiedene Textblöcke (Aussehen - je nach Template/CI)
+ - Pro Seite mehrere Texte, Downloads, Bilder und News anzeigbar
+ - Versteckte Menüs (z.B. für Footer-Links, etc.)
+ - Einfache URL's (http://www.domain.dom/de/EinMenuName)
+
+******************************************************************************
+Neue Features ab Anfang 2008:
+******************************************************************************
+ - Pro Seite ein Titel, Beschreibung und Keywords definierbar
+   (Meta-Tags für Suchmaschinen)
+ - Automatisches erstellen einer "sitemap.xml" welche bei
+   Suchmaschinen angemeldet werden kann.
+ - Formulare direkt im Texteditor
+ - News als RSS
+ - News als Frame (Umstellung in den Templates)
+   (Vorteil: Bei News muss nicht mehr veröffentlicht werden)
+ - Verstecken von einzelnen Textblöcken
+ - Direkt-Link als Menü (Klick auf Menü öffnet eine externe URL)
+ - Bessere IE-Unterstützung (laufender Prozess)
+ - Komplette Umstellung auf PHP5-OOP (inkompatibel mit PHP4)
+
+******************************************************************************
+Geplante Features:
+******************************************************************************
+ - Aufbau Hilfesystem
+ - Direktverlinkung in das Hilfesystem
+ - Globale Texteinträge
+   (Texte einmal definieren, auf verschiedenen Seiten platzieren)
+ - Menü-Verlinkungen
+   (Ein Menü kann in verschiedene andere Menüs eingelinkt werden)
+ - Verschieben von Textblöcken in ein anderes Menü
+   (von Menü A in Menü B)
+ - Verschieben von ganzen Menüstrukturen in ein anderes Menü
+   (Menü X verschieben von Menü A in Menü B)
+ - Source-Textblöcke
+   (Einbinden von irgendwelchen externen Javascript oder Embed)
+ - External-Textblock
+   (Einbinden einer externen Seite als Textblock)
+ - Bessere IE-Unterstützung (laufender Prozess)
+******************************************************************************

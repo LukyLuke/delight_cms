@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+#sortableContainer .login.field {
+	border: 1px dotted darkred;
+	background: yellow url(../images/spam_prevention.png) center no-repeat;
+	width: 16px;
+	height: 16px;
+	display: inline;
+	vertical-align: middle;
+}
+
+.admin_text {
+	position: absolute !important;
+	z-index: 9999999;
+	top: 10px;
+	left: 10px;
+	background: white !important;
+	border: 1px outset #E0DFED !important;
+}
+
+.admin_text .admin_entry {
+	padding: 2px 3px 2px 22px !important;
+	height: 18px !important;
+	font-size: 9pt !important;
+	background-color: transparent !important;
+	color: #050505 !important;
+	text-align: left !important;
+	white-space: nowrap !important;
+}
+.admin_text .admin_entry:hover {
+	background-color: #5DABF7 !important;
+	color: #FFFFFF !important;
+	cursor: pointer !important;
+}
+
+.admin_text .admin_edit {
+	background: transparent url(admin_icons.png) 0px 0px no-repeat;	
+}
+.admin_text .admin_delete, .admin_text .admin_grouprm {
+	background: transparent url(admin_icons.png) 0px -20px no-repeat;	
+}
+.admin_text .admin_grouped {
+	background: transparent url(admin_icons.png) 0px -40px no-repeat;	
+}
+.admin_text .admin_menuhide {
+	background: transparent url(admin_icons.png) 0px -60px no-repeat;	
+}
+.admin_text .admin_menuedit {
+	background: transparent url(admin_icons.png) 0px -80px no-repeat;	
+}
+.admin_text .admin_menudelete {
+	background: transparent url(admin_icons.png) 0px -100px no-repeat;	
+}
+.admin_text .admin_menucreate {
+	background: transparent url(admin_icons.png) 0px -120px no-repeat;	
+}
+.admin_text .admin_moveup {
+	background: transparent url(admin_icons.png) 0px -140px no-repeat;	
+}
+.admin_text .admin_movedown {
+	background: transparent url(admin_icons.png) 0px -160px no-repeat;	
+}
+.admin_text .admin_menuhidden {
+	background: transparent url(admin_icons.png) 0px -180px no-repeat;	
+}

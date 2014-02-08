@@ -1,0 +1,25 @@
+input.medium_input, select.medium_input {
+	width: 180px;
+}
+
+input.small_input, select.small_input {
+	width: 80px;
+}
+
+.panel_wrapper {
+	position: absolute;
+	top: 26px;
+	left: 8px;
+	right: 8px;
+	bottom: 44px;
+	overflow: auto;
+}
+.mceActionPanel {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	padding: 4px;
+	background-color: rgb(230,230,230);
+	border-top: 2px groove rgb(230,230,230);
+}

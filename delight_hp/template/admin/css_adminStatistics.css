@@ -1,0 +1,199 @@
+<!--
+
+td.dch_11 {
+	width: 3px;
+	height: 3px;
+	white-space: nowrap;
+	line-height: 1px;
+	font-size: 1px;
+	background-image: url('/delight_hp/template/images/admin/date_choser_11.gif');
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+
+td.dch_12 {
+	height: 3px;
+	white-space: nowrap;
+	line-height: 1px;
+	font-size: 1px;
+	background-image: url('/delight_hp/template/images/admin/date_choser_12.gif');
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+}
+
+td.dch_13 {
+	width: 3px;
+	height: 3px;
+	white-space: nowrap;
+	line-height: 1px;
+	font-size: 1px;
+	background-image: url('/delight_hp/template/images/admin/date_choser_13.gif');
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+
+td.dch_21 {
+	width: 3px;
+	background-image: url('/delight_hp/template/images/admin/date_choser_21.gif');
+	background-position: 0px 0px;
+	background-repeat: repeat-y;
+}
+
+td.dch_22h {
+	background-color: rgb(230,230,230);
+	text-align: center;
+	vertical-align: middle;
+}
+
+td.dch_22 {
+	height: 20px;
+	background-color: rgb(250,250,250);
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid rgb(250,250,250);
+}
+
+td.dch_22sel {
+	height: 20px;
+	background-color: rgb(80,200,80);
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid rgb(250,250,250);
+}
+
+td.dch_23 {
+	width: 3px;
+	background-image: url('/delight_hp/template/images/admin/date_choser_23.gif');
+	background-position: 0px 0px;
+	background-repeat: repeat-y;
+}
+
+td.dch_31 {
+	width: 3px;
+	height: 3px;
+	white-space: nowrap;
+	line-height: 1px;
+	font-size: 1px;
+	background-image: url('/delight_hp/template/images/admin/date_choser_31.gif');
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+
+td.dch_32 {
+	height: 3px;
+	white-space: nowrap;
+	line-height: 1px;
+	font-size: 1px;
+	background-image: url('/delight_hp/template/images/admin/date_choser_32.gif');
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+}
+
+td.dch_33 {
+	width: 3px;
+	height: 3px;
+	white-space: nowrap;
+	line-height: 1px;
+	font-size: 1px;
+	background-image: url('/delight_hp/template/images/admin/date_choser_33.gif');
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+
+th.statisticHeader
+{
+	margin: 0px;
+	padding-top: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+	border-width: 0px;
+	background-color: rgb(200,200,200);
+	font-weight: bold;
+	text-decoration: none;
+	cursor: default;
+}
+th.statisticHeader:hover
+{
+	margin: 0px;
+	padding-top: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+	border-width: 0px;
+	background-color: rgb(200,200,200);
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+td.statisticEven
+{
+	padding: 0px;
+	margin: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-width: 0px;
+	background-color: rgb(250,250,250);
+}
+td.statisticOdd
+{
+	padding: 0px;
+	margin: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-width: 0px;
+	background-color: rgb(230,230,230);
+}
+
+td.statisticFooter
+{
+	padding: 0px;
+	margin: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-width: 0px;
+	background-color: rgb(200,200,200);
+}
+
+a.dch_lnk:visited
+{
+	color: rgb(50,50,50);
+	font-size: 9pt;
+	font-weight: normal;
+	text-decoration: none;
+	border: 0px hidden rgb(0,0,0);
+	border-width: 0px;
+}
+
+a.dch_lnk:link
+{
+	color: rgb(50,50,50);
+	font-size: 9pt;
+	font-weight: normal;
+	text-decoration: none;
+	border: 0px hidden rgb(0,0,0);
+	border-width: 0px;
+}
+
+a.dch_lnk:hover
+{
+	color: rgb(50,50,50);
+	font-size: 9pt;
+	font-weight: normal;
+	text-decoration: underline;
+	border: 0px hidden rgb(0,0,0);
+	border-width: 0px;
+}
+
+a.dch_lnk:active
+{
+	color: rgb(50,50,50);
+	font-size: 9pt;
+	font-weight: normal;
+	text-decoration: none;
+	border: 0px hidden rgb(0,0,0);
+	border-width: 0px;
+}
+
+//-->

@@ -1,0 +1,31 @@
+.mceLinkList, .mceAnchorList, #targetlist {width:280px;}
+.mceActionPanel {margin-top:7px;}
+.panel_wrapper div.current {height:320px;}
+#classlist, #title, #href {width:280px;}
+#popupurl, #popupname {width:200px;}
+#popupwidth, #popupheight, #popupleft, #popuptop {width:30px;vertical-align:middle;text-align:center;}
+#id, #style, #classes, #target, #dir, #hreflang, #lang, #charset, #type, #rel, #rev, #tabindex, #accesskey {width:200px;}
+#events_panel input {width:200px;}
+
+/* BEGIN: Addon by delight */
+.dadvlnk_chooser { position:absolute;top:0;left:-40px;padding:3px;background:white;border:1px solid black;cursor:pointer; }
+.dadvlnk_chooser div {display:block;width:100px;padding:3px;}
+.dadvlnk_chooser div.even {background:#CAC9D0;}
+.dadvlnk_chooser div.odd {background:#E8E6F4;}
+.dadvlnk_chooser div:hover {background:#7c7b85;color:white;}
+
+.delActionPanel { position:fixed;bottom:0;left:0;right:0;background:#F0F0EE;height:27px;padding:2px 5px 0;border-top:1px solid #B5A69C; }
+.delActionPanel .updateButton { float:right; }
+.dadvlnk_cont { position:absolute;top:0;left:0;right:0;bottom:30px;background:white;overflow:auto; }
+.dadvlnk_menu, .dadvlnk_sections { list-style-type: none;padding:0 0 0 20px;margin:0;}
+.dadvlnk_menu li span { cursor:pointer; }
+.dadvlnk_sectlist { display:block;position:absolute;overflow:auto;padding:5px;top:0;left:0;bottom:0;width:150px;border-right:1px solid #B5A69C; }
+.dadvlnk_contlist { display:block;position:absolute;overflow:auto;padding:5px;top:0;left:161px;bottom:0;right:0;background:#F0F0EE; }
+.dadvlnk_image { float:left;width:100px;height:100px;display:block;background:white;border:1px solid #B5A69C;text-align:center;margin:3px;padding:2px;cursor:pointer; }
+.dadvlnk_program { background:white;border:1px solid #B5A69C;text-align:left;margin:2px;padding:4px;cursor:pointer;overflow:hidden; }
+.dadvlnk_program img { float:left;margin:0 5px 0 0; }
+.dadvlnk_news { height:100px;background:white;border:1px solid #B5A69C;text-align:left;margin:3px;padding:2px;cursor:pointer;overflow:hidden; }
+.dadvlnk_text { height:100px;background:white;border:1px solid #B5A69C;text-align:left;margin:3px;padding:2px;cursor:pointer;overflow:hidden; }
+.dadvlnk_selected { background:#CAC9D0; }
+
+/* END: Addon by delight */

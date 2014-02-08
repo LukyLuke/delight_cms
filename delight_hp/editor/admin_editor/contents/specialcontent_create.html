@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>[LANG_VALUE:cont_003]</title>
+		<meta http-equiv="Content-Type"  content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/dialog.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/content.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/ui.css" />
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/tiny_mce_popup.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/prototype/prototype-release.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/AdminDialog.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/SpecialcontentManagement.js"></script>
+		<script type="text/javascript">/*<![CDATA[*/
+			var adminUrl = '[MAIN_DIR]';
+		/*]]>*/</script>
+	</head>
+	<body class="admpopup" marginheight="0" marginwidth="0" leftmargin="0" topmargin="0">
+		<input type="hidden" name="variable" id="variable" value="[VARIABLE]" />
+		<table class="detailTable">
+			<tr>
+				<td style="width:150px;">[LANG_VALUE:cont_004]</td>
+				<td><strong>[VARIABLE]</strong></td>
+			</tr>
+			<tr>
+				<td>[LANG_VALUE:cont_005]</td>
+				<td>
+					<select name="vartype" id="vartype" size="1">
+						<option value="0">[LANG_VALUE:cont_006]</option>
+						<option value="1">[LANG_VALUE:cont_007]</option>
+						<option value="2">[LANG_VALUE:cont_008]</option>
+						<option value="3">[LANG_VALUE:cont_009]</option>
+						<option value="4">[LANG_VALUE:cont_010]</option>
+						<option value="5">[LANG_VALUE:cont_011]</option>
+						<option value="6">[LANG_VALUE:cont_012]</option>
+						<option value="7">[LANG_VALUE:cont_013]</option>
+						<option value="8">[LANG_VALUE:cont_014]</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+
+		<div id="buttonbar">
+			<div style="float:left;">
+				<input type="button" value="[LANG_VALUE:input_002]" onclick="AdminDialog.close();" id="cancel" />
+			</div>
+			<div style="float:right;">
+				<input type="button" value="[LANG_VALUE:input_004]" onclick="SpecialcontentManagement.doCreate();" id="insert" />
+			</div>
+		</div>
+	</body>
+</html>

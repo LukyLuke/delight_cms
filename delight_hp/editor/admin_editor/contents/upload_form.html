@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>[LANG_VALUE:img_002]</title>
+		<meta http-equiv="Content-Type"  content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/dialog.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/content.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/ui.css" />
+		<script type="text/javascript" src="[DATA_DIR]../editor/prototype/prototype-release.js"></script>
+		<script type="text/javascript">/*<![CDATA[*/
+			var adminUrl = '[MAIN_DIR]';
+			var adminAction = '[ADMIN_ACTION]';
+			var scope = '[SCOPE]';
+			function init() {
+				if ([UPLOADED]) {
+					var a = window.frameElement.ownerDocument.defaultView.GlobalUpload;
+					$('upload').style.display = 'none';
+					$('upload').parentNode.removeChild($('upload'));
+					$('upload_success').style.display = 'block';
+					a.uploadNext({error:[UPLOADED_ERROR],ftpfiles:false,scope:scope});
+				} else {
+					var w = window.frameElement.ownerDocument.defaultView;
+					$('upload').setAttribute('action', adminUrl+'index.php');
+					$('fld_lang').value = w.AdminDialog.getLang();
+					$('fld_adm').value = adminAction;
+					$('fld_section').value = '[SECTION_ID]';
+					$('fld_entry').value = '[ENTRY_ID]';
+				}
+			}
+		/*]]>*/</script>
+	</head>
+	<body class="admin" style="overflow:hidden;padding:2px;height:100%;width:100%;margin:10px 5px;" onload="init();">
+		<form action="" name="upload" id="upload" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="lang" value="" id="fld_lang" />
+			<input type="hidden" name="adm" value="" id="fld_adm" />
+			<input type="hidden" name="action" value="upload" id="fld_upload" />
+			<input type="hidden" name="template" value="upload_form" id="fld_template" />
+			<input type="hidden" name="section" value="" id="fld_section" />
+			<input type="hidden" name="entry" value="" id="fld_entry" />
+			<input type="file" name="upload" style="border:1px solid black;" />
+		</form>
+		<div id="upload_success" style="display:none;">
+			[UPLOADED_MESSAGE]
+		</div>
+	</body>
+</html>

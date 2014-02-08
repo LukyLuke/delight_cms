@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=MimeType
+MimeType=application/vnd.westley.scenelist
+Icon=
+Patterns=*.westley;
+DefaultApp=inigo
+Comment=MLT Westley Playlist
+

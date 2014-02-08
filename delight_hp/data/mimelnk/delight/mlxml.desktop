@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Comment=Universal Data for Multilevel
+Comment[de]=Universelle Multilevel Daten
+Icon=mlxml
+Type=MimeType
+MimeType=text/xtml
+Patterns=*.mlxml;
+X-KDE-AutoEmbed=true
+

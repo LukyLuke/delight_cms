@@ -1,0 +1,7 @@
+# robots.txt from delight.ch
+
+User-agent: *
+Disallow: /delight_hp/admin/
+Disallow: /delight_hp/data/
+Disallow: /*/program/
+Allow: /

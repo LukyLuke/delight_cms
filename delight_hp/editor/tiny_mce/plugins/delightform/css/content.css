@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+.mceContentBody input.login.field {
+	border: 1px dotted darkred;
+	background: yellow url(spam_prevention.png) center no-repeat;
+	width: 16px;
+	height: 16px;
+	display: inline;
+	vertical-align: middle;
+}

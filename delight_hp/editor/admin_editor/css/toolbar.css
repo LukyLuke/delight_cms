@@ -1,0 +1,129 @@
+@CHARSET "ISO-8859-1";
+
+.toolbar a:hover, .toolbar a:link, .toolbar a:visited, .toolbar a:active {
+	color: #000000;
+	cursor: default;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.toolbar table.dadmToolbar, .toolbar tr.dadmFirst .dadmToolbar tr td, .toolbar tr.dadmLast .dadmToolbar tr td {
+	border:0;
+	margin:0;
+	padding:0;
+}
+
+.toolbar .dadmIcon {
+	background: transparent url(icons.png) no-repeat scroll 20px 20px;
+}
+.toolbar span.dadmIcon, .toolbar img.dadmIcon {
+	position: relative;
+	display: block;
+	height: 20px;
+	width: 20px;
+}
+
+.toolbar .dadmButton {
+	display:block;
+	border:1px solid #F0F0EE;
+	width:20px;
+	height:20px;
+	margin-right:1px;
+}
+.toolbar a.dadmButtonEnabled:hover {
+	border:1px solid #0A246A;
+	background-color:#B2BBD0;
+}
+.toolbar a.dadmButtonActive, .toolbar a.dadmButtonSelected {
+	border:1px solid #0A246A;
+	background-color:#C2CBE0;
+}
+.toolbar .dadmButtonDisabled .dadmIcon {
+	opacity:0.3;
+	-ms-filter:'alpha(opacity=30)';
+	filter:alpha(opacity=30);
+}
+
+.toolbar .dadmSeparator {
+	display:block;
+	background:url(icons.png) -180px 0;
+	width:2px;
+	height:20px;
+	margin:2px 2px 0 4px;
+}
+
+/* Dropdown */
+.toolbar .dadmButton.dadmDropdown,
+.toolbar .dadmButton.dadmDropdownEntry {
+	width: auto;
+	height: auto;
+}
+.toolbar .dadmButton.dadmDropdown {
+	position: absolute;
+	background: #F0F0EE;
+	border: 1px outset #B5A69C;
+	display: none;
+}
+.toolbar .dadmDropDown:hover .dadmButton.dadmDropdown,
+.toolbar .dadmDropDown .dadmButton.dadmDropdown:hover {
+	display: block;
+}
+.toolbar .dadmButton.dadmDropdownEntry {
+	height: 20px;
+	cursor: pointer;
+	border: 0;
+}
+.toolbar .dadmButton.dadmDropdownEntry span.dadmIcon {
+	float: left;
+	height: 20px;
+	background-color: #FFF;
+}
+.toolbar .dadmButton.dadmDropdownEntry span.dadmIconText {
+	white-space: nowrap;
+	padding: 3px;
+	line-height: 20px;
+}
+
+/* Buttons */
+.toolbar .dadm_section_new { background-position: 0px 0px; }
+.toolbar .dadm_section_edit { background-position: -20px 0px; }
+.toolbar .dadm_section_delete { background-position: -40px 0px; }
+
+.toolbar .dadm_image_upload { background-position: -60px 0px; }
+.toolbar .dadm_image_replace { background-position: -80px 0px; }
+.toolbar .dadm_image_delete { background-position: -100px 0px; }
+.toolbar .dadm_image_text { background-position: -120px 0px; }
+
+.toolbar .dadm_gtext_create { background-position: -60px 0px; }
+.toolbar .dadm_gtext_delete { background-position: -100px 0px; }
+.toolbar .dadm_gtext_edit { background-position: -120px 0px; }
+
+.toolbar .dadm_uploadAdd { background-position: -140px 0px; }
+.toolbar .dadm_uploadRemove { background-position: -160px 0px; }
+
+.toolbar .dadm_file_upload { background-position: -200px 0px; }
+.toolbar .dadm_file_replace { background-position: -220px 0px; }
+.toolbar .dadm_file_delete { background-position: -240px 0px; }
+.toolbar .dadm_file_text { background-position: -260px 0px; }
+
+.toolbar .dadm_folder_close { background-position: -280px 0px; }
+.toolbar .dadm_folder_open { background-position: -300px 0px; }
+
+.toolbar .dadm_news_create { background-position: -320px 0px; }
+.toolbar .dadm_news_edit { background-position: -340px 0px; }
+.toolbar .dadm_news_delete { background-position: -360px 0px; }
+.toolbar .dadm_news_changedate { background-position: -380px 0px; }
+.toolbar .dadm_news_addrss { background-position: -400px 0px; }
+
+.toolbar .dadm_user_groups { background-position: -420px 0px; }
+
+.toolbar .dadm_content_save { background-position: -440px 0px; }
+.toolbar .dadm_content_settings { background-position: -460px 0px; }
+.toolbar .dadm_open_administration { background-position: -480px 0px; }
+
+.toolbar .dadm_section_secure { background-position: -500px 0px; }
+
+.toolbar .dadm_sort_content { background-position: -520px 0px; }
+.toolbar .dadm_sort_name { background-position: -540px 0px; }
+.toolbar .dadm_sort_title { background-position: -560px 0px; }
+.toolbar .dadm_sort_date { background-position: -580px 0px; }

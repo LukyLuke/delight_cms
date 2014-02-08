@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>[LANG_VALUE:menu_change]</title>
+		<meta http-equiv="Content-Type"  content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/dialog.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/content.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/ui.css" />
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/tiny_mce_popup.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/prototype/prototype-release.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/AdminDialog.js"></script>
+		<script type="text/javascript">
+		function submit() {
+			var confirmed = true;
+			var nsl,sl = document.getElementsByName('short')[0].value;
+			if (sl.indexOf('://') <= 0) {
+				nsl = sl.replace(/[^a-z0-9/_\-]/gi, '_');
+			} else {
+				nsl = sl;
+			}
+			if (nsl != sl) {
+				confirmed = confirm("[LANG_VALUE:menu_short_invalid]: '" + nsl + "'");
+			}
+			if (confirmed) {
+				document.getElementsByName('short')[0].value = nsl;
+				if (document.getElementById('formTag')) {
+					document.getElementById('formTag').style.display = 'none';
+				}
+				document.forms[0].submit();
+			}
+		}
+
+		function expandDialog() {
+			var labels = ['[LANG_VALUE:menu_transshort]','[LANG_VALUE:menu_title]','[LANG_VALUE:menu_descr]','[LANG_VALUE:menu_keywords]','[LANG_VALUE:menu_access]','[LANG_VALUE:menu_image]']
+			var names  = ['transshort','title','descr','keywords','login','image'];
+			var values = ['[FORM_MENU_SHORT_TRANSLATED]','[FORM_MENU_TITLE]','[FORM_MENU_DESC]','[FORM_MENU_KEYWORDS]',[[FORM_MENU_ACCESS_GROUPS]],[FORM_MENU_IMAGE]];
+			var titles = ['[LANG_VALUE:menu_transshort_hint]','[LANG_VALUE:menu_title_hint]','[LANG_VALUE:menu_descr_hint]','[LANG_VALUE:menu_keywords_hint]','[LANG_VALUE:menu_access_hint]','[LANG_VALUE:menu_image_hint]']
+			var exp = document.getElementById('expand');
+			for (var i = 0; i < labels.length; i++) {
+				var tr = getMenuTableRow(labels[i], names[i], values[i], titles[i]);
+				if (tr != null) exp.parentNode.insertBefore(tr, exp);
+			}
+			exp.parentNode.removeChild(document.getElementById('descr'));
+			exp.parentNode.removeChild(exp);
+			document.getElementById('advancedEdit').value = "1";
+
+			$('menuName').setStyle({width:'280px'});
+			$('shortMenu').setStyle({width:'280px'});
+			$('imageCell').setStyle({width:'70px', border:'1px solid #808080', cursor:'pointer', textAlign:'center', verticalAlign:'middle'});
+			AdminDialog.resize();
+		}
+		function getMenuTableRow(label, name, value, title) {
+			var tr = document.createElement('tr');
+			var td1 = document.createElement('td');
+			var td2 = document.createElement('td');
+			td1 = tr.appendChild(td1);
+			td1.innerHTML = label;
+			td1.setAttribute('title', title);
+			td1.style.whiteSpace = 'nowrap';
+			td2 = tr.appendChild(td2);
+			td2.setAttribute('title', title);
+			td2.setAttribute('colspan', '2');
+
+			if (typeof(value) == 'object') {
+				var chk=null, lbl=null,wereIn=false;;
+				value.each(function(item) {
+					if (item != null) {
+						wereIn = true;
+						chk = document.createElement('input');
+						chk.setAttribute('type', 'checkbox');
+						chk.setAttribute('value', item.value);
+						chk.setAttribute('name', name+'[]');
+						chk.checked = item.selected;
+						lbl = document.createElement('span');
+						lbl.innerHTML = item.name+',&nbsp;&nbsp;';
+						td2.appendChild(chk);
+						td2.appendChild(lbl);
+					}
+				});
+				if (!wereIn) {
+					td2.innerHTML = '[LANG_VALUE:menu_access_nogroups]';
+				}
+
+			} else if (name == 'image') {
+				var td2 = document.createElement('div');
+				td2.setStyle({'width':'70px','height':'60px','overflow':'hidden','fontSize':'7pt'});
+				$('imageCell').appendChild(td2);
+				var inp = document.createElement('input');
+				inp = td2.appendChild(inp);
+				inp.setAttribute('name', name);
+				inp.setAttribute('id', 'imageCellField');
+				inp.setAttribute('value', value);
+				inp.setAttribute('type', 'hidden');
+				inp.setAttribute('title', title);
+				var img = document.createElement('img');
+				img = td2.appendChild(img);
+				img.setAttribute('src', parseInt(value)>0?'[FORM_MENU_IMAGE_URL]':'about:blank');
+				img.setAttribute('alt', title);
+				img.setAttribute('image_id', '[FORM_MENU_IMAGE]');
+				img.setAttribute('id', 'imageCellImage');
+				Event.observe(td2, 'click', function() {
+					AdminDialog.openWindow(location.href.replace(/adm=\d+/, 'adm=1000')+'&action=template&window='+tinyMCEPopup.id+'&function=updateMenuImage&selected='+$('imageCellImage').getAttribute('image_id'), 600, 400);
+				});
+				var del = document.createElement('span');
+				del = $('imageCell').appendChild(del);
+				del.innerHTML = '[LANG_VALUE:menu_image_remove]';
+				del.setStyle({padding:'0 2px',cursor:'pointer', borderTop:'1px solid #808080'});
+				Event.observe(del, 'click', function() {
+					$('imageCellField').value = '';
+					$('imageCellImage').src = 'about:blank';
+					$('imageCellImage').setAttribute('image_id', '0');
+				});
+				return null;
+
+			} else if ((name == 'title') || (name == 'transshort')) {
+				td2.setAttribute('colspan', '1');
+				var inp = document.createElement('input');
+				inp = td2.appendChild(inp);
+				inp.setAttribute('name', name);
+				inp.setAttribute('id', 'fld_'+name);
+				inp.setAttribute('value', value);
+				inp.style.width = '280px';
+				inp.setAttribute('type', 'text');
+				inp.setAttribute('title', title);
+
+			} else {
+				var inp = document.createElement('textarea');
+				inp = td2.appendChild(inp);
+				inp.setAttribute('name', name);
+				inp.setAttribute('title', title);
+				inp.value = value;
+				inp.style.width = '360px';
+				inp.style.height = '40px';
+			}
+
+			return tr;
+		}
+		function updateMenuImage(id, url, title) {
+			var img = $('imageCellImage'),dt=new Date();
+			if (img) {
+				img.setAttribute('src', '/image/'+AdminDialog.getLang()+'/68x58/0/'+url+'/t='+dt.getTime());
+				img.setAttribute('title', title);
+				$('imageCellField').value = id;
+			}
+		}
+
+		/*var lastShortMenuValue = '';
+		var shortValid = true;
+		function checkShortMenu() {
+			if ($('shortMenu') && (lastShortMenuValue != $('shortMenu').value)) {
+				lastShortMenuValue = $('shortMenu').value;
+				new Ajax.Request(location.href.replace(/adm=\d+/, 'adm=256')+'&name='+lastShortMenuValue, {
+					onSuccess: function(r) {
+						if (r.responseJSON) {
+							shortValid = !r.responseJSON.exists;
+							if (!shortValid) {
+								$('shortMenu').style.background = '#F28C98';
+							} else {
+								$('shortMenu').style.background = '#FFF';
+							}
+							window.setTimeout(checkShortMenu, 10);
+						}
+					}
+				});
+			} else {
+				window.setTimeout(checkShortMenu, 10);
+			}
+		}
+		window.setTimeout(checkShortMenu, 100);
+		*/
+		// ShortMenu Check
+		var queueShort = [];
+		function runQueueShort(evt) {
+			evt.stop();
+			queueShort.push(evt.element().value);
+			if (Ajax.activeRequestCount <= 0) {
+				var value = queueShort.pop();
+				queueShort = [];
+				new Ajax.Request(location.href.replace(/adm=\d+/, 'adm=256')+'&name='+value, {
+					onSuccess: function(r) {
+						if (!r.responseJSON) r.responseJSON = r.responseText.evalJSON();
+						if (r.responseJSON) {
+							if (r.responseJSON.exists) {
+								$('shortMenu').style.background = '#F28C98';
+							} else {
+								$('shortMenu').style.background = '#FFF';
+							}
+						}
+						if (queueShort.length > 0) {
+							runQueueShort(evt);
+						}
+					}
+				});
+			}
+		}
+		function connectShortValid() {
+			if ($('shortMenu')) {
+				$('shortMenu').observe('keyup', runQueueShort);
+			} else {
+				window.setTimeout(connectShortValid, 100);
+			}
+		}
+		window.setTimeout(connectShortValid, 100);
+		
+		// Translated ShortMenu Check
+		var queueTransShort = [];
+		function runQueueTransShort(evt) {
+			evt.stop();
+			queueTransShort.push(evt.element().value);
+			if (Ajax.activeRequestCount <= 0) {
+				var value = queueTransShort.pop();
+				queueTransShort = [];
+				new Ajax.Request(location.href.replace(/adm=\d+/, 'adm=256')+'&name='+value, {
+					onSuccess: function(r) {
+						if (r.responseJSON) {
+							if (r.responseJSON.exists) {
+								$('fld_transshort').style.background = '#F28C98';
+							} else {
+								$('fld_transshort').style.background = '#FFF';
+							}
+						}
+						if (queueTransShort.length > 0) {
+							runQueueTransShort(evt);
+						}
+					}
+				});
+			}
+		}
+		function connectTransShortValid() {
+			if ($('fld_transshort')) {
+				$('fld_transshort').observe('keyup', runQueueTransShort);
+			} else {
+				window.setTimeout(connectTransShortValid, 1000);
+			}
+		}
+		window.setTimeout(connectTransShortValid, 1000);
+		</script>
+	</head>
+	<body class="admpopup" marginheight="0" marginwidth="0" leftmargin="0" topmargin="0">
+		<form method="post" action="[UPLOAD_ACTION]" enctype="multipart/form-data">
+			[UPLOAD_HIDDEN_FIELDS]
+			<h3 style="padding:2px 0px 5px 0px;margin:0;">[LANG_VALUE:menu_change]</h3>
+			<table cellpadding="2" cellspacing="0" style="width:100%;">
+				<tr>
+					<td style="white-space:nowrap;">[LANG_VALUE:menu_name]</td>
+					<td><input type="text" name="name" id="menuName" value="[FORM_MENU_TEXT]" style="width:360px;" /></td>
+					<td rowspan="4" id="imageCell" style="width:0px;overflow:hidden;"></td>
+				</tr>
+				<tr>
+					<td style="white-space:nowrap;">[LANG_VALUE:menu_short_link]</td>
+					<td><input type="text" name="short" id="shortMenu" value="[FORM_MENU_SHORT]" style="width:360px;" /></td>
+				</tr>
+				<tr id="expand">
+					<td colspan="2"><a href="javascript:expandDialog();" class="anchor">[LANG_VALUE:menu_extended]</a></td>
+				</tr>
+				<tr id="descr">
+					<td colspan="2"><hr style="border-style:solid;height:1px;" /><span style="font-size:7pt;">[LANG_VALUE:menu_short_descr]</span></td>
+				</tr>
+			</table>
+		</form>
+
+		<div id="buttonbar">
+			<div style="float:left;">
+				<input type="button" value="[LANG_VALUE:input_002]" onclick="AdminDialog.close();" id="cancel" />
+			</div>
+			<div style="float:right;">
+				<input type="button" value="[LANG_VALUE:input_004]" onclick="submit();" id="insert" />
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+TODO-Liste CMS:
+
+  - Komplett auf PHP5 umstellen
+
+  - Bilder bei TextEinträgen evtl. beim erstellen der statischen Seiten
+    extrahieren und in entsprechende Grösse konvertieren - Testen wegen CPU-Auslastung!
+
+  - TextTemplates for new TextEntries
+
+  - Flash-Upload
+    Upload von SWF-Files in die Bildergalerie oder eine eigene
+    und anpassen des Flas-Importers im dedtEditor so dass dort auf
+    diese Liste zugegriffen werden kann.
+
+  - Javascript-Modul (Textblock)
+    Einbau eines JavaScript oder Source-Textblockes, welcher es
+    erlaubt z.B. JS von Google, eBay oder anderen einzubinden,
+    respektive Plain-HTML zu schreiben für spezielle sachen
+    wie embed's und so weiter
+
+  - FLTV-Statistics-Modul (SkyStream/SkyGate)
+    Modul zum einfachen einbinden von Filmen von Skyworkimages
+    Am besten über eine Schnittstelle bei dem Statistik-Tool oder
+    eine Schnittstelle bei SkyGate...
+
+  - DirectLink bei Menüs
+    Ein Menü muss direkt eine URL in einem neuen Fenster öffnen
+    können. So kann z.B. direkt über ein Menu "Forum" das ent-
+    sprechende Forum in einem neuen Fenster angezeigt werden
+
+  - RSS News
+    News vie RSS anbieten
+
+  - RSS einbinden
+    Eine News-Kategorie kann entweder News oder RSS-Content
+    beinhalten. Werden mehrere RSS-Quellen angegeben, müssen
+    diese geparst und dem Datum entsprechend dargestellt werden.
+
+  - News als IFrame
+    Die News sollte IMMER aus der Datenbank kommen. Nicht immer wenn
+    eine neue News eingegeben wird müssen Statische seiten erstellt
+    werden - Vorallem sind die RSS-Content-News nicht in der DB.
+
+  - Shortmenüs prüfen
+    Sonderzeichen, Zahlen, dupletten
+
+  - Menü prüfen
+    Leer, Hochkommas, Sonderzeichen
+
+  - Abgesicherte Menüs
+    Einzelne Menüs müssen abgesichert werden können und können dann
+    nur von Personen eingesehen werden, welche sich eingelogt haben.
+
+  - Multilingual
+    Editor und Seite auf Multilingual prüfen und umbauen

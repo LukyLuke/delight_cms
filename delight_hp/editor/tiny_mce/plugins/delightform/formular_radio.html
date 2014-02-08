@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#delightform.radio_title}</title>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="../../utils/mctabs.js"></script>
+	<script type="text/javascript" src="../../utils/validate.js"></script>
+	<script type="text/javascript" src="../../../prototype/prototype-release.js"></script>
+	<script type="text/javascript" src="js/functions_src.js"></script>
+	<script type="text/javascript" src="js/control_radio_src.js"></script>
+	<link rel='stylesheet' href='css/delightform.css' type="text/css"/>
+</head>
+<body style="margin: 8px" style="display: none">
+<form onsubmit="return false;" action="#">
+	<fieldset>
+		<legend>{#delightform.radio_legend}</legend>
+		  <table border="0" cellpadding="0" cellspacing="3" width="100%">
+			  <tr id="defined_radio_disable">
+					<td>{#delightform.radio_mode}</td>
+					<td align="right">
+						{#delightform.radio_new}<input type='radio' name='rd_mode' id='rd_new' value='new' onchange='DelightRadioFieldDialog.doChangeMode();'>
+						{#delightform.radio_existing}<input type='radio' name='rd_mode' id='rd_old' value='old' onchange='DelightRadioFieldDialog.doChangeMode();'>
+					</td>
+              </tr>
+			  <tr>
+					<td>{#delightform.control_name}</td>
+					<td align="right">
+						<span id='new_name_span'>
+							rd_<input type="text" id='ed_name' name="ed_name" class='medium_input' onkeyup="validateName(this);" />
+						</span>
+						<span id='old_name_span'>
+					    <select name='cb_name' id='cb_name' onchange='DelightRadioFieldDialog.loadRadioBoxes();' class='medium_input'></select>
+						</span>
+					</td>
+			  </tr>
+			  <tr>
+					<td>{#delightform.control_desc}</td>
+					<td align="right"><input type="text" id='ed_desc' name="ed_desc" class='medium_input'/></td>
+			  </tr>
+			  <tr>
+					<td>{#delightform.radio_value}</td>
+					<td align="right"><input type="text" id='ed_value' name="ed_value" class='medium_input'/></td>
+			  </tr>
+			  <tr id='default_value_tr'>
+					<td>{#delightform.radio_default}</td>
+					<td align="right"><select name='cb_default' id='cb_default' class='medium_input'></select></td>
+			  </tr>
+			  <tr>
+					<td>{#delightform.valid_mandatory}</td>
+					<td align="right"><input type='checkbox' name='chk_valid_mandatory' id='chk_valid_mandatory' value='1'/></td>
+			  </tr>
+		  </table>
+	</fieldset>
+
+	<div class="mceActionPanel">
+		<div style="float: left">
+			<input type="button" id="insert" name="insert" value="{#insert}" onclick="DelightRadioFieldDialog.insert();" />
+		</div>
+
+		<div style="float: right">
+			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="DelightRadioFieldDialog.close();" />
+		</div>
+	</div>
+</form>
+</body>
+</html>

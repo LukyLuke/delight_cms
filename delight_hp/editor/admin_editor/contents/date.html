@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>[LANG_VALUE:change_Date]</title>
+		<meta http-equiv="Content-Type"  content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/dialog.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/content.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/ui.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/JSCal/src/css/jscal2.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/JSCal/src/css/border-radius.css" />
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/tiny_mce_popup.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/prototype/prototype-release.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/AdminDialog.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/JSCal/src/js/jscal2.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/JSCal/src/js/lang/[LANG_SHORT].js"></script>
+	</head>
+	<body class="admpopup" marginheight="0" marginwidth="0" leftmargin="0" topmargin="0">
+		<form method="post" action="" enctype="multipart/form-data">
+			<input type="hidden" name="date" value="[CURRENT_DATE]" id="dateField" />
+			<input type="hidden" name="section" value="[SECTION_ID]" id="fld_section" />
+			<input type="hidden" name="entry" value="[ENTRY_ID]" id="fld_entry" />
+			<div id="calendar"></div>
+			<script type="text/javascript">
+				var fld = document.getElementById('dateField');
+				function updateDate(cal) {
+					var d = Calendar.intToDate(cal.selection.get());
+					d.setMinutes(cal.getMinutes());
+					d.setHours(cal.getHours());
+					d = Calendar.printDate(d, '%Y-%m-%d %k:%M:%S');
+					fld.value = d;
+				}
+				var cal = Calendar.setup({
+					cont: 'calendar',
+					weekNumbers: true,
+					selectionType: Calendar.SEL_SINGLE,
+					showTime: true,
+					timePos: 'right',
+					minuteStep: 1,
+					animation: true,
+					dateFormat: '%Y-%m-%d %k:%M:%S',
+					date: parseInt(fld.value.substring(0, 10).replace(/-/g, '')),
+					time: parseInt(fld.value.substring(11, 16).replace(/:/g, '')),
+					selection: [parseInt(fld.value.substring(0, 10).replace(/-/g, ''))],
+					onSelect: updateDate,
+					onTimeChange: updateDate
+				});
+			</script>
+		</form>
+
+		<div id="buttonbar">
+			<div style="float:left;">
+				<input type="button" value="[LANG_VALUE:input_002]" onclick="AdminDialog.close();" id="cancel" />
+			</div>
+			<div style="float:right;">
+				<input type="button" value="[LANG_VALUE:input_004]" onclick="document.forms[0].submit();" id="insert" />
+			</div>
+		</div>
+	</body>
+</html>

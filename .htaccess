@@ -1,0 +1,30 @@
+RewriteEngine  On
+RewriteBase    /
+
+RewriteRule ^sitemap.xml /delight_hp/template/static/sitemap.xml
+
+RewriteRule ^v_[0-9]+/(.*)$ /$1 [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+RewriteRule ^upload/(.*)$ /delight_hp/upload.php [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+
+RewriteRule ^([a-zA-Z0-9][a-zA-Z0-9])/([0-9]+/_[a-zA-Z0-9\/_-]+)$ /delight_hp/index.php?lang=$1&sm=$2 [L]
+RewriteRule ^([a-zA-Z0-9][a-zA-Z0-9])/([0-9]+/_[a-zA-Z0-9\/_-]+)(/([^\/]+)?)$ /delight_hp/index.php?lang=$1&sm=$2&$4 [L]
+
+RewriteRule ^([a-zA-Z0-9][a-zA-Z0-9])/([0-9]+)((/(.*))?) /delight_hp/index.php?lang=$1&m=$2&$5 [L]
+RewriteRule ^([a-zA-Z0-9][a-zA-Z0-9])/([^_][a-zA-Z0-9]+)/([0-9]+)((/(.*))?) /delight_hp/index.php?lang=$1&m=$3&tpl=$2&$6 [L]
+
+# [a-zA-Z][a-zA-Z0-9\/_-]+
+# we need Umlauts and other specialchars in ShortLinks for different Languages
+RewriteRule ^([a-zA-Z0-9][a-zA-Z0-9])/([^&?=]+)/((\?)?[a-z0-9]+=.*)$ /delight_hp/index.php?lang=$1&sm=$2&$3 [L]
+RewriteRule ^([a-zA-Z0-9][a-zA-Z0-9])/([^&?=]+)/$ /delight_hp/index.php?lang=$1&sm=$2 [L]
+RewriteRule ^([a-zA-Z0-9][a-zA-Z0-9])/([^&?=]+)$ /delight_hp/index.php?lang=$1&sm=$2 [L]
+#RewriteRule ^([a-zA-Z0-9][a-zA-Z0-9])/(.*)(/([^\/]+))?$ /delight_hp/index.php?lang=$1&sm=$2&$4 [L]
+
+# Show an Image
+RewriteRule ^image/([a-zA-Z0-9][a-zA-Z0-9])/([0-9]+)x([0-9]+)/([01])/([^\/]+)(\/(.*))?$ /delight_hp/image.php?lang=$1&width=$2&height=$3&title=$4&img=$5&$7 [L]
+RewriteRule ^image/([a-zA-Z0-9][a-zA-Z0-9])/(\{.*\}|%7B.*%7D)/([^\/]+)(\/(.*))?$ /delight_hp/image.php?lang=$1&conf=$2&img=$3&$5 [L]
+
+# Downloads
+RewriteRule ^download/([^/]+)/?(.*)$ /delight_hp/php/downloadLog.php?prg=$1&file=$2 [L]
+RewriteRule ^down/([a-z0-9_-]+)/([^\.]+)\.(.*)$ /delight_hp/data/downloadfiles/$1.$3 [L]
+RewriteRule ^downmir/http/(.*)/(.*)$ http://$1/$2 [L]
+RewriteRule ^downmir/ftp/(.*)/(.*)$ ftp://$1/$2 [L]

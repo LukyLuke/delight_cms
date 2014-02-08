@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>[LANG_VALUE:group_002]</title>
+		<meta http-equiv="Content-Type"  content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/dialog.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/toolbar.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/content.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/ui.css" />
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/tiny_mce_popup.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/utils/mctabs.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/prototype/prototype-release.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/scriptaculous/scriptaculous.js?dragdrop"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/AdminDialog.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/TextgroupManagement.js"></script>
+		<script type="text/javascript">/*<![CDATA[*/
+			var adminUrl = '[MAIN_DIR]';
+			var entityId = [ENTRY_ID];
+			var entityTemplate = '[ENTRY_TEMPLATE]';
+			var entityOptions = '[ENTRY_OPTIONS]';
+		/*]]>*/</script>
+	</head>
+	<body class="admin" marginheight="0" marginwidth="0" leftmargin="0" topmargin="0">
+		
+		<div class="tabcontainer content noToolbar" id="tabcontainer">
+
+			<div class="tabs">
+				<ul>
+					<li id="content_tab" class="current"><span><a href="javascript:mcTabs.displayTab('content_tab','content_panel');" onmousedown="return false;">{#admin_dlg.group_content}</a></span></li>
+					<li id="settings_tab"><span><a href="javascript:mcTabs.displayTab('settings_tab','settings_panel');" onmousedown="return false;">{#admin_dlg.tab_settings}</a></span></li> 
+					<li id="layout_tab"><span><a href="javascript:mcTabs.displayTab('layout_tab','layout_panel');" onmousedown="return false;">{#admin_dlg.tab_layout}</a></span></li>
+				</ul>
+			</div>
+			
+			<div class="panel_wrapper">
+				
+				<div id="content_panel" class="panel current">
+					<fieldset>
+						<legend>{#admin_dlg.group_content_panel_title}</legend>
+						<div id="content_texts"></div>
+					</fieldset>
+				</div>
+				
+				<div id="settings_panel" class="panel">
+					<fieldset>
+						<legend>{#admin_dlg.settings_panel_title}</legend>
+						<div id="content_settings"></div>
+					</fieldset>
+				</div>
+
+				<div id="layout_panel" class="panel">
+					<fieldset>
+						<legend>{#admin_dlg.layout_panel_title}</legend>
+						<div id="content_layout"></div>
+					</fieldset>
+				</div>
+				
+			</div>
+			
+			<div id="buttonbar">
+				<div style="float:right;">
+					<input type="button" value="[LANG_VALUE:input_007]" onclick="TextgroupManagement.save();" id="insert" />
+				</div>
+			</div>
+			
+		</div>
+		
+	</body>
+</html>

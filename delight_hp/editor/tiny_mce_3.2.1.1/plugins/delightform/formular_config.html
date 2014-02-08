@@ -1,0 +1,202 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#delightform.config_title}</title>
+	<script type="text/javascript" src="../../../prototype/prototype-release.js"></script>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="../../utils/mctabs.js"></script>
+	<script type="text/javascript" src="../../utils/validate.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript" src="js/control_config_src.js"></script>
+	<link rel='stylesheet' href='css/delightform.css' type="text/css"/>
+</head>
+<body style="margin: 8px" style="display: none">
+<form onsubmit="return false;" action="#">
+
+	<div class="tabs">
+		<ul>
+			<li id="general_tab" class="current">
+				<span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');" onmousedown="return false;">{#delightform.config_tab1}</a></span>
+			</li>
+			<li id="options_tab_email">
+				<span><a href="javascript:mcTabs.displayTab('options_tab_email','options_panel_email');" onmousedown="return false;">{#delightform.config_tab2}</a></span>
+			</li>
+			<li id="options_tab_tracking">
+				<span><a href="javascript:mcTabs.displayTab('options_tab_tracking','options_panel_tracking');" onmousedown="return false;">{#delightform.config_tab3}</a></span>
+			</li>
+		</ul>
+	</div>
+
+	<div class="panel_wrapper" style="height:350px;">
+
+		<div id="general_panel" class="panel current">
+			<br/>
+			<fieldset>
+				<legend>{#delightform.config_legend_tab1}</legend>
+				<table border="0" cellpadding="0" cellspacing="3" width="100%">
+					<tr>
+						<td>{#delightform.config_formtype}</td>
+						<td>
+							<select name="fld_method">
+								<option value="mail" selected="selected" onclick="DelightConfigFieldDialog.showConfigTab('email');">{#delightform.config_formtype_mail}</option>
+								<option value="tracking" onclick="DelightConfigFieldDialog.showConfigTab('tracking');">{#delightform.config_formtype_tracking}</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_formsuccess}</td>
+						<td><input type="text" name="fld_onsuccess" value="" class="medium_input" /></td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_formfailed}</td>
+						<td><input type="text" name="fld_onfailure" value="" class="medium_input" /></td>
+					</tr>
+				</table>
+			</fieldset>
+			
+			<br/><br/>
+			
+			<fieldset>
+				<legend>{#delightform.config_legend_tab12}</legend>
+				<table border="0" cellpadding="0" cellspacing="3" width="100%">
+					<tr>
+						<td>{#delightform.config_formname}</td>
+						<td><input type="text" name="fld_name" value="" class="medium_input" /></td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_encoding}</td>
+						<td>
+							<select name="fld_encoding">
+								<option value="{#delightform.config_encoding1}" selected="selected">{#delightform.config_encoding1}</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_formvalidate}</td>
+						<td>
+							<select name="fld_validate">
+								<option value="1" selected="selected">{#delightform.config_formvalidate1}</option>
+								<option value="0">{#delightform.config_formvalidate0}</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+		</div>
+
+		<div id="options_panel_email" class="panel">
+			<br/>
+
+			<fieldset>
+				<legend>{#delightform.config_legend_tab2}</legend>
+				<table border="0" cellpadding="0" cellspacing="3" width="100%" id="formtype_mail">
+					<tr>
+						<td>{#delightform.config_typemail_rcpt}</td>
+						<td><input type="text" name="fld_mailrcpt" value="" class="medium_input" /></td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typemail_rcptname}</td>
+						<td><input type="text" name="fld_mailrcptname" value="" class="medium_input" /></td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typemail_subject}</td>
+						<td><input type="text" name="fld_mailsubject" value="" class="medium_input" /></td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typemail_inform}</td>
+						<td>
+							<select name="fld_mailinform">
+								<option value="1" selected="selected">{#delightform.config_typemail_inform1}</option>
+								<option value="0">{#delightform.config_typemail_inform0}</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typemail_senderfield}</td>
+						<td>
+							<select name="fld_mailsenderfield">
+								<option value="null" selected="selected">{#delightform.config_typemail_senderfieldnone}</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typemail_pretext}</td>
+						<td><textarea name="fld_mailpretext" cols="50" rows="5"></textarea></td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typemail_posttext}</td>
+						<td><textarea name="fld_mailposttext" cols="50" rows="5"></textarea></td>
+					</tr>
+				</table>
+			</fieldset>
+		</div>
+		
+		<div id="options_panel_tracking" class="panel">
+			<br/>
+
+			<fieldset>
+				<legend>{#delightform.config_legend_tab3}</legend>
+				<table border="0" cellpadding="0" cellspacing="3" width="100%" id="formtype_mail">
+					<tr>
+						<td>{#delightform.config_typetracking_server}</td>
+						<td><input type="text" name="fld_traserver" value="" class="medium_input" /></td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typetracking_account}</td>
+						<td><input type="text" name="fld_traaccount" value="" class="medium_input" /></td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typetracking_module}</td>
+						<td><select name="fld_tramodule" value="" class="medium_input">
+							<option value="newsletter" selected="selected" onclick="DelightConfigFieldDialog.showTrackingSettings('newsletter');">{#delightform.config_tracking_mnewsletter}</option>
+							<option value="formular" onclick="DelightConfigFieldDialog.showTrackingSettings('formular');">{#delightform.config_tracking_mformular}</option>
+						</select></td>
+					</tr>
+				</table>
+			</fieldset>
+			<br />
+			
+			<fieldset id="tracking_legend_newsletter">
+				<legend>{#delightform.config_legend_tab31}</legend>
+				<table border="0" cellpadding="0" cellspacing="3" width="100%" id="formtype_mail">
+					<tr>
+						<td>{#delightform.config_typemail_senderfield}</td>
+						<td>
+							<select name="fld_trasenderemail">
+								<option value="null" selected="selected">{#delightform.config_typemail_senderfieldnone}</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typetracking_server}</td>
+						<td><input type="text" name="fld_traserver" value="" class="medium_input" /></td>
+					</tr>
+				</table>
+			</fieldset>
+			
+			<fieldset id="tracking_legend_formular">
+				<legend>{#delightform.config_legend_tab32}</legend>
+				<table border="0" cellpadding="0" cellspacing="3" width="100%" id="formtype_mail">
+					<tr>
+						<td>{#delightform.config_typetracking_server}</td>
+						<td><input type="text" name="fld_traserver" value="" class="medium_input" /></td>
+					</tr>
+				</table>
+			</fieldset>
+			
+		</div>
+
+	</div>
+
+	<div class="mceActionPanel">
+		<div style="float: left">
+			<input type="button" id="insert" name="insert" value="{#update}" onclick="DelightConfigFieldDialog.configureFormular();"/>
+		</div>
+
+		<div style="float: right">
+			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="DelightConfigFieldDialog.close();"/>
+		</div>
+	</div>
+</form>
+
+</body>
+</html>

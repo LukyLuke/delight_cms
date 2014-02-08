@@ -1,0 +1,60 @@
+Installation: 
+=============
+
+Unpack the complete CMS in the Root of the Webfolder, so the rootfolder contains following files:
+
+ delight_hp/
+ userdata/
+ .htaccess
+ .lighttpd
+ index.php
+ robots.txt
+
+
+Template:
+---------
+
+Copy all Files from your Template-Sourcefolder to `delight_hp/tempate/`. Thats all...
+
+
+Configuration:
+--------------
+
+* Copy the File `delight_hp/config/userconf_orig.inc.php` to `delight_hp/config/userconf.inc.php` if this is the first Installation.
+* Open the Configuration-File `delight_hp/config/userconf.inc.php` and enter all needed values:
+* * DB_USER: Database User
+* * DB_PASSWORD: Database Password for the above User
+* * DB_DATABASE: The Database to use - above User must have access to it
+* * DB_HOST: The MySQL Hostname or IP
+* * DHP_NAME: The default name of this Page, mainly printed into the titlebar of the Browser
+* * DHP_DESCRIPTION: The default Description, used as defautl Metatag-Value
+* * DHP_KEYWORDS: Default Keywords if none are given in the Menu
+* * PIWIK_SITE_ID: The Piwik SiteID - Piwik must be configured under "/pageanasta/piwik.php" to work properly
+
+All other values should be stay as is, except the IMAGE_* and SCREENSHOT_* ones which you may change.
+
+
+Permissions:
+------------
+
+After successfull configuration, you have to change some permissions to be read- and writable for the Webserver. Change following Directories and all Subdirectories to *rwx* (0700):
+
+ delight_hp/data/dowloadfiles/
+ delight_hp/images/page/
+ delight_hp/template/static/
+
+
+First Access:
+-------------
+
+The First time you have to call the delightCMS by the following URL:
+
+ http://www.YOURDOMAIN.dom/de/1/adm=1
+
+Use the Username `admin` and the Password `cmsadmin` to get access.
+
+Now create all your menus and contents. After go to the administration page `Publish Pages` and create the pages for the first Language. After your Page is visible to your Customers and you can Login as usual by the yellow padlock.
+
+*ATTENTION:* You always need a `home` Shortlink in your Menu. Even as the main shortlink or the translated one.
+
+*Note:* In some circumstances you will have the language `german (de)` twice. In this case, just Login into your Administration Panel from your hosting provider and choose `PHPMyAdmin`. There navigate to the table `dhp_languages` and remove the second row which stays for `german (de)`.

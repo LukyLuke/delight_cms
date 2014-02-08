@@ -1,0 +1,64 @@
+#src_list, #over_list, #out_list {width:280px;}
+.mceActionPanel {margin-top:7px;}
+.alignPreview {border:1px solid #000; width:140px; height:140px; overflow:hidden; padding:5px;}
+.checkbox {border:0;}
+.panel_wrapper div.current {height:305px;}
+#prev {margin:0; border:1px solid #000; width:428px; height:150px; overflow:auto;}
+#align, #classlist {width:150px;}
+#width, #height {vertical-align:middle; width:50px; text-align:center;}
+#vspace, #hspace, #border {vertical-align:middle; width:30px; text-align:center;}
+#class_list {width:180px;}
+input {width: 280px;}
+#constrain, #onmousemovecheck {width:auto;}
+#id, #dir, #lang, #usemap, #longdesc {width:200px;}
+
+/* DELIGHT: SectionList */
+ul.table {list-style-type: none;margin: 0;padding: 0;}
+ul.table li {cursor: pointer;border: 1px solid #8999a5;border-width: 1px 0;margin: 0 0 3px 0;padding: 3px;overflow: hidden;height: 90px;position:relative;}
+ul.table li.even, th.even, td.even {background: #e2e6ea;}
+ul.table li.odd, th.odd, td.odd {background: #f2f5f7;}
+ul.table li.selected {background: #b6adc9;}
+ul.table li .image {vertical-align: top;text-align: left;width: 110px;position:absolute;top:0;bottom:0;left:0;}
+ul.table li .date {vertical-align: top;text-align: right;width: 150px;}
+ul.table li .content {vertical-align: top;text-align: left;position:absolute;top:0;left:110px;bottom:0;right:0;overflow:hidden;}
+ul.table li .content p {margin: 2px 0;padding: 0;}
+ul.table li img {float: left;margin: 0 10px 0 0;}
+ul.table li .title {font-weight: bold;text-decoration: underline;color: #000000;font-size: 8pt;}
+ul.table li .identifier {color: #000000;font-weight: bold;font-size: 7pt;margin: 2px 10px 0 0;}
+ul.table li .value {color: #000000;font-size: 7pt;margin: 2px 10px 0 0;}
+
+ul.sectionlist {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+ul.sectionlist li span.selected {
+	text-decoration: underline;
+}
+ul.sectionlist li {
+	white-space: nowrap;
+}
+ul.sectionlist li ul {
+	margin-left: 13px;
+}
+ul.sectionlist li span {
+	margin: 0;
+	cursor: pointer;
+	white-space: nowrap;
+}
+ul.sectionlist li img.expand {
+	width: 9px;
+	height: 9px;
+	margin: 0 3px 1px 0;
+	cursor: pointer;
+}
+ul.sectionlist li img.folder {
+	margin: 0 2px 0 0;
+	width: 12px;
+	height: 12px;
+	cursor: pointer;
+}
+ul.sectionlist li input {
+	border: 1px solid black;
+	width: 100px;
+}

@@ -1,0 +1,1024 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<customer>
+	<lang name="german" short="de">
+		<text>
+			<field id="input_001" value="Eintragen / Ändern" />
+			<field id="input_002" value="Abbrechen" />
+			<field id="input_003" value="Schliessen" />
+			<field id="input_004" value="OK" />
+			<field id="input_005" value="Löschen" />
+			<field id="input_006" value="Anzeigen" />
+			<field id="input_007" value="Speichern" />
+			<field id="input_008" value="Bearbeiten" />
+			<field id="input_009" value="Gruppe Bearbeiten" />
+			<field id="input_010" value="Gruppe Löschen" />
+			<field id="input_011" value="Nach oben/links" />
+			<field id="input_012" value="Nach unten/rechts" />
+			<field id="input_013" value="Neues Untermenü" />
+			<field id="input_014" value="Sichtbarkeit ändern" />
+
+			<field id="srch_000" value="Suche" />
+			<field id="srch_001" value="Suchresultate" />
+			<field id="srch_002" value="schliessen" />
+			<field id="srch_003" value="Keine Seiten gefunden" />
+			<field id="srch_004" value="Ganze Seite durchsuchen..." />
+
+			<field id="ifrm_001" value="Titel" />
+			<field id="ifrm_002" value="Seite" />
+
+			<field id="msg_001" value="Nach Oben" />
+			<field id="msg_002" value="Beschreibung" />
+			<field id="msg_003" value="Abmessung" />
+			<field id="msg_004" value="Grösse" />
+			<field id="msg_005" value="Bild Nummer" />
+			<field id="msg_006" value="Bereich" />
+			<field id="msg_007" value="Abmessungen" />
+			<field id="msg_008" value="Grösse" />
+			<field id="msg_009" value="Benutzername" />
+			<field id="msg_010" value="Passwort" />
+			<field id="msg_011" value="Login merken" />
+			<field id="msg_012" value="Anmelden" />
+			<field id="msg_013" value="News anzeigen" />
+			<field id="msg_014" value="" />
+			<field id="msg_015" value="Datum" />
+			<field id="msg_016" value="Datei" />
+			<field id="msg_017" value="Downloads" />
+			<field id="msg_018" value="Datei speichern" />
+			<field id="msg_019" value="Grösse" />
+			<field id="msg_020" value="Typ" />
+			<field id="msg_021" value="Bereich wählen" />
+			<field id="msg_022" value="Dokumente und Dateien: " />
+			<field id="msg_023" value="Neues Fenster - Schliessen anklicken um zu schliessen" />
+			<field id="msg_024" value="Bild kann skaliert sein. Für Originalgrösse auf das Bild klicken" />
+			<field id="msg_025" value="Herunterladen" />
+			<field id="msg_026" value="hier klicken" />
+			<field id="msg_027" value="Für mehr Details zu" />
+			<field id="msg_028" value="Willkommen [LOGIN_NAME], Sie sind erfolgreich angemeldet." />
+
+			<field id="error_001" value="Die Template-Datei existiert nicht" />
+			<field id="error_002" value="Sie haben keine Berechtigung in diesem Bereich" />
+			<field id="error_003" value="Sie besitzen nicht die benötigten Berechtigungen um diesen Bereich anzuzeigen oder die von Ihnen gewählte Aktion durchzuführen." />
+			<field id="error_004" value="Template nicht gefunden" />
+			<field id="error_005" value="Das benötigte Template konnte nicht gefunden werden:" />
+			<field id="error_006" value="Fehlendes Plugin für den Bereich: " />
+			<field id="error_007" value="Dieser Bereich kann nicht angezeigt werden, dass da angeforderte Plugin nicht installiert ist." />
+
+			<field id="prg_001" value="Datei- und Download-Verwaltung" />
+			<field id="prg_002" value="Download-Bereich wählen" />
+
+			<field id="group_001" value="Textgruppen" />
+			<field id="group_002" value="Textblöcke wählen" />
+
+			<field id="rgt_download" value="Anmelden in abgesicherten Bereichen" />
+			<field id="rgt_news" value="Kann News administrieren" />
+			<field id="rgt_staticsite" value="Kann seiten veröffentlichen" />
+			<field id="rgt_menu" value="Kann das Menü administrieren" />
+			<field id="rgt_content" value="Kann Texte/Textblöcke erfassen" />
+			<field id="rgt_formular" value="rgt_formular" />
+			<field id="rgt_users" value="Kann Benutzer anlegen und ändern" />
+			<field id="rgt_images" value="Kann Bilder administrieren" />
+			<field id="rgt_programs" value="Kann Downloads administrieren" />
+			<field id="rgt_config" value="Kann die Seite Konfigurieren" />
+			<field id="rgt_backup" value="Kann ein Backup anlegen und zurückspielen" />
+			<field id="rgt_statistic" value="Kann die Statistik einsehen" />
+			<field id="rgt_languages" value="Kann die Sprachen verwalten" />
+			<field id="rgt_simpleshop" value="Kann das Plugin SIMPLESHOP administrieren" />
+			<field id="rgt_iframe" value="rgt_iframe" />
+			<field id="rgt_fulladmin" value="Haupt-Administrator, kann alles machen" />
+			<field id="rgt_globaltext" value="Kann globale Texte erfassen und bearbeiten" />
+
+
+			<field id="user_001" value="Benutzerverwaltung" />
+			<field id="user_002" value="Benutzerdaten" />
+			<field id="user_003" value="Zuweisungen" />
+			<field id="user_004" value="Berechtigungen" />
+			<field id="user_005" value="Gruppenname" />
+			<field id="user_006" value="Beschreibung" />
+			<field id="user_007" value="Gruppe bearbeiten / erstellen" />
+
+			<field id="publish_001" value="Seite veröffentlichen" />
+
+			<field id="img_001" value="Bilderverwaltung" />
+			<field id="img_002" value="Neues Bild importieren" />
+			<field id="img_003" value="Galerie-Bereich wählen" />
+
+			<field id="news_001" value="Newsverwaltung" />
+			<field id="news_002" value="News-Bereich wählen" />
+
+			<field id="cont_001" value="Spezial Content Verwaltung" />
+			<field id="cont_002" value="Variable wählen" />
+			<field id="cont_003" value="Neue Konfiguration erstellen" />
+			<field id="cont_004" value="Variable" />
+			<field id="cont_005" value="Typ" />
+			<field id="cont_006" value="Ganze Zahl" />
+			<field id="cont_007" value="Einzeiliger Text" />
+			<field id="cont_008" value="Dezimal Zahl" />
+			<field id="cont_009" value="Bild" />
+			<field id="cont_010" value="Datei" />
+			<field id="cont_011" value="News" />
+			<field id="cont_012" value="Texteintrag" />
+			<field id="cont_013" value="Farbe" />
+			<field id="cont_014" value="Mehrzeilig / HTML" />
+
+			<field id="gtext_001" value="Globale Texte verwalten" />
+			<field id="gtext_002" value="Globalen Text wählen" />
+
+			<field id="simpleshop_001" value="Preis:" />
+			<field id="simpleshop_002" value="Titel:" />
+			<field id="simpleshop_003" value="Name:" />
+			<field id="simpleshop_004" value="Beschreibung:" />
+			<field id="simpleshop_005" value="Anzahl:" />
+			<field id="simpleshop_006" value="in den Warenkorb" />
+			<field id="simpleshop_007" value="Warenkorb" />
+			<field id="simpleshop_008" value="Total Artikel" />
+			<field id="simpleshop_009" value="Artikel im Warenkorb" />
+			<field id="simpleshop_010" value="Menge" />
+			<field id="simpleshop_011" value="Preis" />
+			<field id="simpleshop_012" value="zum Warenkorb" />
+			<field id="simpleshop_013" value="Vorname" />
+			<field id="simpleshop_014" value="Nachname" />
+			<field id="simpleshop_015" value="Firma" />
+			<field id="simpleshop_016" value="Adresse" />
+			<field id="simpleshop_017" value="PLZ, Ort" />
+			<field id="simpleshop_018" value="Liefertermin" />
+			<field id="simpleshop_019" value="Lieferzeit" />
+			<field id="simpleshop_020" value="Kommentar" />
+			<field id="simpleshop_021" value="Bestellung abschicken" />
+			<field id="simpleshop_022" value="Artikel" />
+			<field id="simpleshop_023" value="Telefonnummer" />
+
+			<field id="lang_001" value="Sprachenverwaltung" />
+			<field id="lang_002" value="Flagge" />
+			<field id="lang_003" value="Sprache" />
+			<field id="lang_004" value="Kurzform" />
+			<field id="lang_005" value="Charset" />
+			<field id="lang_006" value="Aktiv" />
+			<field id="lang_007" value="Neue Sprache" />
+
+			<field id="formular_001" value="Keine gültige EMail-Adresse" />
+			<field id="formular_002" value="Keine gültige Zahl" />
+			<field id="formular_003" value="" />
+			<field id="formular_004" value="Kein gültiger Wert" />
+			
+			<!-- Administration stuff -->
+			<field id="adm_001" value="Login" />
+			<field id="adm_002" value="Neuen Text erstellen" />
+			<field id="adm_008" value="Administration" />
+			<field id="adm_009" value="Hauptmenü erstellen" />
+			
+			<field id="delete_text" value="Texteintrag entfernen" />
+			<field id="delete_text_button" value="Löschen" />
+			<field id="new_text_title" value="Geben Sie hier den Titel zu dem Text ein" />
+			<field id="new_text_content" value="Schreiben Sie hier den Text" />
+			<field id="entry_delete" value="Achtung: Sind Sie sicher, dass Sie den gewählten Eintrag löschen wollen?&lt;br/&gt;&lt;br/&gt;Ein gelöschter Eintrag kann nicht wiederhergestellt werden." />
+			<field id="delete_success" value="Löschung erfolgreich" />
+			<field id="menu_delete_message" value="Achtung: Sie sind im Begriff einen Menüeintrag zu löschen. Wenn Sie diesen Menüeintrag löschen, werden alle Untermenüs und alle darin enthaltenen Texteinträge unwiederrufflich gelöscht." />
+			<field id="menu_change" value="Menüeintrag ändern und erstellen" />
+			<field id="menu_delete" value="Menüeintrag löschen" />
+			<field id="menu_name" value="Name des Menüs" />
+			<field id="menu_short_link" value="Short-Link Global" />
+			<field id="menu_short_invalid" value="Der von Ihnen eigegeben Short-Link enthällt ungültige Zeichen.\n\nEs sind nur Buchstaben (GROSS und klein), Zahlen (0-9) und Striche (-) und Unterstriche (_) erlaubt.\nAlle anderen Zeichen wurden entfernt.\n\nDer neue ShortLink: " />
+			<field id="menu_short_descr" value="Wenn Sie beim Short-Link eine Internetadresse eingeben, wird beim klick auf das Menü diese Internetseite in einem neuen Browserfenster aufgerufen. Somit können Sie direkt aus dem Menü heraus auf andere Seiten verlinken." />
+			<field id="menu_extended" value="Erweiterte Angaben" />
+			<field id="menu_transshort" value="Short-Link Sprache" />
+			<field id="menu_transshort_hint" value="Short-Link in der aktuellen Sprache. Diese Short-Link kann genutzt werden, um Seiten auch über eine Lokalisierte URL zu erreichen." />
+			<field id="menu_title" value="Seiten-Titel" />
+			<field id="menu_title_hint" value="" />
+			<field id="menu_descr" value="Beschreibung" />
+			<field id="menu_descr_hint" value="" />
+			<field id="menu_keywords" value="Schlüsselwörter" />
+			<field id="menu_keywords_hint" value="" />
+			<field id="menu_access" value="Eingeschr. Zugriff" />
+			<field id="menu_access_hint" value="" />
+			<field id="menu_acces_nogroups" value="Keine Zugriffsgruppen definiert" />
+			<field id="menu_image" value="Menübild wählen" />
+			<field id="menu_image_hint" value="Menübild: Nicht immer verfügbar" />
+			<field id="menu_image_remove" value="entfernen" />
+			<field id="upload_file_to_big" value="Datei zu gross, Maximal erlaubte Bytes: " />
+			<field id="upload_partial" value="Importvorgang unterbochen. Datei wurde nur teilweise hochgeladen." />
+			<field id="upload_no_file" value="Es wurde keine Datei hochgeladen." />
+			<field id="upload_cant_write" value="Server-Fehler: Datei konnte nicht geschrieben werden." />
+			<field id="upload_no_temp" value="Server-Fehler: Es existiert kein Temporäres Verzeichniss." />
+			<field id="upload_unknown_error" value="Unbekannter Fehler: " />
+			<field id="upload_update_invalid" value="Es können nur gleiche Datei-Typen ersetzt werden." />
+			<field id="upload_write_error" value="Datei konnte nicht gespeichert werden da der Server kein schreibzugriff hat." />
+			<field id="upload_different_sizes" value="Beim Speichern ist ein Fehler aufgetreten: Die Dateigrössen stimmen nicht überein." />
+			
+			<field id="error_occured" value="Es ist ein Fehler aufgetreten:" />
+			<field id="change_descr" value="Beschreibung bearbeiten" />
+			<field id="change_date" value="Datum anpassen" />
+			<field id="choose_color" value="Farbe wählen" />
+			
+			<field id="rss_title" value="RSS-Feed bearbeiten" />
+			<field id="rss_feed_name" value="Feed-Titel" />
+			<field id="rss_feed_url" value="Feed-URLs" />
+			<field id="rss_feed_descr" value="Zusammenfassen" />
+			<field id="rss_feed_seconds" value="Anzahl Sekunden" />
+			<field id="rss_feed_age" value="Cache-Alter" />
+			
+			<field id="file_uploaded" value="Datei importiert. Warte auf weitere Dateien..." />
+			<field id="changes_done" value="Änderungen durchgeführt." />
+			<field id="closing_window" value="Das Dialogfenster wird nun geschlossen..." />
+			<field id="reload_window" value="Der Die Seite wird nun neu geladen damit die Änderungen sichtbar werden." />
+
+		</text>
+		<menu>
+			<field id="1000" value="Bilderverwaltung" />
+			<field id="1100" value="Downloadverwaltung" />
+			<field id="1200" value="Benutzerverwaltung" />
+			<field id="1300" value="Sprachen" />
+			<field id="1400" value="Newsverwaltung" />
+			<field id="1500" value="Statistiken" />
+			<field id="1600" value="Spezial Seiten-Design" />
+			<field id="1700" value="Seiten veröffentlichen" />
+			<field id="1800" value="Globale Texte" />
+			<field id="1900" value="Basiskonfiguration" />
+			<field id="2000" value="" />
+			<field id="2100" value="" />
+			<field id="2200" value="" />
+			<field id="2300" value="" />
+			<field id="2400" value="" />
+			<field id="2500" value="" />
+			<field id="2600" value="" />
+			<field id="2700" value="" />
+			<field id="2800" value="" />
+			<field id="2900" value="" />
+			<field id="3000" value="" />
+			<field id="3100" value="" />
+			<field id="3200" value="" />
+			<field id="3300" value="" />
+			<field id="3400" value="" />
+			<field id="3500" value="" />
+			<field id="3600" value="" />
+			<field id="3700" value="" />
+			<field id="3800" value="" />
+			<field id="3900" value="" />
+			<field id="4000" value="" />
+			<field id="10000" value="Eigene Daten ändern" />
+			<field id="SIMPLESHOP" value="Einfaches Shop-System" />
+
+		</menu>
+	</lang>
+
+	<lang name="english" short="en">
+		<text>
+			<field id="input_001" value="Create / Change" />
+			<field id="input_002" value="Cancel" />
+			<field id="input_003" value="Close" />
+			<field id="input_004" value="OK" />
+			<field id="input_005" value="Delete" />
+			<field id="input_006" value="Show" />
+			<field id="input_007" value="Save" />
+			<field id="input_008" value="Edit" />
+			<field id="input_009" value="Edit group" />
+			<field id="input_010" value="Delete group" />
+			<field id="input_011" value="Up/Left" />
+			<field id="input_012" value="Down/Right" />
+			<field id="input_013" value="New Submenu" />
+			<field id="input_014" value="Change Visibility" />
+
+			<field id="srch_000" value="Search" />
+			<field id="srch_001" value="Searchresults" />
+			<field id="srch_002" value="close" />
+			<field id="srch_003" value="No pages found" />
+			<field id="srch_004" value="Search entire site here..." />
+
+			<field id="ifrm_001" value="Title" />
+			<field id="ifrm_002" value="Site" />
+
+			<field id="msg_001" value="Up" />
+			<field id="msg_002" value="Description" />
+			<field id="msg_003" value="Dimension" />
+			<field id="msg_004" value="Size" />
+			<field id="msg_005" value="Image Nr." />
+			<field id="msg_006" value="Section" />
+			<field id="msg_007" value="Dimensions" />
+			<field id="msg_008" value="Size" />
+			<field id="msg_009" value="Username" />
+			<field id="msg_010" value="Password" />
+			<field id="msg_011" value="Remember Login" />
+			<field id="msg_012" value="Login" />
+			<field id="msg_013" value="Show News" />
+			<field id="msg_014" value="" />
+			<field id="msg_015" value="Date" />
+			<field id="msg_016" value="File" />
+			<field id="msg_017" value="Downloads" />
+			<field id="msg_018" value="Save File" />
+			<field id="msg_019" value="Size" />
+			<field id="msg_020" value="Type" />
+			<field id="msg_021" value="Choose Section" />
+			<field id="msg_022" value="Documents and Files: " />
+			<field id="msg_023" value="Window, click 'close' to close it" />
+			<field id="msg_024" value="The Image may be scaled. Click on it to view it in Original-Size" />
+			<field id="msg_025" value="Download" />
+			<field id="msg_026" value="click here" />
+			<field id="msg_027" value="to get more Details" />
+			<field id="msg_028" value="Welcome [LOGIN_NAME], You are logged in successfully." />
+
+			<field id="error_001" value="The requested Template does not exist" />
+			<field id="error_002" value="You don't have access in this Section" />
+			<field id="error_003" value="You don't have access to view this Section or to call the Action" />
+			<field id="error_004" value="Template was not found" />
+			<field id="error_005" value="The requested Template was not found:" />
+			<field id="error_006" value="Missing Plugin for Section: " />
+			<field id="error_007" value="Cannot show the requested Section, the required Plugin is not installed." />
+
+			<field id="prg_001" value="File- and Download-Administration" />
+			<field id="prg_002" value="Choose Section" />
+
+			<field id="group_001" value="Text-Groups" />
+			<field id="group_002" value="Choose Textblocks" />
+
+			<field id="rgt_download" value="Login to secured Menues" />
+			<field id="rgt_news" value="News-Administrator" />
+			<field id="rgt_staticsite" value="Publish Sites" />
+			<field id="rgt_menu" value="Menu-Administration" />
+			<field id="rgt_content" value="Content-Administration" />
+			<field id="rgt_formular" value="rgt_formular" />
+			<field id="rgt_users" value="User-Administration" />
+			<field id="rgt_images" value="Image-Administration" />
+			<field id="rgt_programs" value="Download-Administration" />
+			<field id="rgt_config" value="N/A: Page-Configuration" />
+			<field id="rgt_backup" value="N/A: Backup" />
+			<field id="rgt_statistic" value="N/A: Statistics" />
+			<field id="rgt_languages" value="Language-Administration" />
+			<field id="rgt_simpleshop" value="Simpleshop-Administration" />
+			<field id="rgt_iframe" value="rgt_iframe" />
+			<field id="rgt_fulladmin" value="Global Aadministration" />
+
+			<field id="user_001" value="User Management" />
+			<field id="user_002" value="Userdata" />
+			<field id="user_003" value="Assignment" />
+			<field id="user_004" value="Access" />
+			<field id="user_005" value="Groupname" />
+			<field id="user_006" value="Description" />
+			<field id="user_007" value="Create or Change a Group" />
+
+			<field id="publish_001" value="Publish Pages" />
+
+			<field id="img_001" value="Image Management" />
+			<field id="img_002" value="Import a new Image" />
+			<field id="img_003" value="Choose Section" />
+
+			<field id="news_001" value="News-Management" />
+			<field id="news_002" value="Choose Section" />
+
+			<field id="cont_001" value="Spezial Content" />
+			<field id="cont_002" value="Choose Variable" />
+			<field id="cont_003" value="New Configuration" />
+			<field id="cont_004" value="Variable" />
+			<field id="cont_005" value="Type" />
+			<field id="cont_006" value="Number" />
+			<field id="cont_007" value="Textline" />
+			<field id="cont_008" value="Decimal Number" />
+			<field id="cont_009" value="Image" />
+			<field id="cont_010" value="File" />
+			<field id="cont_011" value="News" />
+			<field id="cont_012" value="Textentry" />
+			<field id="cont_013" value="Color" />
+			<field id="cont_014" value="Multiline / HTML" />
+
+			<field id="gtext_001" value="Globale-Text Management" />
+			<field id="gtext_002" value="Choose Global Text" />
+
+			<field id="simpleshop_001" value="Price:" />
+			<field id="simpleshop_002" value="Title:" />
+			<field id="simpleshop_003" value="Name:" />
+			<field id="simpleshop_004" value="Description:" />
+			<field id="simpleshop_005" value="Qty:" />
+			<field id="simpleshop_006" value="add to Basket" />
+			<field id="simpleshop_007" value="Basket" />
+			<field id="simpleshop_008" value="Total Articles" />
+			<field id="simpleshop_009" value="Articles in Basket" />
+			<field id="simpleshop_010" value="Qty" />
+			<field id="simpleshop_011" value="Price" />
+			<field id="simpleshop_012" value="to the Basket" />
+			<field id="simpleshop_013" value="Name" />
+			<field id="simpleshop_014" value="Surname" />
+			<field id="simpleshop_015" value="Company" />
+			<field id="simpleshop_016" value="Address" />
+			<field id="simpleshop_017" value="Zip, City" />
+			<field id="simpleshop_018" value="Delivery-Date" />
+			<field id="simpleshop_019" value="Delivery-Time" />
+			<field id="simpleshop_020" value="Comment" />
+			<field id="simpleshop_021" value="Submit Order" />
+			<field id="simpleshop_022" value="Article" />
+			<field id="simpleshop_023" value="Telephone" />
+
+			<field id="lang_001" value="Language-Management" />
+			<field id="lang_002" value="Flag" />
+			<field id="lang_003" value="Language" />
+			<field id="lang_004" value="Short" />
+			<field id="lang_005" value="Charset" />
+			<field id="lang_006" value="Active" />
+			<field id="lang_007" value="New Language" />
+
+			<field id="formular_001" value="Invalid Address" />
+			<field id="formular_002" value="Invalid Number" />
+			<field id="formular_003" value="" />
+			<field id="formular_004" value="Invalid Value" />
+
+			<!-- Administration stuff -->
+			<field id="adm_001" value="Login" />
+			<field id="adm_002" value="Create Textblock" />
+			<field id="adm_008" value="Administration" />
+			<field id="adm_009" value="Create Mainmenu" />
+			
+			<field id="delete_text" value="Remove Textblock" />
+			<field id="delete_text_button" value="Delete" />
+			<field id="new_text_title" value="Enter the title here" />
+			<field id="new_text_content" value="Write your text here" />
+			<field id="entry_delete" value="ATTENTION: You really want to delete the selected Textentry?&lt;br/&gt;&lt;br/&gt;You cannot restore the text after you deleted it." />
+			<field id="delete_success" value="Remove was successfull" />
+			<field id="menu_delete_message" value="ATTENTION: You are gonna delete a Menu! If you remove a Menu, you also delete all Textentries, Submenues and Textentries in them and you cannot restore them again!" />
+			<field id="menu_change" value="Create or Change a Menuentry" />
+			<field id="menu_delete" value="Remove Menuentry" />
+			<field id="menu_name" value="Menuname" />
+			<field id="menu_short_link" value="Short-Link" />
+			<field id="menu_short_invalid" value="The Short-Link includes invalid characters.\n\nOnly Letters (lower- and upper-case), Numbers (0-9), Dashes (-) and Underscores (_) are allowed.\nAll other characters are removed.\n\nThe new Short-Link is now: " />
+			<field id="menu_short_descr" value="If you enter a URL in the Short-Link field, it is opend by a click on the menue in a new window. Thisway you can create Links in the menu to other sites, for example to a forum a gallery or anything else." />
+			<field id="menu_extended" value="Extended Attributes" />
+			<field id="menu_title" value="Page title" />
+			<field id="menu_title_hint" value="" />
+			<field id="menu_descr" value="Description" />
+			<field id="menu_descr_hint" value="" />
+			<field id="menu_keywords" value="Keywords" />
+			<field id="menu_keywords_hint" value="" />
+			<field id="menu_access" value="Access" />
+			<field id="menu_access_hint" value="" />
+			<field id="menu_acces_nogroups" value="No access groups defined" />
+			<field id="menu_image" value="Choose a Menu-Icon" />
+			<field id="menu_image_hint" value="Not available everywhere" />
+			<field id="upload_file_to_big" value="File to big, maximum allowed bytes: " />
+			<field id="upload_partial" value="Upload aborted because the file was received partially only." />
+			<field id="upload_no_file" value="Upload aborted because no file was uploaded." />
+			<field id="upload_cant_write" value="Server-Error: No access to write the uploaded file." />
+			<field id="upload_no_temp" value="Server-Error: No temporary directory found." />
+			<field id="upload_unknown_error" value="Unknown error: " />
+			<field id="upload_update_invalid" value="Only files by the same types can be replaced." />
+			<field id="upload_write_error" value="File coult not been saved because the server has no access to write to the final directory." />
+			<field id="upload_different_sizes" value="Error while save the file: Different filesizes." />
+			
+			<field id="error_occured" value="An error occured:" />
+			<field id="change_descr" value="Change the Description" />
+			<field id="change_date" value="Change the Date" />
+			<field id="choose_color" value="Choose a Color" />
+			
+			<field id="rss_title" value="Modify an RSS-Feed" />
+			<field id="rss_feed_name" value="Feed-Title" />
+			<field id="rss_feed_url" value="Feed-URLs" />
+			<field id="rss_feed_descr" value="Summary" />
+			<field id="rss_feed_seconds" value="Num seconds" />
+			<field id="rss_feed_age" value="Cache-Age" />
+			
+			<field id="file_uploaded" value="File Imported, waiting for others..." />
+			<field id="changes_done" value="Changes done" />
+			<field id="closing_window" value="This Dialog gets closed in a couple seconds..." />
+			<field id="reload_window" value="The Page has to be reloaded in case of the changes..." />
+
+		</text>
+		<menu>
+			<field id="1000" value="Image-Management" />
+			<field id="1100" value="File-Management" />
+			<field id="1200" value="User-Management" />
+			<field id="1300" value="Language-Management" />
+			<field id="1400" value="News-Management" />
+			<field id="1500" value="Statistics" />
+			<field id="1600" value="Special-Content" />
+			<field id="1700" value="Publis Pages" />
+			<field id="1800" value="Global Texts" />
+			<field id="1900" value="Page-Configuration" />
+			<field id="2000" value="" />
+			<field id="2100" value="" />
+			<field id="2200" value="" />
+			<field id="2300" value="" />
+			<field id="2400" value="" />
+			<field id="2500" value="" />
+			<field id="2600" value="" />
+			<field id="2700" value="" />
+			<field id="2800" value="" />
+			<field id="2900" value="" />
+			<field id="3000" value="" />
+			<field id="3100" value="" />
+			<field id="3200" value="" />
+			<field id="3300" value="" />
+			<field id="3400" value="" />
+			<field id="3500" value="" />
+			<field id="3600" value="" />
+			<field id="3700" value="" />
+			<field id="3800" value="" />
+			<field id="3900" value="" />
+			<field id="4000" value="" />
+			<field id="10000" value="Eigene Daten ändern" />
+			<field id="SIMPLESHOP" value="Einfaches Shop-System" />
+		</menu>
+	</lang>
+
+	<lang name="french" short="fr">
+		<text>
+			<field id="input_001" value="Refaire / Modifier" />
+			<field id="input_002" value="Annuler" />
+			<field id="input_003" value="Fermer" />
+			<field id="input_004" value="OK" />
+			<field id="input_005" value="Décharger" />
+			<field id="input_006" value="Afficher" />
+			<field id="input_007" value="Enregistrer" />
+			<field id="input_008" value="Edition" />
+			<field id="input_009" value="Modifier la group" />
+			<field id="input_010" value="Décharger la group" />
+			<field id="input_011" value="Haut/Gauche" />
+			<field id="input_012" value="Descendre/Droite" />
+			<field id="input_013" value="Nouvelle sous-menu" />
+			<field id="input_014" value="Changer la visibilité" />
+
+			<field id="srch_000" value="Chercher" />
+			<field id="srch_001" value="Résultat" />
+			<field id="srch_002" value="fermer" />
+			<field id="srch_003" value="Trouvé rien" />
+			<field id="srch_004" value="Rechercher tout la page..." />
+
+			<field id="ifrm_001" value="Titre" />
+			<field id="ifrm_002" value="URL" />
+
+			<field id="msg_001" value="Haut" />
+			<field id="msg_002" value="Description" />
+			<field id="msg_003" value="Dimension" />
+			<field id="msg_004" value="Pointure" />
+			<field id="msg_005" value="Image No." />
+			<field id="msg_006" value="Domaine" />
+			<field id="msg_007" value="Dimensions" />
+			<field id="msg_008" value="Pointure" />
+			<field id="msg_009" value="Client" />
+			<field id="msg_010" value="Mot de passe" />
+			<field id="msg_011" value="Retenir données" />
+			<field id="msg_012" value="Login" />
+			<field id="msg_013" value="Afficher News" />
+			<field id="msg_014" value="" />
+			<field id="msg_015" value="Date" />
+			<field id="msg_016" value="Fichier" />
+			<field id="msg_017" value="Downloads" />
+			<field id="msg_018" value="Enregistrer" />
+			<field id="msg_019" value="Pointure" />
+			<field id="msg_020" value="Type" />
+			<field id="msg_021" value="Choisier la domaine" />
+			<field id="msg_022" value="Documents et Fichier: " />
+			<field id="msg_023" value="Fenêtre, clic 'close' de fermer" />
+			<field id="msg_024" value="La Image pouvez mettre à l'échelle. Clic la Image pour l'original dimension." />
+			<field id="msg_025" value="Télécharger" />
+			<field id="msg_026" value="cliquez ici" />
+			<field id="msg_027" value="pour plus détails" />
+			<field id="msg_028" value="Bienvenue [LOGIN_NAME], vous été déclarer à bien." />
+
+			<field id="error_001" value="La Template requis ne exister pas" />
+			<field id="error_002" value="Vous ne pas accàs a qui" />
+			<field id="error_003" value="Vous ne pas accàs a qui" />
+			<field id="error_004" value="La Template ne exister pas" />
+			<field id="error_005" value="La Template requis ne exister pas:" />
+			<field id="error_006" value="La Plugin ne exister pas pur la requis domaine: " />
+			<field id="error_007" value="La Plugin ne installer pas pur la requis domaine." />
+
+			<field id="prg_001" value="Ficher- et Téléchargment-Administration" />
+			<field id="prg_002" value="Choise la Domaine" />
+
+			<field id="group_001" value="Groupe de texte" />
+			<field id="group_002" value="Choise la texte" />
+
+			<field id="rgt_download" value="Accés a domains réservés" />
+			<field id="rgt_news" value="News-Administrator" />
+			<field id="rgt_staticsite" value="Publier les pages" />
+			<field id="rgt_menu" value="Menu-Administration" />
+			<field id="rgt_content" value="Content-Administration" />
+			<field id="rgt_formular" value="rgt_formular" />
+			<field id="rgt_users" value="Client-Administration" />
+			<field id="rgt_images" value="Image-Administration" />
+			<field id="rgt_programs" value="Télécharger-Administration" />
+			<field id="rgt_config" value="N/A: Page-Configuration" />
+			<field id="rgt_backup" value="N/A: Backup" />
+			<field id="rgt_statistic" value="N/A: Statistics" />
+			<field id="rgt_languages" value="Langues-Administration" />
+			<field id="rgt_simpleshop" value="Boutique-Administration" />
+			<field id="rgt_iframe" value="rgt_iframe" />
+			<field id="rgt_fulladmin" value="Totalemente-Administration" />
+
+			<field id="user_001" value="Client Management" />
+			<field id="user_002" value="Client-Data" />
+			<field id="user_003" value="Allocation" />
+			<field id="user_004" value="Accès" />
+			<field id="user_005" value="Nom de groupe" />
+			<field id="user_006" value="Description" />
+			<field id="user_007" value="Refaire ou réviser un group" />
+
+			<field id="publish_001" value="Publier les Pages" />
+
+			<field id="img_001" value="Images Management" />
+			<field id="img_002" value="Insertion de images" />
+			<field id="img_003" value="Choise la domaine" />
+
+			<field id="news_001" value="News-Management" />
+			<field id="news_002" value="Choise la domaine" />
+
+			<field id="cont_001" value="Contenu speéial" />
+			<field id="cont_002" value="Choise le variable" />
+			<field id="cont_003" value="Nouveau configuration" />
+			<field id="cont_004" value="Variable" />
+			<field id="cont_005" value="Type" />
+			<field id="cont_006" value="Numéro" />
+			<field id="cont_007" value="Ligne de texte" />
+			<field id="cont_008" value="Décimal chiffre" />
+			<field id="cont_009" value="Image" />
+			<field id="cont_010" value="Fichier" />
+			<field id="cont_011" value="News" />
+			<field id="cont_012" value="Saisie texte" />
+			<field id="cont_013" value="Couleur" />
+			<field id="cont_014" value="Plusieur lignes / HTML" />
+
+			<field id="gtext_001" value="Texte globale Management" />
+			<field id="gtext_002" value="Choisier Texte globale" />
+
+			<field id="simpleshop_001" value="Prix:" />
+			<field id="simpleshop_002" value="Titre:" />
+			<field id="simpleshop_003" value="Name:" />
+			<field id="simpleshop_004" value="Description:" />
+			<field id="simpleshop_005" value="No.:" />
+			<field id="simpleshop_006" value="Ajouter au panier" />
+			<field id="simpleshop_007" value="Mon panier" />
+			<field id="simpleshop_008" value="Articles total" />
+			<field id="simpleshop_009" value="Articles au panier" />
+			<field id="simpleshop_010" value="No." />
+			<field id="simpleshop_011" value="Prix" />
+			<field id="simpleshop_012" value="au panier" />
+			<field id="simpleshop_013" value="Nom de famille" />
+			<field id="simpleshop_014" value="Prénom" />
+			<field id="simpleshop_015" value="Firme" />
+			<field id="simpleshop_016" value="rue" />
+			<field id="simpleshop_017" value="CP, Cité" />
+			<field id="simpleshop_018" value="Date de livraison" />
+			<field id="simpleshop_019" value="Temps de livraison" />
+			<field id="simpleshop_020" value="Commentaire" />
+			<field id="simpleshop_021" value="Envoyer la commande" />
+			<field id="simpleshop_022" value="Article" />
+			<field id="simpleshop_023" value="Téléphone" />
+
+			<field id="lang_001" value="Langues-Management" />
+			<field id="lang_002" value="Les couleurs" />
+			<field id="lang_003" value="Langue" />
+			<field id="lang_004" value="Abréviation" />
+			<field id="lang_005" value="Jeu de caractàres" />
+			<field id="lang_006" value="Active" />
+			<field id="lang_007" value="Nouveau langue" />
+
+			<field id="formular_001" value="L'address est nul" />
+			<field id="formular_002" value="La numéro est nul" />
+			<field id="formular_003" value="" />
+			<field id="formular_004" value="La valeur est nul" />
+
+			<!-- Administration stuff -->
+			<field id="adm_001" value="Connexion" />
+			<field id="adm_002" value="Créer un texte" />
+			<field id="adm_008" value="Administration" />
+			<field id="adm_009" value="Créer un menu" />
+			
+			<field id="delete_text" value="Radier la texte" />
+			<field id="delete_text_button" value="Radier" />
+			<field id="new_text_title" value="Taper la titre ici" />
+			<field id="new_text_content" value="Taper la texte ici" />
+			<field id="entry_delete" value="Attention: Voulez vous radier la texte?&lt;br/&gt;&lt;br/&gt;Vous pas étre en état de faire la radier rétrograde." />
+			<field id="delete_success" value="Radier à succès" />
+			<field id="menu_delete_message" value="Attention: Voulez vous radier la menu. Aussi les sous-menus et les textes être radier. Vous pas étre en état de faire la radier rétrograde." />
+			<field id="menu_change" value="Changer ou refair un menu" />
+			<field id="menu_delete" value="Radier un menu" />
+			<field id="menu_name" value="Nom de menu" />
+			<field id="menu_short_link" value="Short-Link" />
+			<field id="menu_short_invalid" value="Le Short-Link est nul.\n\nSeulemente letre, numéro (0-9), prime (-) et souligné (_) ête permis.\nD'autres être éliminer.\n\nNouveau ShortLink: " />
+			<field id="menu_short_descr" value="Taper un URL en ShortLink pour ouvrir la page dans un nouveau fenêtre." />
+			<field id="menu_extended" value="Précisions" />
+			<field id="menu_title" value="Page titre" />
+			<field id="menu_title_hint" value="" />
+			<field id="menu_descr" value="Description" />
+			<field id="menu_descr_hint" value="" />
+			<field id="menu_keywords" value="Mot-Clé" />
+			<field id="menu_keywords_hint" value="" />
+			<field id="menu_access" value="Réduire accès" />
+			<field id="menu_access_hint" value="" />
+			<field id="menu_acces_nogroups" value="Pas groups définir" />
+			<field id="menu_image" value="Menuimage" />
+			<field id="menu_image_hint" value="Pas disponible partout" />
+			<field id="upload_file_to_big" value="Le fichier est trop grand, octets maximum autorisé: " />
+			<field id="upload_partial" value="Upload avortée parce le fichier n'a été que partiellement reçues." />
+			<field id="upload_no_file" value="Upload avortée parce aucun fichier a été téléchargé." />
+			<field id="upload_cant_write" value="Erreur de serveur: Pas d'accès en écriture." />
+			<field id="upload_no_temp" value="Erreur de serveur: Trouvé dans un répertoire temporaire." />
+			<field id="upload_unknown_error" value="Erreur inconnue: " />
+			<field id="upload_update_invalid" value="Elle ne peut être remplacé les types de fichiers même." />
+			<field id="upload_write_error" value="Le fichier ne peut être sauvé, car ke serveur n'a pas accès en écriture." />
+			<field id="upload_different_sizes" value="Error while saveing: Different filesizes" />
+			
+			<field id="error_occured" value="Il est passé un erreur:" />
+			<field id="change_descr" value="Changé la description" />
+			<field id="change_date" value="Changé la date" />
+			<field id="choose_color" value="Choisier la couleur" />
+			
+			<field id="rss_title" value="Changé la RSS-Feed" />
+			<field id="rss_feed_name" value="Feed-Titre" />
+			<field id="rss_feed_url" value="Feed-URLs" />
+			<field id="rss_feed_descr" value="Résumé" />
+			<field id="rss_feed_seconds" value="Nombre en seconde" />
+			<field id="rss_feed_age" value="Cache âge" />
+			
+			<field id="file_uploaded" value="Importer fichier. Attender que fini l'autre..." />
+			<field id="changes_done" value="Changer conduit." />
+			<field id="closing_window" value="La fenêtre et fermer" />
+			<field id="reload_window" value="La page et charger pour signaler la modification." />
+
+		</text>
+		<menu>
+			<field id="1000" value="Image-Management" />
+			<field id="1100" value="Fichier-Management" />
+			<field id="1200" value="Client-Management" />
+			<field id="1300" value="Langues-Management" />
+			<field id="1400" value="News-Management" />
+			<field id="1500" value="" />
+			<field id="1600" value="Contenu speéial" />
+			<field id="1700" value="Publier les Pages" />
+			<field id="1800" value="Texte globale" />
+			<field id="1900" value="Configuration de la page" />
+			<field id="2000" value="" />
+			<field id="2100" value="" />
+			<field id="2200" value="" />
+			<field id="2300" value="" />
+			<field id="2400" value="" />
+			<field id="2500" value="" />
+			<field id="2600" value="" />
+			<field id="2700" value="" />
+			<field id="2800" value="" />
+			<field id="2900" value="" />
+			<field id="3000" value="" />
+			<field id="3100" value="" />
+			<field id="3200" value="" />
+			<field id="3300" value="" />
+			<field id="3400" value="" />
+			<field id="3500" value="" />
+			<field id="3600" value="" />
+			<field id="3700" value="" />
+			<field id="3800" value="" />
+			<field id="3900" value="" />
+			<field id="4000" value="" />
+			<field id="10000" value="Ajuster les données propre" />
+			<field id="SIMPLESHOP" value="Boutique facile" />
+		</menu>
+	</lang>
+	
+	<lang name="italian" short="it">
+		<text>
+			<field id="input_001" value="Compilare/Mutare" />
+			<field id="input_002" value="Lasciare" />
+			<field id="input_003" value="Concludere" />
+			<field id="input_004" value="OK" />
+			<field id="input_005" value="Elimina" />
+			<field id="input_006" value="Visualizzare" />
+			<field id="input_007" value="Salva" />
+			<field id="input_008" value="Modifica" />
+			<field id="input_009" value="Modificare gruppo" />
+			<field id="input_010" value="Elimina gruppo" />
+			<field id="input_011" value="Alto/Sinistra" />
+			<field id="input_012" value="Giù/Destra" />
+			<field id="input_013" value="Nuovo sottomenu" />
+			<field id="input_014" value="Cambiare visibilità" />
+
+			<field id="srch_000" value="Cercare" />
+			<field id="srch_001" value="Cercare esito" />
+			<field id="srch_002" value="chiusa" />
+			<field id="srch_003" value="Trovato non pagina" />
+			<field id="srch_004" value="Cercare tutto..." />
+
+			<field id="ifrm_001" value="Titolo" />
+			<field id="ifrm_002" value="Pagina" />
+
+			<field id="msg_001" value="Alto" />
+			<field id="msg_002" value="Descrizione" />
+			<field id="msg_003" value="Dosatura" />
+			<field id="msg_004" value="Grandezza" />
+			<field id="msg_005" value="Immagine #" />
+			<field id="msg_006" value="Regione" />
+			<field id="msg_007" value="Dosatura" />
+			<field id="msg_008" value="Grandezza" />
+			<field id="msg_009" value="Utente" />
+			<field id="msg_010" value="Password" />
+			<field id="msg_011" value="Notare le dati" />
+			<field id="msg_012" value="Iscrizione" />
+			<field id="msg_013" value="Vedere la nuovo" />
+			<field id="msg_014" value="" />
+			<field id="msg_015" value="Data" />
+			<field id="msg_016" value="Dato" />
+			<field id="msg_017" value="Downloads" />
+			<field id="msg_018" value="Salvare la file" />
+			<field id="msg_019" value="Grandezza" />
+			<field id="msg_020" value="Tipo" />
+			<field id="msg_021" value="Scegliere la regione" />
+			<field id="msg_022" value="Documenti e Dati: " />
+			<field id="msg_023" value="Finestra, cliccare 'chiudere' per chiudere" />
+			<field id="msg_024" value="La immagine potrebbe essere scalata. Clicca sull'immagine per vedere la originale" />
+			<field id="msg_025" value="Download" />
+			<field id="msg_026" value="cliccare qui" />
+			<field id="msg_027" value="per ulteriori informazioni" />
+			<field id="msg_028" value="Benvenuto [LOGIN_NAME], Lei e iscrivetevi con successo." />
+
+			<field id="error_001" value="Il modello richiesto non esiste" />
+			<field id="error_002" value="Non si ha accesso a questa regione" />
+			<field id="error_003" value="Non si ha accesso a questa regione o l'azione" />
+			<field id="error_004" value="Il modello non è stato trovato" />
+			<field id="error_005" value="Il modello non è stato trovato:" />
+			<field id="error_006" value="Plugin mancanti: " />
+			<field id="error_007" value="Impossibile visualizzare la regiona, la plugin è manca o non è installata" />
+
+			<field id="prg_001" value="Dati è Download administrazione" />
+			<field id="prg_002" value="Scegli la regione" />
+
+			<field id="group_001" value="Testo Gruppo" />
+			<field id="group_002" value="Selezionale il blocco di testo" />
+
+			<field id="rgt_download" value="Accesso sicuro ai menu" />
+			<field id="rgt_news" value="News-Administrazione" />
+			<field id="rgt_staticsite" value="Pubblicate le Pagine" />
+			<field id="rgt_menu" value="Menu-Administrazione" />
+			<field id="rgt_content" value="Contenuto-Administrazione" />
+			<field id="rgt_formular" value="rgt_formular" />
+			<field id="rgt_users" value="Utente-Administrazione" />
+			<field id="rgt_images" value="Immagine-Administrazione" />
+			<field id="rgt_programs" value="File-Administrazione" />
+			<field id="rgt_config" value="N/A: Page-Configuration" />
+			<field id="rgt_backup" value="N/A: Backup" />
+			<field id="rgt_statistic" value="N/A: Statistics" />
+			<field id="rgt_languages" value="Linguaggio-Administrazione" />
+			<field id="rgt_simpleshop" value="SempliceNegozio-Administrazione" />
+			<field id="rgt_iframe" value="rgt_iframe" />
+			<field id="rgt_fulladmin" value="Globale Administrazione" />
+
+			<field id="user_001" value="Utente Administrazione" />
+			<field id="user_002" value="Dati utente" />
+			<field id="user_003" value="Assegnamento" />
+			<field id="user_004" value="Accesso" />
+			<field id="user_005" value="Nome del gruppo" />
+			<field id="user_006" value="Descrizione" />
+			<field id="user_007" value="Creare o modificare un gruppo" />
+
+			<field id="publish_001" value="Pubblicate le Pagine" />
+
+			<field id="img_001" value="Immagine Administrazione" />
+			<field id="img_002" value="Aggiungi nuova immagine" />
+			<field id="img_003" value="Scegli la regione" />
+
+			<field id="news_001" value="News-Administrazione" />
+			<field id="news_002" value="Scegli la regione" />
+
+			<field id="cont_001" value="Contenuto speciale" />
+			<field id="cont_002" value="Seleziona variabile" />
+			<field id="cont_003" value="Nuova configurazione" />
+			<field id="cont_004" value="Variabile" />
+			<field id="cont_005" value="Tipo" />
+			<field id="cont_006" value="Numero" />
+			<field id="cont_007" value="Riga di testo" />
+			<field id="cont_008" value="Numero decimale" />
+			<field id="cont_009" value="Immagine" />
+			<field id="cont_010" value="File" />
+			<field id="cont_011" value="News" />
+			<field id="cont_012" value="Testo voce" />
+			<field id="cont_013" value="Colore" />
+			<field id="cont_014" value="Più righe / HTML" />
+
+			<field id="gtext_001" value="Globale Contenuto Administrazione" />
+			<field id="gtext_002" value="Select globale contenuto" />
+
+			<field id="simpleshop_001" value="Prezzo:" />
+			<field id="simpleshop_002" value="Titolo:" />
+			<field id="simpleshop_003" value="Nome:" />
+			<field id="simpleshop_004" value="Descrizione:" />
+			<field id="simpleshop_005" value="Quantità:" />
+			<field id="simpleshop_006" value="aggiungi al carrello" />
+			<field id="simpleshop_007" value="Carrello" />
+			<field id="simpleshop_008" value="Articolo totale" />
+			<field id="simpleshop_009" value="Articolo a Carrello" />
+			<field id="simpleshop_010" value="Quantità" />
+			<field id="simpleshop_011" value="Prezzo" />
+			<field id="simpleshop_012" value="al carrello" />
+			<field id="simpleshop_013" value="Nome" />
+			<field id="simpleshop_014" value="Cognome" />
+			<field id="simpleshop_015" value="Azienda" />
+			<field id="simpleshop_016" value="Indirizzo" />
+			<field id="simpleshop_017" value="CAP, Città" />
+			<field id="simpleshop_018" value="Data di consegna" />
+			<field id="simpleshop_019" value="Tempi di consegna" />
+			<field id="simpleshop_020" value="Commento" />
+			<field id="simpleshop_021" value="Invia ordine" />
+			<field id="simpleshop_022" value="Articolo" />
+			<field id="simpleshop_023" value="Telefono" />
+
+			<field id="lang_001" value="Linguaggio Administrazione" />
+			<field id="lang_002" value="Bandiera" />
+			<field id="lang_003" value="Lingua" />
+			<field id="lang_004" value="Abbreviata" />
+			<field id="lang_005" value="Charset" />
+			<field id="lang_006" value="Attivo" />
+			<field id="lang_007" value="Nuovo Lingua" />
+
+			<field id="formular_001" value="Indirizzo non corretto" />
+			<field id="formular_002" value="Nummero non corretto" />
+			<field id="formular_003" value="" />
+			<field id="formular_004" value="Valore non corretto" />
+
+			<!-- Administration stuff -->
+			<field id="adm_001" value="Accesso" />
+			<field id="adm_002" value="Crea nuovo testo" />
+			<field id="adm_008" value="Administration" />
+			<field id="adm_009" value="Creare nuovo menu" />
+			
+			<field id="delete_text" value="Eliminazione del testo" />
+			<field id="delete_text_button" value="Cancellare" />
+			<field id="new_text_title" value="Inserire il titolo del testo" />
+			<field id="new_text_content" value="Scrivi qui il testo" />
+			<field id="entry_delete" value="Attenzione: Sei sicuro di voler cancellare l'elemento selezionato?&lt;br/&gt;&lt;br/&gt;Una voce eliminati non possono essere recupaerati." />
+			<field id="delete_success" value="Eliminare successo" />
+			<field id="menu_delete_message" value="Attenzione: Stai per eliminare un menu. Se si elimina questo menu, tutti i sotto-menù e tutti i messaggi di testi contenuti cancellati irrevocabilimente." />
+			<field id="menu_change" value="Creare e altri un menu" />
+			<field id="menu_delete" value="Eliminare un menu" />
+			<field id="menu_name" value="Nome del menu" />
+			<field id="menu_short_link" value="Short-Link" />
+			<field id="menu_short_invalid" value="Il Short-Link che avete inserito contiene caratteri non validi.\n\nCi sono solo caratteri concesniti (grandi e piccoli), Numerale (0-9), trattino (-) e sottolineato (_).\nTutti gli altri caratteri sono stati rimossi.\n\nIl nuovo Short-Link: " />
+			<field id="menu_short_descr" value="Immettere un URL nel Short-Link per aprire la pagina con un solo clic." />
+			<field id="menu_extended" value="Informazioni avanzate" />
+			<field id="menu_title" value="Titolo della pagina" />
+			<field id="menu_title_hint" value="" />
+			<field id="menu_descr" value="Descrizione" />
+			<field id="menu_descr_hint" value="" />
+			<field id="menu_keywords" value="Parole Chiave" />
+			<field id="menu_keywords_hint" value="" />
+			<field id="menu_access" value="Accesso limitato" />
+			<field id="menu_access_hint" value="" />
+			<field id="menu_acces_nogroups" value="Nessun gruppo di accesso definiti" />
+			<field id="menu_image" value="Menu Immagine" />
+			<field id="menu_image_hint" value="Immagine: Non sempre disponibile" />
+			<field id="upload_file_to_big" value="File troppo grande, massima byte consentiti: " />
+			<field id="upload_partial" value="Carica interrotta perché il file è stato ricevuto solo parziale." />
+			<field id="upload_no_file" value="Carica annullato perché nessun file è stato caricato." />
+			<field id="upload_cant_write" value="Errore del server: File non può essere scritta." />
+			<field id="upload_no_temp" value="Errore del server: Una directory temporanea non è stata trovata." />
+			<field id="upload_unknown_error" value="Errore sconosciuto: " />
+			<field id="upload_update_invalid" value="Essa può esssere sostituita solo i tipi di file stesso." />
+			<field id="upload_write_error" value="Il file non può essere salvato perché il server non ha accesso in scrittura." />
+			<field id="upload_different_sizes" value="Error while saveing: Different filesizes" />
+			
+			<field id="error_occured" value="C'è un errore:" />
+			<field id="change_descr" value="Modifica descrizione" />
+			<field id="change_date" value="Modifica data" />
+			<field id="choose_color" value="Scegliere il colore" />
+			
+			<field id="rss_title" value="Modifica RSS-Feed" />
+			<field id="rss_feed_name" value="Feed-Titolo" />
+			<field id="rss_feed_url" value="Feed-URLs" />
+			<field id="rss_feed_descr" value="Combinare" />
+			<field id="rss_feed_seconds" value="Numero di secondi" />
+			<field id="rss_feed_age" value="Età della cache" />
+			
+			<field id="file_uploaded" value="Il file è stato importato. In attesa di più file..." />
+			<field id="changes_done" value="Variazioni effettuate." />
+			<field id="closing_window" value="La finestra di dialogo è chiuso..." />
+			<field id="reload_window" value="Il sito è ora il modo appena caricato che le modifiche siano visibili." />
+
+		</text>
+		<menu>
+			<field id="1000" value="Immagine-Administrazione" />
+			<field id="1100" value="File-Administrazione" />
+			<field id="1200" value="Utente-Administrazione" />
+			<field id="1300" value="Linguaggio-Administrazione" />
+			<field id="1400" value="News-Administrazione" />
+			<field id="1500" value="Statistica" />
+			<field id="1600" value="Contenuto speciale" />
+			<field id="1700" value="Publicate le pagine" />
+			<field id="1800" value="Globale Contenuto" />
+			<field id="1900" value="Configurazione del pagina" />
+			<field id="2000" value="" />
+			<field id="2100" value="" />
+			<field id="2200" value="" />
+			<field id="2300" value="" />
+			<field id="2400" value="" />
+			<field id="2500" value="" />
+			<field id="2600" value="" />
+			<field id="2700" value="" />
+			<field id="2800" value="" />
+			<field id="2900" value="" />
+			<field id="3000" value="" />
+			<field id="3100" value="" />
+			<field id="3200" value="" />
+			<field id="3300" value="" />
+			<field id="3400" value="" />
+			<field id="3500" value="" />
+			<field id="3600" value="" />
+			<field id="3700" value="" />
+			<field id="3800" value="" />
+			<field id="3900" value="" />
+			<field id="4000" value="" />
+			<field id="10000" value="Personalizzare i propri dati" />
+			<field id="SIMPLESHOP" value="Negozio di sistema semplice" />
+		</menu>
+	</lang>
+</customer>

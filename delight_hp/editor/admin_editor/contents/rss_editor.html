@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>[LANG_VALUE:rss_title]</title>
+		<meta http-equiv="Content-Type"  content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/dialog.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/content.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/ui.css" />
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/tiny_mce_popup.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/prototype/prototype-release.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/AdminDialog.js"></script>
+		<script type="text/javascript">/*<![CDATA[*/
+			function submit() {
+				document.forms[0].submit();
+			}
+		/*]]>*/</script>
+	</head>
+	<body class="admpopup" style="margin:0;padding:0;">
+		<form method="post" action="" name="upload" id="upload" enctype="multipart/form-data">
+<!--			<input type="hidden" name="action" value="rssadd" id="fld_action" />-->
+<!--			<input type="hidden" name="section" value="[SECTION_ID]" id="fld_section" />-->
+<!--			<input type="hidden" name="entry" value="[ENTRY_ID]" id="fld_entry" />-->
+
+			<table cellpadding="3" cellspacing="0" style="width:100%;height:100%;">
+				<tr>
+					<td style="width:120px;"><label for="feed_title">[LANG_VALUE:rss_feed_name]</label></td>
+					<td><input type="text" name="feed_title" id="feed_title" value="[RSS_FEED_TITLE]" style="width:100%;" /></td>
+				</tr>
+				<tr>
+					<td><label for="feed_refresh">[LANG_VALUE:rss_feed_age]</label></td>
+					<td><input type="text" name="feed_refresh" id="feed_refresh" value="[RSS_FEED_CACHEAGE]" style="width:80px;" /> <em style="font-size:6pt;">([LANG_VALUE:rss_feed_seconds])</em></td>
+				</tr>
+				<tr>
+					<td><label for="feed_summarize">[LANG_VALUE:rss_feed_descr]</label></td>
+					<td><input type="text" name="feed_summarize" id="feed_summarize" value="[RSS_FEED_SUMMARIZE]" style="width:80px;" /> <em style="font-size:6pt;">([LANG_VALUE:rss_feed_seconds])</em></td>
+				</tr>
+				<tr>
+					<td style="height:100%;"><label for="feed_uri">[LANG_VALUE:rss_feed_url]</label></td>
+					<td><textarea name="feed_uri" id="feed_url" style="width:100%;height:100%;">[RSS_FEED_URI]</textarea></td>
+				</tr>
+			</table>
+
+		</form>
+
+		<div id="buttonbar">
+			<div style="float:left;">
+				<input type="button" value="[LANG_VALUE:input_002]" onclick="AdminDialog.close();" id="cancel" />
+			</div>
+			<div style="float:right;">
+				<input type="button" value="[LANG_VALUE:input_004]" onclick="submit();" id="insert" />
+			</div>
+		</div>
+
+	</body>
+</html>

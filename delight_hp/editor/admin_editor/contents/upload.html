@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>[LANG_VALUE:img_002]</title>
+		<meta http-equiv="Content-Type"  content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/dialog.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/toolbar.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/content.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/ui.css" />
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/tiny_mce_popup.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/utils/mctabs.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/prototype/prototype-release.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/AdminDialog.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/GlobalUpload.js"></script>
+		<script type="text/javascript">/*<![CDATA[*/
+			var adminUrl = '[MAIN_DIR]';
+			var ftpFiles = [JS_FTP_FILE_ARRAY];
+			var adminAction = '[ADMIN_ACTION]';
+		/*]]>*/</script>
+	</head>
+	<body class="admin" marginheight="0" marginwidth="0" leftmargin="0" topmargin="0">
+		<div class="tabs">
+			<ul>
+				<li id="upload_tab" class="current"><span><a onmousedown="return false;" href="javascript:mcTabs.displayTab('upload_tab','upload_panel');">{#admin_dlg.upload_file}</a></span></li>
+				<li id="ftp_tab"><span><a onmousedown="return false;" href="javascript:mcTabs.displayTab('ftp_tab','ftp_panel');">{#admin_dlg.upload_ftp}</a></span></li>
+			</ul>
+		</div>
+		
+		<div class="panel_wrapper" id="panel_wrapper">
+			
+			<div id="upload_panel" class="panel current">
+				<table style="width:100%;border-collapse:collapse;" id="upload_table"></table>
+			</div>
+			
+			<div id="ftp_panel" class="panel">
+				<select id="ftp_files" style="width:100%;height:120px;" size="2" multiple="multiple"></select>
+				<span class="hint">({#admin_dlg.upload_ctrl_hint})</span>
+			</div>
+			
+		</div>
+		
+		<div id="buttonbar">
+			<div style="float:left;">
+				<input type="button" value="[LANG_VALUE:input_002]" onclick="AdminDialog.close();" id="cancel" />
+			</div>
+			<div style="float:right;">
+				<input type="button" value="[LANG_VALUE:input_004]" onclick="GlobalUpload.uploadFiles();" id="insert" />
+			</div>
+		</div>
+		
+	</body>
+</html>

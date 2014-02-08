@@ -1,0 +1,29 @@
+# Development environment
+.kdev4
+*.kdev4
+
+# Local dirs for development
+delight_cms_templates
+FirePHPCore
+
+# For local builds and releases
+build.sh
+release.sh
+jsmin
+yuicompressor*
+
+# Zend debuger
+dummy.php
+
+# tmp files
+*.*~
+
+# User and installation specific files
+userdata/*
+delight_hp/config/userconf.inc.php
+delight_hp/template/static/*
+delight_hp/images/page/*
+delight_hp/images/page_devel/*
+delight_hp/data/downloadfiles/*
+delight_hp/log/*
+delight_hp/UPLOAD/*

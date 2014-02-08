@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>[LANG_VALUE:news_002]</title>
+		<meta http-equiv="Content-Type"  content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/dialog.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/toolbar.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/content.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/ui.css" />
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/tiny_mce_popup.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/utils/mctabs.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/prototype/prototype-release.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/scriptaculous/scriptaculous.js?dragdrop"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/AdminDialog.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/NewsManagement.js"></script>
+		<script type="text/javascript">/*<![CDATA[*/
+			var adminUrl = '[MAIN_DIR]';
+			var entityId = [ENTRY_ID];
+			var entityTemplate = '[ENTRY_TEMPLATE]';
+			var entityOptions = '[ENTRY_OPTIONS]';
+		/*]]>*/</script>
+	</head>
+	<body class="admin" marginheight="0" marginwidth="0" leftmargin="0" topmargin="0">
+		
+		<div class="section" id="sectionResize">
+			<div id="sectionToolbar" class="toolbar"></div>
+			<div class="content" id="section"></div>
+		</div>
+		
+		<div class="tabcontainer sectionContent" id="tabcontainer">
+			<div id="contentToolbar" class="toolbar"></div>
+
+			<div class="tabs">
+				<ul>
+					<li id="settings_tab" class="current"><span><a href="javascript:mcTabs.displayTab('settings_tab','settings_panel');" onmousedown="return false;">{#admin_dlg.tab_settings}</a></span></li>  <!-- delight -->
+					<li id="layout_tab"><span><a href="javascript:mcTabs.displayTab('layout_tab','layout_panel');" onmousedown="return false;">{#admin_dlg.tab_layout}</a></span></li>
+				</ul>
+			</div>
+			
+			<div class="panel_wrapper">
+			
+				<div id="settings_panel" class="panel current">
+					<fieldset>
+						<legend>{#admin_dlg.title_panel_title}</legend>
+						<div id="content_title">
+							<label for="heading">{#admin_dlg.title_panel_title}:</label>
+							<input type="text" name="heading" id="heading" style="width:200px;" value="" />
+						</div>
+					</fieldset>
+					<br/>
+					<fieldset>
+						<legend>{#admin_dlg.settings_panel_title}</legend>
+						<div id="content_settings"></div>
+					</fieldset>
+				</div>
+
+				<div id="layout_panel" class="panel">
+					<fieldset>
+						<legend>{#admin_dlg.layout_panel_title}</legend>
+						<div id="content_layout"></div>
+					</fieldset>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</body>
+</html>

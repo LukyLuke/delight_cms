@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>[LANG_VALUE:changes_done]</title>
+		<meta http-equiv="Content-Type"  content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/admin_editor/css/dialog.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/content.css" />
+		<link rel="stylesheet" type="text/css" href="[DATA_DIR]../editor/tiny_mce/themes/simple/skins/default/ui.css" />
+		<script type="text/javascript" src="[DATA_DIR]../editor/tiny_mce/tiny_mce_popup.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/prototype/prototype-release.js"></script>
+		<script type="text/javascript" src="[DATA_DIR]../editor/admin_editor/js/AdminDialog.js"></script>
+		<script type="text/javascript">/*<![CDATA[*/
+			window.setTimeout(function() {
+				var scope = '[SCOPE]';
+				if (scope != '') {
+					var win = AdminDialog.getOpener();
+					if (win[scope] && win[scope].reloadContent) win[scope].reloadContent();
+				}
+				AdminDialog.close();
+			}, 1000);
+		/*]]>*/</script>
+	</head>
+	<body class="admpopup" marginheight="0" marginwidth="0" leftmargin="0" topmargin="0">
+
+		<div class="detailTable">
+			<strong>[LANG_VALUE:changes_done]</strong>
+			<br/>
+			<strong>[LANG_VALUE:closing_window]</strong>
+		</div>
+
+		<div id="buttonbar">
+			<div style="float:left;">
+				<input type="button" value="[LANG_VALUE:input_003]" onclick="AdminDialog.close();" id="insert" />
+			</div>
+		</div>
+	</body>
+</html>

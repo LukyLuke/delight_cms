@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#delighttitle.templates}</title>
+	
+	<script language="javascript" type="text/javascript" src="../../../delight_ajax.js"></script> <!-- delight -->
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="../../utils/mctabs.js"></script>
+	<script type="text/javascript" src="../../utils/form_utils.js"></script>
+	<script type="text/javascript" src="js/templates.js"></script>
+	<link href="css/templates.css" rel="stylesheet" type="text/css" />
+	<base target="_self" />
+</head>
+<body style="height:100%;overflow:hidden;"> 
+
+	<div class="tabs">
+		<ul>
+			<li id="general_tab" class="current">
+				<span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');" onmousedown="return false;">{#delighttitle.selecttpl}</a></span>
+			</li>
+			<li id="options_tab">
+				<span><a href="javascript:mcTabs.displayTab('options_tab','options_panel');" onmousedown="return false;">{#delighttitle.options}</a></span>
+			</li>
+		</ul>
+	</div>
+
+	<div class="panel_wrapper" style="height:370px;">
+
+		<div id="general_panel" class="panel current" style="overflow:auto;width:520px;height:100%;">
+			<form onsubmit="insert();return false;">
+				<input name="_options" value="" type="hidden" />
+				<table border="0" cellpadding="4" cellspacing="4" id="_templates_container" style="width:100%;height:100%;">
+ 		  	</table>
+ 		  </form>
+		</div>
+
+		<div id="options_panel" class="panel" style="overflow:auto;height:100%;">
+			<table border="0" cellpadding="4" cellspacing="0" id="_templates_options">
+				<tr>
+					<td nowrap="nowrap">{#delighttitle.notyet}</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+ 		  </table>
+		</div>
+
+	</div>
+
+	<div class="mceActionPanel">
+		<div style="float: left">
+			<input type="button" id="insert" name="insert" value="{#delighttitle.change}" onclick="TemplateDialog.saveTemplate();" />
+		</div>
+
+		<div style="float: right">
+			<input type="button" id="cancel" name="cancel" value="{#delighttitle.cancel}" onclick="TemplateDialog.doClose();" />
+		</div>
+	</div>
+
+</body> 
+</html>
