@@ -75,4 +75,29 @@ define("SHOW_ONLY_STATIC", true);
 // Set the Referer-Blacklist (this domains will not be logged as referer)
 define('REFERER_BLACKLIST', $_SERVER['SERVER_NAME']);
 
+// Add here some content you want to add on header/top/bottom of your page.
+$page_header = '';
+$page_begin = '';
+
+// For example PIWIK statistics (replace XXXX with your piwik_site_id).
+$page_footer = '<!-- Piwik -->
+<script type="text/javascript">
+	var pkBaseURL = "/pageanasta/";
+	document.write(unescape("%3Cscript src=\'" + pkBaseURL + "piwik.js\' type=\'text/javascript\'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+	try {
+		var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", XXXX);
+		piwikTracker.trackPageView();
+		piwikTracker.enableLinkTracking();
+	} catch( err ) {}
+</script>
+<noscript><img src="/pageanasta/piwik.php?idsite=XXXX" style="border:0" alt="" /></noscript>
+<!-- End Piwik Tag -->';
+
+// Or awstats statistics.
+$page_footer = '<!-- Begin AwStats Tag -->
+<script type="text/javascript" src="/awstats_js/awstats_misc_tracker.js"></script><noscript><img src="/awstats_js/awstats_misc_tracker.js?nojs=y" height="0" width="0" border="0" style="display:none" alt="awstats" /></noscript>
+<!-- End AwStats Tag -->';
+
 ?>

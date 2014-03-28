@@ -40,11 +40,6 @@ if (defined('ANTI_CLICKJACKING') && ANTI_CLICKJACKING) {
 	header('X-FRAME-OPTIONS: SAMEORIGIN');
 }
 
-// PIWIK-Statistics
-if (!defined('PIWIK_SITE_ID')) {
-	define('PIWIK_SITE_ID', '');
-}
-
 // New Session-Handler
 $session = pSession::getInstance();
 $session->set('hijackprevention', $_SERVER['HTTP_HOST']);
@@ -217,36 +212,24 @@ if ($showStaticFile) {
 	$tpl = new pParseTemplate();
 	$tpl->setTemplate($template);
 	$tpl->parseTemplate();
+	$html = $tpl->getTemplateHtml();
 
-	// TODO: Check if this is really needed anylonger
-	if (!$_DoNotShowAnyContent) { // defined in config.inc.php for letting a plugin define that no content will be shown
-		$statistics = '';
-		if (($_SERVER['SERVER_NAME'] != 'cms.localhost') && (PIWIK_SITE_ID != '')) {
-			$statistics .= '<!-- Piwik -->';
-			$statistics .= '<script type="text/javascript">';
-			$statistics .= 'var pkBaseURL = "/pageanasta/";';
-			$statistics .= 'document.write(unescape("%3Cscript src=\'" + pkBaseURL + "piwik.js\' type=\'text/javascript\'%3E%3C/script%3E"));';
-			$statistics .= '</script><script type="text/javascript">';
-			$statistics .= 'try {';
-			$statistics .= 'var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", '.PIWIK_SITE_ID.');';
-			$statistics .= 'piwikTracker.trackPageView();';
-			$statistics .= 'piwikTracker.enableLinkTracking();';
-			$statistics .= '} catch( err ) {}';
-			$statistics .= '</script><noscript><p><img src="/pageanasta/piwik.php?idsite='.PIWIK_SITE_ID.'" style="border:0" alt="" /></p></noscript>';
-			$statistics .= '<!-- End Piwik Tag -->';
-		}
-
-		//$statistics = '<script type="text/javascript" src="/awstats_js/awstats_misc_tracker.js"></script><noscript><p><img src="/awstats_js/awstats_misc_tracker.js?nojs=y" height="0" width="0" border="0" style="display:none" alt="awstats" /></p></noscript>';
-
-		$html = $tpl->getTemplateHtml();
-		$html = str_replace('</body>', $statistics.'</body>', $html);
-
-		if (!pURIParameters::get('doGetStaticPages', false, pURIParameters::$BOOL)) {
-			$html = $userCheck->replaceMenuAccessGroups($html);
-		}
-
-		print(str_replace("[MAIN_DIR]", TEMPLATE_DIR, str_replace('[DATA_DIR]', '/v_'.DHP_VERSION.DATA_DIR, $html)));
+	// Add page-header, footer and body content defined globally un userconf.php
+	if (!empty($page_header)) {
+		$html = str_replace('</head>', $page_header.'</head>', $html);
 	}
+	if (!empty($page_begin)) {
+		$html = preg_replace('/\<body (.*?)\>/smi', '<body \\1>'.$page_begin, $html);
+	}
+	if (!empty($page_footer)) {
+		$html = str_replace('</body>', $page_footer.'</body>', $html);
+	}
+
+	if (!pURIParameters::get('doGetStaticPages', false, pURIParameters::$BOOL)) {
+		$html = $userCheck->replaceMenuAccessGroups($html);
+	}
+
+	print(str_replace("[MAIN_DIR]", TEMPLATE_DIR, str_replace('[DATA_DIR]', '/v_'.DHP_VERSION.DATA_DIR, $html)));
 }
 
 if ($session->get('loginhash', null) == null) {

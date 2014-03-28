@@ -28,9 +28,6 @@ define('ABS_IMAGE_DIR', ABS_MAIN_DIR.'images'.DIRECTORY_SEPARATOR.'page'.DIRECTO
 define('WORKING_EDITOR_LANGUAGE', 'de,en');
 define('DEFAULT_EDITOR_LANGUAGE', 'en');
 
-// Set this Variable in a Plugin, which should have no output (HTML will not be printed by index.php)
-$_DoNotShowAnyContent = false;
-
 // Define all 'HowToDisplayText' Plugins
 // The Plugin-Files must be stored under php/class/PLUGINNAME.cls.php
 // The Classnames are Case-Sensitive. UPPERCASE Names are preffered...
