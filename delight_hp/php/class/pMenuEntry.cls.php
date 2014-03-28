@@ -14,7 +14,21 @@ class pMenuEntry {
 	 * @param pLanguage $lang Language to get the MenuEntry from
 	 * @param boolean $static Load the static/published menu or not
 	 */
-	function __construct($id, pLanguage $lang=null, $static=false) {
+	function __construct($id=null, pLanguage $lang=null, $static=false) {
+		if (!is_null($id)) {
+			$this->load($id, $lang, $static);
+		}
+	}
+
+	/**
+	 * Get a MenuEntry for Menu with ID $id in Language $lang
+	 * If $lang is not given, the menu in the current Language is loaded
+	 *
+	 * @param integer $id MenuID to get
+	 * @param pLanguage $lang Language to get the MenuEntry from
+	 * @param boolean $static Load the static/published menu or not
+	 */
+	public function load($id, pLanguage $lang=null, $static=false) {
 		$this->static_menu = $static;
 		$this->menuId = (int)$id;
 		$this->data = array();
@@ -384,6 +398,16 @@ class pMenuEntry {
 		$sql = 'SELECT [men.id] FROM [table.men],[table.mtx] WHERE [men.id]<>'.$this->menuId.' AND [mtx.menu]=[men.id] AND ([men.short]=\''.mysql_real_escape_string($name).'\' OR [mtx.transshort]=\''.mysql_real_escape_string($name).'\');';
 		$db->run($sql, $res);
 		return $res->numRows() > 0;
+	}
+
+	/**
+	 * Returns a link for getting this page while create static pages.
+	 * @param string $lang Short language
+	 * @return string
+	 * @access public
+	 */
+	public function getStaticPagesLink($lang) {
+		return 'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/'.$lang.'/'.$this->id.'/doGetStaticPages=true';
 	}
 
 	/**
