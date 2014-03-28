@@ -172,7 +172,7 @@ class admin_1500_Settings extends admin_MAIN_Settings {
 			' PRIMARY KEY ([field.ref.id]),'.
 			' UNIQUE KEY [field.ref.id] ([field.ref.id]),'.
 			' KEY [ref.domain] ([ref.domain])'.
-			') TYPE=MyISAM;';
+			');';
 			$db->run($sql, $res);
 			$res = null;
 		}

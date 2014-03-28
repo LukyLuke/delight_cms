@@ -12,7 +12,9 @@ class LANG extends MainPlugin {
 		$this->_content   = '';
 		$this->templateFile  = 'nonexistent';
 		$this->_selected  = '0';
-		$this->updateDatabase();
+		
+		// Check and update the database in here
+		new pLanguage();
 	}
 
 	/**
@@ -114,40 +116,5 @@ class LANG extends MainPlugin {
 			return false;
 		}
 	}
-
-	/**
-	 * Check Database integrity
-	 *
-	 * This function creates all required Tables, Updates, Inserts and Deletes.
-	 */
-	private function updateDatabase() {
-		$db = pDatabaseConnection::getDatabaseInstance();
-		$res = null;
-
-		// Get the current Version
-		$v = $this->_checkMainDatabase();
-		$version = $v[0];
-		$versionid = $v[1];
-
-		// Updates to the Database
-		if ($version < 2006010600) {
-			// Create the Languages-Table
-			$sql  = "CREATE TABLE IF NOT EXISTS [table.lan] (".
-			        "[field.lan.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,".
-			        "[field.lan.text] VARCHAR(100) NOT NULL DEFAULT '',".
-			        "[field.lan.short] VARCHAR(5) NOT NULL DEFAULT '',".
-			        "[field.lan.char] VARCHAR(50) NOT NULL DEFAULT '',".
-			        "[field.lan.icon] VARCHAR(50) NOT NULL DEFAULT '',".
-			        "[field.lan.active] INT(1) UNSIGNED NOT NULL DEFAULT 0,".
-			        " PRIMARY KEY (id),".
-			        " UNIQUE KEY id (id)".
-			        " ) TYPE=MyISAM;";
-			$db->run($sql, $res);
-		}
-
-		// Update the version
-		$this->_updateVersionTable($version, $versionid, self::VERSION);
-	}
-
 }
 ?>

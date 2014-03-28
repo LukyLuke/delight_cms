@@ -1022,9 +1022,9 @@ class SCREENSHOT extends MainPlugin {
 			" [field.img.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,".
 			" [field.img.image] VARCHAR(100) NOT NULL DEFAULT '',".
 			" [field.img.section] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.img.id]),".
+			" UNIQUE KEY [field.img.id] ([field.img.id])".
+			" );";
 			$db->run($sql, $res);
 			$res = null;
 
@@ -1033,9 +1033,9 @@ class SCREENSHOT extends MainPlugin {
 			" [field.ims.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,".
 			" [field.ims.parent] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.ims.text] VARCHAR(100) NOT NULL DEFAULT '',".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.ims.id]),".
+			" UNIQUE KEY [field.ims.id] ([field.ims.id])".
+			" );";
 			$db->run($sql, $res);
 			$res = null;
 
@@ -1047,9 +1047,9 @@ class SCREENSHOT extends MainPlugin {
 			" [field.imt.text] TEXT NOT NULL DEFAULT '',".
 			" [field.imt.html] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.imt.lang] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.imt.id]),".
+			" UNIQUE KEY [field.imt.id] ([field.imt.id])".
+			" );";
 			$db->run($sql, $res);
 			$res = null;
 

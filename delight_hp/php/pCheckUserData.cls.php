@@ -1,7 +1,52 @@
 <?php
 
+$DBTables['per'] = $tablePrefix."_users";
+$DBTables['grp'] = $tablePrefix."_access_groups";         // Groups a User can be in - Groups can be attached to MEnus, Downloads, etc.
+$DBTables['usrgrp'] = $tablePrefix."_users_groups";       // Users <-> Groups assignment
+$DBTables['menugrp'] = $tablePrefix."_menuaccess_groups"; // Menu <-> Groups assignment
+$DBTables['plo'] = $tablePrefix.'_loguser';
+$DBFields['per'] = array(
+	'id' => 'id',
+	'right' => 'login_type',
+	'user' => 'login_name',
+	'passwd' => 'login_password',
+	'clear' => 'login_clear_password',
+	'company' => 'user_company',
+	'name' => 'user_name',
+	'surname' => 'user_surname',
+	'address' => 'user_address',
+	'postalcode' => 'user_postalcode',
+	'city' => 'user_city',
+	'country' => 'user_country',
+	'email' => 'user_email',
+	'internet'=> 'user_internet',
+	'info' => 'user_info'
+);
+$DBFields['grp'] = array(
+	'id' => 'id',
+	'name' => 'group_name',
+	'descr' => 'description'
+);
+$DBFields['usrgrp'] = array(
+	'group' => 'group_id',
+	'user' => 'user_id'
+);
+$DBFields['menugrp'] = array(
+	'menu' => 'menu_id',
+	'group' => 'group_id'
+);
+$DBFields['plo'] = array(
+	'id' => 'id',
+	'user' => 'user',
+	'action' => 'action',
+	'time' => 'action_time',
+	'ip' => 'client_ip',
+	'domain' => 'client_domain',
+	'info' => 'action_info'
+);
+
 class pCheckUserData {
-	const MODULE_VERSION = 2009072302;
+	const MODULE_VERSION = 2014032800;
 	private static $instance = null;
 	private $userName = '';
 	private $userPassword = '';
@@ -11,8 +56,8 @@ class pCheckUserData {
 	private $user = null;
 
 	private function __construct() {
-		$this->user = new pUserAccount();
 		$this->updateDatabase();
+		$this->user = new pUserAccount();
 	}
 
 	/**
@@ -286,16 +331,6 @@ class pCheckUserData {
 		$res = null;
 		$version = $db->getModuleVersion(get_class($this));
 
-		// for migration only
-		if ($version == 0) {
-			$sql = 'SELECT [opt.version] FROM [table.opt] WHERE [opt.name]=\''.get_class($this).'\';';
-			$db->run($sql, $res);
-			if ($res->getFirst()) {
-				$version = $res->{$db->getFieldName('opt.version')};
-			}
-			$res = null;
-		}
-
 		if (self::MODULE_VERSION > $version) {
 			// Initial
 			if ($version <= 0) {
@@ -316,9 +351,9 @@ class pCheckUserData {
 				" [field.per.email] VARCHAR(100) NOT NULL DEFAULT '',".
 				" [field.per.internet] VARCHAR(200) NOT NULL DEFAULT '',".
 				" [field.per.info] TEXT NOT NULL DEFAULT '',".
-				" PRIMARY KEY (id),".
-				" UNIQUE KEY id (id)".
-				" ) TYPE=MyISAM;";
+				" PRIMARY KEY ([field.per.id]),".
+				" UNIQUE KEY [field.per.id] ([field.per.id])".
+				" );";
 				$res = null;
 				$db->run($sql, $res);
 
@@ -334,6 +369,49 @@ class pCheckUserData {
 					$db->run($sql, $res);
 					$res = null;
 				}
+				$res = null;
+				
+				$sql  = "CREATE TABLE IF NOT EXISTS [table.plo] (".
+				" [field.plo.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,".
+				" [field.plo.user] VARCHAR(50) NOT NULL DEFAULT '',".
+				" [field.plo.action] VARCHAR(10) NOT NULL DEFAULT '',".
+				" [field.plo.time] DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',".
+				" [field.plo.ip] VARCHAR(30) NOT NULL DEFAULT '',".
+				" [field.plo.domain] VARCHAR(250) NOT NULL DEFAULT '',".
+				" [field.plo.info] VARCHAR(250) NOT NULL DEFAULT '',".
+				" PRIMARY KEY ([field.plo.id]),".
+				" UNIQUE KEY [field.plo.id] ([field.plo.id])".
+				" );";
+				$db->run($sql, $res);
+				$res = null;
+			}
+			
+			if ($version < 2014032800) {
+				// Create the User-Groups-Table
+				$sql = 'CREATE TABLE IF NOT EXISTS [table.grp] ('.
+				' [field.grp.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,'.
+				' [field.grp.name] VARCHAR(50) NOT NULL DEFAULT \'\','.
+				' [field.grp.descr] VARCHAR(250) NOT NULL DEFAULT \'\','.
+				' PRIMARY KEY ([field.grp.id]),'.
+				' UNIQUE KEY id ([field.grp.id])'.
+				' );';
+				$db->run($sql, $res);
+				$res = null;
+
+				$sql = 'CREATE TABLE IF NOT EXISTS [table.usrgrp] ('.
+				' [field.usrgrp.user] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.usrgrp.group] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' KEY userid ([field.usrgrp.user])'.
+				' );';
+				$db->run($sql, $res);
+				$res = null;
+
+				$sql = 'CREATE TABLE IF NOT EXISTS [table.menugrp] ('.
+				' [field.menugrp.menu] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.menugrp.group] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' KEY menuid ([field.menugrp.menu])'.
+				' );';
+				$db->run($sql, $res);
 				$res = null;
 			}
 

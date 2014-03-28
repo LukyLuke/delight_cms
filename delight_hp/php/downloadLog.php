@@ -197,7 +197,7 @@ function doLogDownload(stdClass $data) {
 	$db = pDatabaseConnection::getDatabaseInstance();
 	$res = null;
 
-	$sql = 'SELECT * FROM [table.dll] WHERE [dll.file_id]='.$data->id.' AND [dll.ip]=\''.$_SERVER['REMOTE_ADDR'].'\' AND ([dll.time] LIKE \''.date("Y-m-d H:i").'%\' OR [dll.time] LIKE \''.date("Y-m-d H:i", mktime(date("H"), date("i") - 60, date("s"), date("m"), date("d"), date("Y"))).'%\');';
+	$sql = 'SELECT * FROM [table.dll] WHERE [dll.fileid]='.$data->id.' AND [dll.ip]=\''.$_SERVER['REMOTE_ADDR'].'\' AND ([dll.time] LIKE \''.date("Y-m-d H:i").'%\' OR [dll.time] LIKE \''.date("Y-m-d H:i", mktime(date("H"), date("i") - 60, date("s"), date("m"), date("d"), date("Y"))).'%\');';
 	$db->run($sql, $res);
 	if (!$res->getFirst()) {
 		$sql = 'INSERT INTO [table.dll] ([field.dll.file],[field.dll.real],[field.dll.fileid],[field.dll.size],[field.dll.section],[field.dll.ip],[field.dll.domain],[field.dll.browser],[field.dll.time])';

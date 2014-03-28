@@ -115,8 +115,7 @@ class pCountry {
 
 		// Check if we need an Update
 		if (self::MODULE_VERSION > $version) {
-			// initial
-			if (self::MODULE_VERSION > 0) {
+			if ($version <= 0) {
 				$sql = 'CREATE TABLE [table.country] ('.
 				' [field.country.id] INT(11) UNSIGNED NOT NULL auto_increment,'.
 				' [field.country.short2] CHAR(2) NOT NULL default \'\','.

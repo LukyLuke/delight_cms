@@ -6,18 +6,18 @@ class DOWNLOADS extends MainPlugin {
 	const FULLSCREEN_LAYOUT = 'fullscreen';
 	const REGISTER_LAYOUT = 'registration';
 
-	var $contentFile;
-	var $_mainContent;
-	var $_programContent;
-	var $_programLine;
-	var $_toolContent;
-	var $_toolsPerLine;
-	var $__toolCleanContent;
-	var $_sectionContent;
-	var $_sectionDelimiter;
-	var $_sectionDelimiterImages;
-	var $_registerLink;
-	var $_titleText;
+	protected $contentFile;
+	protected $_mainContent;
+	protected $_programContent;
+	protected $_programLine;
+	protected $_toolContent;
+	protected $_toolsPerLine;
+	protected $__toolCleanContent;
+	protected $_sectionContent;
+	protected $_sectionDelimiter;
+	protected $_sectionDelimiterImages;
+	protected $_registerLink;
+	protected $_titleText;
 
 	public function __construct() {
 		parent::__construct();
@@ -1002,9 +1002,9 @@ class DOWNLOADS extends MainPlugin {
 			" [field.prg.local] INT(1) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.prg.register] INT(1) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.prg.secure] INT(1) UNSIGNED NOT NULL DEFAULT 0,".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.prg.id]),".
+			" UNIQUE KEY [field.prg.id] ([field.prg.id])".
+			" );";
 			$db->run($sql, $res);
 			$res = null;
 
@@ -1016,9 +1016,9 @@ class DOWNLOADS extends MainPlugin {
 			" [field.prt.text] TEXT NOT NULL DEFAULT '',".
 			" [field.prt.html] INT(1) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.prt.lang] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.prt.id]),".
+			" UNIQUE KEY [field.prt.id] ([field.prt.id])".
+			" );";
 			$db->run($sql, $res);
 			$res = null;
 
@@ -1027,8 +1027,8 @@ class DOWNLOADS extends MainPlugin {
 			" [field.dll.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,".
 			" [field.dll.file] VARCHAR(200) NOT NULL DEFAULT '',".
 			" [field.dll.real] VARCHAR(100) NOT NULL DEFAULT '',".
-			" [field.dll.file_id] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
-			" [field.dll.file_size] BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,".
+			" [field.dll.fileid] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
+			" [field.dll.size] BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.dll.section] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.dll.ip] VARCHAR(50) NOT NULL DEFAULT '',".
 			" [field.dll.domain] VARCHAR(150) NOT NULL DEFAULT '',".
@@ -1036,9 +1036,9 @@ class DOWNLOADS extends MainPlugin {
 			" [field.dll.time] DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',".
 			" [field.dll.lang] VARCHAR(50) NOT NULL DEFAULT '',".
 			" [field.dll.user] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.dll.id]),".
+			" UNIQUE KEY [field.dll.id] ([field.dll.id])".
+			" );";
 			$db->run($sql, $res);
 			$res = null;
 
@@ -1051,9 +1051,9 @@ class DOWNLOADS extends MainPlugin {
 			" [field.mir.passwd] VARCHAR(100) NOT NULL DEFAULT '',".
 			" [field.mir.update] DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',".
 			" [field.mir.active] INT(1) UNSIGNED NOT NULL DEFAULT 0,".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.mir.id]),".
+			" UNIQUE KEY [field.mir.id] ([field.mir.id])".
+			" );";
 			$db->run($sql, $res);
 			$res = null;
 
@@ -1062,9 +1062,9 @@ class DOWNLOADS extends MainPlugin {
 			" [field.prs.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,".
 			" [field.prs.parent] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.prs.text] VARCHAR(100) NOT NULL DEFAULT '',".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.prs.id]),".
+			" UNIQUE KEY [field.prs.id] ([field.prs.id])".
+			" );";
 			$db->run($sql, $res);
 			$res = null;
 

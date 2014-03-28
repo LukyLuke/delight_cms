@@ -14,15 +14,10 @@
 	$DBSettings['master']['database'] = DB_DATABASE;
 
 // Tables
-	$DBTables['per'] = "dhp_users";                 // registered Users                   OK
-	$DBTables['plo'] = "dhp_loguser";               // Loging for Users                   OK
 // 	$DBTables['pla'] = "dhp_userslang";             // Languages for Users (access)
 // 	$DBTables['pdo'] = "dhp_userdownloadsections";  // DownlaodSections for Users
-//	$DBTables['lan'] = "dhp_languages";             // Languages                          OK
 // 	$DBTables['cou'] = "dhp_country";               // List of countries
-	$DBTables['men'] = "dhp_menu";                  // MenuStructure                      OK
-	$DBTables['mtx'] = "dhp_menutexts";             // Menutexts for MenuStructure        OK
-	$DBTables['txt'] = "dhp_texts";                 // Any Texts                          OK
+
 	$DBTables['img'] = "dhp_images";                // All Images                         OK
 	$DBTables['ims'] = "dhp_imagesections";         // Image Sections (like a Tree)       OK
 	$DBTables['imt'] = "dhp_imagestexts";           // Image-Text (in dif. languages)     OK
@@ -41,11 +36,6 @@
 	$DBTables['rsscache'] = "dhp_news_rsscache";    // Cache for RSS-Newsfeeds from external sites
 	$DBTables['rssnews'] = "dhp_news_rssnews";      // List with all RSS-Feeds to grab from external sites and cache in "rsscache"
 
-	// Secure Menus and others
-	$DBTables['grp'] = "dhp_access_groups";         // Groups a User can be in - Groups can be attached to MEnus, Downloads, etc.
-	$DBTables['usrgrp'] = "dhp_users_groups";       // Users <-> Groups assignment
-	$DBTables['menugrp'] = "dhp_menuaccess_groups"; // Menu <-> Groups assignment
-
 	// SimpleShop
 	$DBTables['ssproducts']  = "dhp_simpleshop_products";      // All Products inside the SimpleShop
 	$DBTables['sscat']       = "dhp_simpleshop_categories";    // Categories for the SimpleShop to categorize the products
@@ -62,68 +52,12 @@
 	// Formulars
 	$DBTables['formular'] = "dhp_formulars";  // All Formular-Configurations-Values
 
-	// Static Menu-Structure
-	$DBTables['staticmenu'] = 'dhp_menu_static';  // The complete Menustructure created for static pages/links
-
 // Tablefields
-	// Language-Table
-/*
-	$DBFields['lan']['id']     = "id";
-	$DBFields['lan']['text']   = "text";
-	$DBFields['lan']['short']  = "short";
-	$DBFields['lan']['char']   = "charset";
-	$DBFields['lan']['icon']   = "icon_path";
-	$DBFields['lan']['active'] = "lang_is_active";
-*/
-
-	// Menu
-	$DBFields['men'] = array(
-		'id' => 'id',
-		'parent' => 'parent',
-		'pos' => 'show_order',
-		'link' => 'link',
-		'short' => 'short_link',
-		'isform' => 'is_formular_page'
-	);
-
-	// Menu-Texts
-	$DBFields['mtx'] = array(
-		'id' => 'id',
-		'text' => 'text',
-		'menu' => 'menu_id',
-		'lang' => 'lang_id',
-		'active' => 'is_active',
-		'title' => 'site_title',
-		'description' => 'site_description',
-		'keywords' => 'site_keywords',
-		'image' => 'image_id',
-		'transshort' => 'translated_shortlink'
-	);
-
-	$DBFields['staticmenu'] = array(
-		'menu' => 'menu_id',
-		'id' => 'menu_id',
-		'short' => 'short_link',
-		'translated' => 'translated_short_link',
-		'lang' => 'lang_id',
-	);
 
 // 	// Link tyeps and Files
 // 	$DBFields['lnk']['id']   = "id";
 // 	$DBFields['lnk']['text'] = "text";
 // 	$DBFields['lnk']['file'] = "link";
-
-	// Texts
-	$DBFields['txt']['id']      = "id";
-	$DBFields['txt']['layout']  = "layout_file";
-	$DBFields['txt']['sort']    = "textorder";
-	$DBFields['txt']['text']    = "text";
-	$DBFields['txt']['title']   = "short";
- 	$DBFields['txt']['menu']    = "menu_id";
-	$DBFields['txt']['lang']    = "lang_id";
-	$DBFields['txt']['plugin']  = "text_parser";
-	$DBFields['txt']['options'] = "layout_options";
-	$DBFields['txt']['grouped'] = "grouped_text";
 
 	// Image Table
 	$DBFields['img']['id']      = "id";
@@ -171,23 +105,6 @@
 	$DBFields['prs']['text']   = "text";
 	$DBFields['prs']['secure'] = "is_secure";
 
-	// Users table
-	$DBFields['per']['id']         = "id";
-	$DBFields['per']['right']      = "login_type";
-	$DBFields['per']['user']       = "login_name";
-	$DBFields['per']['passwd']     = "login_password";
-	$DBFields['per']['clear']      = "login_clear_password";
-	$DBFields['per']['company']    = "user_company";
-	$DBFields['per']['name']       = "user_name";
-	$DBFields['per']['surname']    = "user_surname";
-	$DBFields['per']['address']    = "user_address";
-	$DBFields['per']['postalcode'] = "user_postalcode";
-	$DBFields['per']['city']       = "user_city";
-	$DBFields['per']['country']    = "user_country";
-	$DBFields['per']['email']      = "user_email";
-	$DBFields['per']['internet']   = "user_internet";
-	$DBFields['per']['info']       = "user_info";
-
 	// DownloadLog
 	$DBFields['dll']['id']        = "id";
 	$DBFields['dll']['file']      = "file";
@@ -221,15 +138,6 @@
 	$DBFields['ref']['date']     = "ref_date";
 	$DBFields['ref']['client']   = "client_ip";
 	$DBFields['ref']['browser']  = "client_browser";
-
-	// Login/Logout loging
-	$DBFields['plo']['id']     = "id";
-	$DBFields['plo']['user']   = "user";
-	$DBFields['plo']['action'] = "action";
-	$DBFields['plo']['time']   = "action_time";
-	$DBFields['plo']['ip']     = "client_ip";
-	$DBFields['plo']['domain'] = "client_domain";
-	$DBFields['plo']['info']   = "action_info";
 
 	// Versions-Table
 	$DBFields['opt']['id']      = "id";
@@ -333,21 +241,6 @@
 		'srchid' => 'search_id',
 		'value' => 'search_value',
 		'pithiness' => 'pithiness'
-	);
-
-	// User-Groups
-	$DBFields['grp'] = array(
-		'id' => 'id',
-		'name' => 'group_name',
-		'descr' => 'description'
-	);
-	$DBFields['usrgrp'] = array(
-		'group' => 'group_id',
-		'user' => 'user_id'
-	);
-	$DBFields['menugrp'] = array(
-		'menu' => 'menu_id',
-		'group' => 'group_id'
 	);
 
 	// Formulars

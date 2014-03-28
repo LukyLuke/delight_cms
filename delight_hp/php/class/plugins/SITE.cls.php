@@ -1000,6 +1000,10 @@ class SITE extends MainPlugin {
 		$db = pDatabaseConnection::getDatabaseInstance();
 		$res = null;
 
+		pCheckUserData::getInstance();
+		new pLanguage();
+		new pCountry();
+
 		// Get the current Version
 		$v = $this->_checkMainDatabase();
 		$version = $v[0];
@@ -1007,46 +1011,7 @@ class SITE extends MainPlugin {
 
 		// Updates to the Database
 		if ($version < 2006010500) {
-			// Create the User-Log table
-			$sql  = "CREATE TABLE IF NOT EXISTS [table.plo] (".
-			" [field.plo.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,".
-			" [field.plo.user] VARCHAR(50) NOT NULL DEFAULT '',".
-			" [field.plo.action] VARCHAR(10) NOT NULL DEFAULT '',".
-			" [field.plo.time] DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',".
-			" [field.plo.ip] VARCHAR(30) NOT NULL DEFAULT '',".
-			" [field.plo.domain] VARCHAR(250) NOT NULL DEFAULT '',".
-			" [field.plo.info] VARCHAR(250) NOT NULL DEFAULT '',".
-			" PRIMARY KEY ([field.plo.id]),".
-			" UNIQUE KEY id ([field.plo.id])".
-			" ) TYPE=MyISAM;";
-			$db->run($sql, $res);
-			$res = null;
-
-			// Create the Languages-Table
-			$sql  = "CREATE TABLE IF NOT EXISTS [table.lan] (".
-			" [field.lan.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,".
-			" [field.lan.text] VARCHAR(100) NOT NULL DEFAULT '',".
-			" [field.lan.short] VARCHAR(5) NOT NULL DEFAULT '',".
-			" [field.lan.char] VARCHAR(50) NOT NULL DEFAULT '',".
-			" [field.lan.icon] VARCHAR(50) NOT NULL DEFAULT '',".
-			" [field.lan.active] INT(1) UNSIGNED NOT NULL DEFAULT 0,".
-			" PRIMARY KEY ([field.lan.id]),".
-			" UNIQUE KEY id ([field.lan.id])".
-			" ) TYPE=MyISAM;";
-			$db->run($sql, $res);
-			$res = null;
-
-			// Insert base-language if not already exists
-			$sql = "SELECT [lan.text] FROM [table.lan] WHERE [lan.text]='german'";
-			$db->run($sql, $res);
-			if (!$res->getFirst()) {
-				$res = null;
-				$sql = "INSERT INTO [table.lan]".
-				" ([field.lan.text],[field.lan.short],[field.lan.char],[field.lan.icon],[field.lan.active])".
-				" VALUES ('german','de','iso-8859-1','german.gif',1);";
-				$db->run($sql, $res);
-				$res = null;
-			}
+			
 		}
 
 		// Update the version

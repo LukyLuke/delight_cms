@@ -38,7 +38,6 @@ abstract class MainPlugin {
 
 	/**
 	 * The new Initialization
-	 *
 	 */
 	public function __construct() {
 		$this->mainMenu = pMenu::getMenuInstance()->getMenuId();
@@ -2141,13 +2140,14 @@ abstract class MainPlugin {
 	 *
 	 * @return array 0=>version, 1=>versionID
 	 * @access protected
+	 * @deprecated use pDatabaseConnection::getDatabaseInstance()->getModuleVersion($module)
 	 */
 	protected function _checkMainDatabase() {
-		$back = array(0, 0);
-
 		$db = pDatabaseConnection::getDatabaseInstance();
+		$version = $db->getModuleVersion(get_class($this));
+		return array($version, 0);
 
-		$version = 0;
+		/*$version = 0;
 		$versionid = 0;
 		$sql  = "SELECT * FROM [table.opt] WHERE [opt.name]='".get_class($this)."'";
 		$res = null;
@@ -2165,14 +2165,14 @@ abstract class MainPlugin {
 			" [field.opt.version] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.opt.name] VARCHAR(50) NOT NULL DEFAULT '',".
 			" [field.opt.lastmod] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.opt.id]),".
+			" UNIQUE KEY [field.opt.id] ([field.opt.id])".
+			" );";
 			$res = null;
 			$db->run($sql, $res);
 		}
 
-		return $back;
+		return $back;*/
 	}
 
 	/**
@@ -2182,9 +2182,13 @@ abstract class MainPlugin {
 	 * @param int $versionId id from current version/plugin
 	 * @param int $moduleVersion The current Module-Version
 	 * @access protected
+	 * @deprecated use pDatabaseConnection::getDatabaseInstance()->updateModuleVersion($module, $version)
 	 */
 	protected function _updateVersionTable($version, $versionid, $moduleVersion=null) {
-		if ($version < $moduleVersion) {
+		$db = pDatabaseConnection::getDatabaseInstance();
+		$db->updateModuleVersion(get_class($this), $moduleVersion);
+
+		/*if ($version < $moduleVersion) {
 			$db = pDatabaseConnection::getDatabaseInstance();
 			$res = null;
 			if ($versionid <= 0) {
@@ -2199,7 +2203,7 @@ abstract class MainPlugin {
 				$sql .= " WHERE [opt.id]=".$versionid.";";
 				$db->run($sql, $res);
 			}
-		}
+		}*/
 	}
 
 }

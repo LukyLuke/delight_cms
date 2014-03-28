@@ -1,22 +1,22 @@
 <?php
 abstract class admin_MAIN_Settings extends MainPlugin {
-	var $LANG;
-	var $DB;
-	var $_langId;
-	var $_langShort;
-	var $_menuId;
-	var $_mainAction;
-	var $_changeId;
-	var $_subChangeId;
-	var $_content;
-	var $_cssFiles;
-	var $_cssContent;
-	var $_scriptFiles;
-	var $_adminAccess;
-	var $_sectionContent;
-	var $_sectionDelimiter;
-	var $_sectionDelimiterImages;
-	var $_userId;
+	protected $LANG;
+	protected $DB;
+	protected $_langId;
+	protected $_langShort;
+	protected $_menuId;
+	protected $_mainAction;
+	protected $_changeId;
+	protected $_subChangeId;
+	protected $_content;
+	protected $_cssFiles;
+	protected $_cssContent;
+	protected $_scriptFiles;
+	protected $_adminAccess;
+	protected $_sectionContent;
+	protected $_sectionDelimiter;
+	protected $_sectionDelimiterImages;
+	protected $_userId;
 	public $VERSION = 2007122100;
 
 	/**

@@ -112,7 +112,7 @@ class pModuleVersion {
 		$res = null;
 		
 		// Check if the Table exists or not. We can only get versions if it exists
-		$sql = 'SHOW TABLES LIKE "'.$db->getSqlTableName('version',false).'";';
+		$sql = 'SHOW TABLES LIKE "'.$db->getSqlTableName('version', false).'";';
 		$db->run($sql, $res);
 		if (!$res->getFirst()) {
 			$sql = 'CREATE TABLE IF NOT EXISTS [table.version] ('.

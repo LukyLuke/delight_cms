@@ -91,15 +91,15 @@ class admin_1300_Settings extends admin_MAIN_Settings {
 		$db = pDatabaseConnection::getDatabaseInstance();
 		$res = null;
 
-		// in this Update we will install german, english, italian, french, spain
+		// The table is created in pLanguage
+		// In this Update we will install german, english, italian, french, spain
 		if ($version < 2006060700) {
-			// The Table is created in the SITE-Plugin
-			// German is added in the SITE-Plugin
-			$_langArray = array(array('english','en'),array('french','fr'),array('italian','it'));
+			// German is added while creating the table in pLanguage
+			$_langArray = array(array('english','en'), array('french','fr'), array('italian','it'));
 			foreach ($_langArray as $k => $v) {
 				$check = "SELECT [lan.id] FROM [table.lan] WHERE [lan.short]='".$v[1]."';";
-				$res = $this->DB->ReturnQueryResult($check);
-				if (!$res || (mysql_num_rows($res) <= 0)) {
+				$db->run($check, $res);
+				if (!$res->getFirst()) {
 					// German language will be active by default.
 					$_act = 0;
 					if (strtolower($v[1]) == 'de') {
@@ -117,8 +117,8 @@ class admin_1300_Settings extends admin_MAIN_Settings {
 			$_langArray = array(array('bulgaria','bg'), array('macedonia','mk'), array('russia','ru'), array('serbia','sb'), array('ukraine','ua'));
 			foreach ($_langArray as $k => $v) {
 				$check = "SELECT [lan.id] FROM [table.lan] WHERE [lan.short]='".$v[1]."';";
-				$res = $this->DB->ReturnQueryResult($check);
-				if (!$res || (mysql_num_rows($res) <= 0)) {
+				$db->run($check, $res);
+				if (!$res->getFirst()) {
 					$_act = 0;
 					$sql  = "INSERT INTO [table.lan] ([field.lan.text],[field.lan.short],[field.lan.char],[field.lan.icon],[field.lan.active])";
 					$sql .= " VALUES ('".$v[0]."','".$v[1]."','iso-8859-5','".$v[0].".gif',".$_act.");";
@@ -132,8 +132,8 @@ class admin_1300_Settings extends admin_MAIN_Settings {
 			$_langArray = array(array('turkey','tr'), array('malta','mt'), array('gallego','gl'), array('esperanto','eo'));
 			foreach ($_langArray as $k => $v) {
 				$check = "SELECT [lan.id] FROM [table.lan] WHERE [lan.short]='".$v[1]."';";
-				$res = $this->DB->ReturnQueryResult($check);
-				if (!$res || (mysql_num_rows($res) <= 0)) {
+				$db->run($check, $res);
+				if (!$res->getFirst()) {
 					$_act = 0;
 					$sql  = "INSERT INTO [table.lan] ([field.lan.text],[field.lan.short],[field.lan.char],[field.lan.icon],[field.lan.active])";
 					$sql .= " VALUES ('".$v[0]."','".$v[1]."','iso-8859-3','".$v[0].".gif',".$_act.");";
@@ -147,8 +147,8 @@ class admin_1300_Settings extends admin_MAIN_Settings {
 			$_langArray = array(array('kroatia','hr'),array('poland','pl'),array('romania','ro'),array('slovakia','sk'),array('slovenian','sl'),array('czech','cz'),array('hungary','hu'));
 			foreach ($_langArray as $k => $v) {
 				$check = "SELECT [lan.id] FROM [table.lan] WHERE [lan.short]='".$v[1]."';";
-				$res = $this->DB->ReturnQueryResult($check);
-				if (!$res || (mysql_num_rows($res) <= 0)) {
+				$db->run($check, $res);
+				if (!$res->getFirst()) {
 					$_act = 0;
 					$sql  = "INSERT INTO [table.lan] ([field.lan.text],[field.lan.short],[field.lan.char],[field.lan.icon],[field.lan.active])";
 					$sql .= " VALUES ('".$v[0]."','".$v[1]."','iso-8859-2','".$v[0].".gif',".$_act.");";

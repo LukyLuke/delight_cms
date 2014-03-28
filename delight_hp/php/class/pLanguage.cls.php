@@ -23,6 +23,8 @@ $DBFields['lan'] = array(
 
 class pLanguage {
 	const ICON_DIR = '/images/language/';
+	const MODULE_VERSION = 2014042800;
+	
 	private $shortLanguage;
 	private $extendedLanguage;
 	private $languageId;
@@ -37,6 +39,7 @@ class pLanguage {
 	 * @param unknown_type $short
 	 */
 	public function __construct($short=null) {
+		$this->updateModule();
 		$this->languageData = array();
 		if (is_numeric($short)) {
 			$this->loadById($short);
@@ -236,6 +239,52 @@ class pLanguage {
 			$this->languageData[$type] = array();
 		}
 		$this->languageData[$type][$name] = $value;
+	}
+
+	/**
+	 * Update the module if needed - this was first in the administration
+	 * class but is moved here to be more general
+	 * @access protected
+	 */
+	protected function updateModule() {
+		// first get the version stored in the Database
+		$db = pDatabaseConnection::getDatabaseInstance();
+		$version = $db->getModuleVersion(get_class($this));
+		$res = null;
+
+		// Check if we need an Update
+		if (self::MODULE_VERSION > $version) {
+			// Initial create the Languages-Table
+			if ($version <= 0) {
+				$sql  = 'CREATE TABLE IF NOT EXISTS [table.lan] ('.
+				' [field.lan.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,'.
+				' [field.lan.text] VARCHAR(100) NOT NULL DEFAULT \'\','.
+				' [field.lan.short] VARCHAR(5) NOT NULL DEFAULT \'\','.
+				' [field.lan.char] VARCHAR(50) NOT NULL DEFAULT \'\','.
+				' [field.lan.icon] VARCHAR(50) NOT NULL DEFAULT \'\','.
+				' [field.lan.active] INT(1) UNSIGNED NOT NULL DEFAULT 0,'.
+				' PRIMARY KEY ([field.lan.id]),'.
+				' UNIQUE KEY [field.lan.id] ([field.lan.id])'.
+				' );';
+				$db->run($sql, $res);
+				$res = null;
+
+				// Insert base-language if not already exists
+				$sql = 'SELECT [lan.text] FROM [table.lan] WHERE [lan.text]=\'german\';';
+				$db->run($sql, $res);
+				if (!$res->getFirst()) {
+					$res = null;
+					$sql = 'INSERT INTO [table.lan]'.
+					' ([field.lan.text],[field.lan.short],[field.lan.char],[field.lan.icon],[field.lan.active])'.
+					' VALUES (\'german\',\'de\',\'iso-8859-1\',\'german.gif\',1);';
+					$db->run($sql, $res);
+					$res = null;
+				}
+			}
+
+			// Update the version in database for this module
+			$db->updateModuleVersion(get_class($this), self::MODULE_VERSION);
+		}
 	}
 
 }

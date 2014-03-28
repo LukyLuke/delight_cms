@@ -41,6 +41,7 @@ class MENU extends MainPlugin {
 	public $_hideLowerLevels;
 
 	public function __construct() {
+		pMenu::getMenuInstance(); // Update all menu based things
 		$this->_checkDatabase();
 		parent::__construct();
 
@@ -1102,126 +1103,6 @@ class MENU extends MainPlugin {
 		$version = $v[0];
 		$versionid = $v[1];
 
-		// Updates to the Database
-		if ($version < 2006010600) {
-			// Create the Menu-Table
-			$sql  = 'CREATE TABLE IF NOT EXISTS [table.men] ('.
-			' [field.men.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,'.
-			' [field.men.parent] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' [field.men.pos] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' [field.men.link] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' [field.men.short] VARCHAR(100) NOT NULL DEFAULT \'\','.
-			' PRIMARY KEY ([field.men.id]),'.
-			' UNIQUE KEY id ([field.men.id])'.
-			' );';
-			$db->run($sql, $res);
-			$res = null;
-
-			// Create the MenuText-Table
-			$sql  = 'CREATE TABLE IF NOT EXISTS [table.mtx] ('.
-			' [field.mtx.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,'.
-			' [field.mtx.text] VARCHAR(100) NOT NULL DEFAULT \'\','.
-			' [field.mtx.menu] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' [field.mtx.lang] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' PRIMARY KEY ([field.mtx.id]),'.
-			' UNIQUE KEY id ([field.mtx.id])'.
-			' );';
-			$db->run($sql, $res);
-			$res = null;
-
-			// Create the Text-Table
-			$sql  = 'CREATE TABLE IF NOT EXISTS [table.txt] ('.
-			' [field.txt.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,'.
-			' [field.txt.layout] VARCHAR(150) NOT NULL DEFAULT \'\','.
-			' [field.txt.sort] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' [field.txt.text] TEXT NOT NULL DEFAULT \'\','.
-			' [field.txt.title] VARCHAR(250) NOT NULL DEFAULT \'\','.
-			' [field.txt.menu] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' [field.txt.lang] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' [field.txt.plugin] VARCHAR(50) NOT NULL DEFAULT \'TEXT\','.
-			' [field.txt.options] VARCHAR(255) NOT NULL DEFAULT \'\','.
-			' PRIMARY KEY ([field.txt.id]),'.
-			' UNIQUE KEY [field.txt.id] ([field.txt.id])'.
-			' );';
-			$db->run($sql, $res);
-			$res = null;
-		}
-
-		// Insert BaseMenu if not already exists
-		$sql = 'SELECT COUNT([men.id]) AS cnt FROM [table.men];';
-		$db->run($sql, $res);
-		if (!$res->getFirst() || ((int)$res->cnt <= 0)) {
-			$sql = 'INSERT INTO [table.men] ([field.men.parent],[field.men.pos],[field.men.link],[field.men.short]) VALUES (0,1,0,\'home\');';
-			$db->run($sql, $res);
-			$last = $res->getInsertId();
-			$res = null;
-
-			// Insert BaseMenutexts
-			$sql = 'INSERT INTO [table.mtx] ([field.mtx.text],[field.mtx.menu],[field.mtx.lang]) VALUES (\'Change me\',\''.$last.'\',1);';
-			$db->run($sql, $res);
-			$res = null;
-
-			// Insert base-languages
-			$sql = 'INSERT INTO [table.txt]'.
-			' ([field.txt.layout],[field.txt.sort],[field.txt.text],[field.txt.title],[field.txt.menu],[field.txt.lang],[field.txt.plugin],[field.txt.options])'.
-			' VALUES (\'plain_text\',1,\'Sample text\',\'Sample title\',\''.$last.'\',1,\'TEXT\',\'#title=default#\');';
-			$db->run($sql, $res);
-			$res = null;
-		}
-
-		// Add a field to enable/disable the whole Menu
-		if ($version < 2006042802) {
-			$sql = 'ALTER TABLE [table.mtx] ADD COLUMN [field.mtx.active] INT(1) UNSIGNED NOT NULL DEFAULT 1;';
-			$db->run($sql, $res);
-			$res = null;
-		}
-
-		// Add aditional fields to the Menu for META-tags in the HTML-Header (title, keywords and description)
-		if ($version < 2007120301) {
-			$sql = 'ALTER TABLE [table.mtx] ADD COLUMN [field.mtx.title] VARCHAR(200) NOT NULL DEFAULT \'\';';
-			$db->run($sql, $res);
-			$res = null;
-
-			$sql = 'ALTER TABLE [table.mtx] ADD COLUMN [field.mtx.description] VARCHAR(200) NOT NULL DEFAULT \'\';';
-			$db->run($sql, $res);
-			$res = null;
-
-			$sql = 'ALTER TABLE [table.mtx] ADD COLUMN [field.mtx.keywords] TEXT NOT NULL DEFAULT \'\';';
-			$db->run($sql, $res);
-			$res = null;
-		}
-
-		if ($version < 2009071702) {
-			// Create the User-Groups-Table
-			$sql = 'CREATE TABLE IF NOT EXISTS [table.grp] ('.
-			' [field.grp.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,'.
-			' [field.grp.name] VARCHAR(50) NOT NULL DEFAULT \'\','.
-			' [field.grp.descr] VARCHAR(250) NOT NULL DEFAULT \'\','.
-			' PRIMARY KEY ([field.grp.id]),'.
-			' UNIQUE KEY id ([field.grp.id])'.
-			' );';
-			$db->run($sql, $res);
-			$res = null;
-
-			$sql = 'CREATE TABLE IF NOT EXISTS [table.usrgrp] ('.
-			' [field.usrgrp.user] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' [field.usrgrp.group] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' KEY userid ([field.usrgrp.user])'.
-			' );';
-			$db->run($sql, $res);
-			$res = null;
-		}
-
-		if ($version < 2009071703) {
-			$sql = 'CREATE TABLE IF NOT EXISTS [table.menugrp] ('.
-			' [field.menugrp.menu] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' [field.menugrp.group] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' KEY menuid ([field.menugrp.menu])'.
-			' );';
-			$db->run($sql, $res);
-			$res = null;
-		}
-
 		// We had a Bug by an Update so we must recreate all "menu positions" on new Menues
 		if ($version < 2009101300) {
 			$sql = 'SELECT [men.parent], COUNT([men.parent]) AS cnt FROM [table.men] GROUP BY [men.parent];';
@@ -1321,38 +1202,8 @@ class MENU extends MainPlugin {
 			unset($match);
 		}
 
-		// Grouped Text
-		if ($version < 2010052000) {
-			$sql = 'ALTER TABLE [table.txt] ADD COLUMN [field.txt.grouped] TINYINT(1) UNSIGNED NOT NULL DEFAULT 0;';
-			$db->run($sql, $res);
-			$res = null;
-		}
-
-		// Icons for Menus
-		if ($version < 2011011400) {
-			$sql = 'ALTER TABLE [table.mtx] ADD COLUMN [field.mtx.image] INT(11) UNSIGNED NOT NULL DEFAULT 0;';
-			$db->run($sql, $res);
-			$res = null;
-		}
-
-		// Staticmenu
-		if ($version < 2011102602) {
-			$sql  = 'CREATE TABLE IF NOT EXISTS [table.staticmenu] ('.
-			' [field.staticmenu.menu] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' [field.staticmenu.short] VARCHAR(100) NULL DEFAULT \'\','.
-			' [field.staticmenu.lang] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
-			' KEY staticmenu_uid ([field.staticmenu.menu],[field.staticmenu.lang])'.
-			' );';
-			$db->run($sql, $res);
-			$res = null;
-		}
-
 		// Add a translated ShortLink (future release) and fill the table so we don't have to create static sites after the Update
 		if ($version < 2011102603) {
-			$sql = 'ALTER TABLE [table.staticmenu] ADD COLUMN [field.staticmenu.translated] VARCHAR(100) NOT NULL DEFAULT \'\';';
-			$db->run($sql, $res);
-			$res = null;
-
 			$sql = 'SELECT [men.id],[men.short],[mtx.lang] FROM [table.men],[table.mtx] WHERE [men.id]=[mtx.menu] AND [mtx.active]=1;';
 			$db->run($sql, $res);
 			if ($res->getFirst()) {
@@ -1367,17 +1218,12 @@ class MENU extends MainPlugin {
 			$res = null;
 		}
 
-		if ($version < 2011102604) {
-			$sql = 'ALTER TABLE [table.mtx] ADD COLUMN [field.mtx.transshort] VARCHAR(100) NOT NULL DEFAULT \'\';';
-			$db->run($sql, $res);
-			$res = null;
-		}
-
 		// We need the Formulars also on GLOBALTEXT and not only on TEXT-Blocks
 		if ($version < 2012052603) {
 			$sql = 'ALTER TABLE [table.formular] ADD COLUMN [field.formular.plugin] VARCHAR(10) NOT NULL DEFAULT \'TEXT\';';
 			$db->run($sql, $res);
 			$res = null;
+
 			$sql = 'UPDATE [table.formular] SET [field.formular.plugin]=\'TEXT\';';
 			$db->run($sql, $res);
 			$res = null;

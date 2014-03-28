@@ -1185,9 +1185,9 @@ class NEWS extends MainPlugin {
 			" [field.new.html] INT(1) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.new.date] DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',".
 			" [field.new.lang] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.new.id]),".
+			" UNIQUE KEY [field.new.id] ([field.new.id])".
+			" );";
 			$res = null;
 			$db->run($sql, $res);
 		}
@@ -1198,14 +1198,14 @@ class NEWS extends MainPlugin {
 			" [field.nes.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,".
 			" [field.nes.parent] INT(10) UNSIGNED NOT NULL DEFAULT 0,".
 			" [field.nes.text] VARCHAR(100) NOT NULL DEFAULT '',".
-			" PRIMARY KEY (id),".
-			" UNIQUE KEY id (id)".
-			" ) TYPE=MyISAM;";
+			" PRIMARY KEY ([field.nes.id]),".
+			" UNIQUE KEY [field.nes.id] ([field.nes.id])".
+			" );";
 			$res = null;
 			$db->run($sql, $res);
 
 			// Insert base-Section if not already exists
-			$sql = "SELECT [nes.text] FROM [tabke.nes] WHERE [nes.text]='default'";
+			$sql = "SELECT [nes.text] FROM [table.nes] WHERE [nes.text]='default'";
 			$res = null;
 			$db->run($sql, $res);
 			if (!$res->getFirst()) {
@@ -1231,7 +1231,7 @@ class NEWS extends MainPlugin {
 			" KEY [field.rssnews.uri] ([field.rssnews.uri]),".
 			" PRIMARY KEY ([field.rssnews.id]),".
 			" UNIQUE KEY [field.rssnews.id] ([field.rssnews.id])".
-			" ) TYPE=MyISAM;";
+			" );";
 			$res = null;
 			$db->run($sql, $res);
 		}
@@ -1244,7 +1244,7 @@ class NEWS extends MainPlugin {
 			" [field.rsscache.text] TEXT NOT NULL DEFAULT '',".
 			" KEY [field.rsscache.rssnews] ([field.rsscache.rssnews]),".
 			" KEY [field.rsscache.date] ([field.rsscache.date])".
-			" ) TYPE=MyISAM;";
+			" );";
 			$res = null;
 			$db->run($sql, $res);
 		}

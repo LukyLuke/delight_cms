@@ -10,7 +10,54 @@
  * @uses singelton, MainPlugin
  */
 
+$DBTables['men'] = $tablePrefix.'_menu';
+$DBTables['mtx'] = $tablePrefix.'_menutexts';
+$DBTables['txt'] = $tablePrefix.'_texts';
+$DBTables['staticmenu'] = 'dhp_menu_static';
+$DBFields['men'] = array(
+	'id' => 'id',
+	'parent' => 'parent',
+	'pos' => 'show_order',
+	'link' => 'link',
+	'short' => 'short_link',
+	'isform' => 'is_formular_page'
+);
+$DBFields['mtx'] = array(
+	'id' => 'id',
+	'text' => 'text',
+	'menu' => 'menu_id',
+	'lang' => 'lang_id',
+	'active' => 'is_active',
+	'title' => 'site_title',
+	'description' => 'site_description',
+	'keywords' => 'site_keywords',
+	'image' => 'image_id',
+	'transshort' => 'translated_shortlink'
+);
+$DBFields['staticmenu'] = array(
+	'menu' => 'menu_id',
+	'id' => 'menu_id',
+	'short' => 'short_link',
+	'translated' => 'translated_short_link',
+	'lang' => 'lang_id',
+);
+$DBFields['txt'] = array(
+	'id' => 'id',
+	'layout' => 'layout_file',
+	'sort' => 'textorder',
+	'text' => 'text',
+	'title' => 'short',
+	'menu' => 'menu_id',
+	'lang' => 'lang_id',
+	'plugin' => 'text_parser',
+	'options' => 'layout_options',
+	'grouped' => 'grouped_text'
+);
+
+
 class pMenu {
+	const MODULE_VERSION = 2014042800;
+	
 	private $currentMenuId;
 	private $currentMenuIdPart;
 	private $currentMenuShort;
@@ -28,6 +75,7 @@ class pMenu {
 	 * @param boolean $static Load the static/published menu or the live one
 	 */
 	private function __construct($static=false) {
+		$this->updateModule();
 		$this->static_menu = $static;
 		$this->loginRequested = (pURIParameters::get('adm', 0, pURIParameters::$INT) == 1);
 		$this->currentMenuId = pURIParameters::get('m', 0, pURIParameters::$INT);
@@ -300,7 +348,107 @@ class pMenu {
 		}
 		array_push($this->backtrace, $id);
 	}
+	
+	/**
+	 * Update the module if needed - this was first in the administration
+	 * class but is moved here to be more general
+	 * @access protected
+	 */
+	protected function updateModule() {
+		// first get the version stored in the Database
+		$db = pDatabaseConnection::getDatabaseInstance();
+		$version = $db->getModuleVersion(get_class($this));
+		$res = null;
+
+		// Check if we need an Update
+		if (self::MODULE_VERSION > $version) {
+			// Initial create the menu, menutext and text tables
+			if ($version <= 0) {
+				// Create the Menu-Table
+				$sql  = 'CREATE TABLE IF NOT EXISTS [table.men] ('.
+				' [field.men.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,'.
+				' [field.men.parent] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.men.pos] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.men.link] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.men.short] VARCHAR(100) NOT NULL DEFAULT \'\','.
+				' PRIMARY KEY ([field.men.id]),'.
+				' UNIQUE KEY id ([field.men.id])'.
+				' );';
+				$db->run($sql, $res);
+				$res = null;
+
+				// Create the MenuText-Table
+				$sql  = 'CREATE TABLE IF NOT EXISTS [table.mtx] ('.
+				' [field.mtx.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,'.
+				' [field.mtx.text] VARCHAR(100) NOT NULL DEFAULT \'\','.
+				' [field.mtx.menu] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.mtx.lang] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.mtx.active] INT(1) UNSIGNED NOT NULL DEFAULT 1,'.
+				' [field.mtx.title] VARCHAR(200) NOT NULL DEFAULT \'\','.
+				' [field.mtx.description] VARCHAR(200) NOT NULL DEFAULT \'\','.
+				' [field.mtx.keywords] TEXT NOT NULL DEFAULT \'\','.
+				' [field.mtx.image] INT(11) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.mtx.transshort] VARCHAR(100) NOT NULL DEFAULT \'\','.
+				' PRIMARY KEY ([field.mtx.id]),'.
+				' UNIQUE KEY id ([field.mtx.id])'.
+				' );';
+				$db->run($sql, $res);
+				$res = null;
+
+				// Create the Text-Table
+				$sql  = 'CREATE TABLE IF NOT EXISTS [table.txt] ('.
+				' [field.txt.id] INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,'.
+				' [field.txt.layout] VARCHAR(150) NOT NULL DEFAULT \'\','.
+				' [field.txt.sort] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.txt.text] TEXT NOT NULL DEFAULT \'\','.
+				' [field.txt.title] VARCHAR(250) NOT NULL DEFAULT \'\','.
+				' [field.txt.menu] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.txt.lang] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.txt.plugin] VARCHAR(50) NOT NULL DEFAULT \'TEXT\','.
+				' [field.txt.options] VARCHAR(255) NOT NULL DEFAULT \'\','.
+				' [field.txt.grouped] TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,'.
+				' PRIMARY KEY ([field.txt.id]),'.
+				' UNIQUE KEY [field.txt.id] ([field.txt.id])'.
+				' );';
+				$db->run($sql, $res);
+				$res = null;
+				
+				$sql  = 'CREATE TABLE IF NOT EXISTS [table.staticmenu] ('.
+				' [field.staticmenu.menu] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.staticmenu.short] VARCHAR(100) NULL DEFAULT \'\','.
+				' [field.staticmenu.lang] INT(10) UNSIGNED NOT NULL DEFAULT 0,'.
+				' [field.staticmenu.translated] VARCHAR(100) NOT NULL DEFAULT \'\','.
+				' KEY staticmenu_uid ([field.staticmenu.menu],[field.staticmenu.lang])'.
+				' );';
+				$db->run($sql, $res);
+				$res = null;
+				
+				// Insert the main menu if not already exists
+				$sql = 'SELECT COUNT([men.id]) AS cnt FROM [table.men];';
+				$db->run($sql, $res);
+				if (!$res->getFirst() || ($res->cnt <= 0)) {
+					$sql = 'INSERT INTO [table.men] ([field.men.parent],[field.men.pos],[field.men.link],[field.men.short]) VALUES (0,1,0,\'home\');';
+					$db->run($sql, $res);
+					$last = $res->getInsertId();
+					$res = null;
+
+					// Insert BaseMenutexts
+					$sql = 'INSERT INTO [table.mtx] ([field.mtx.text],[field.mtx.menu],[field.mtx.lang]) VALUES (\'Change me\',\''.$last.'\',1);';
+					$db->run($sql, $res);
+					$res = null;
+
+					// Insert base-languages
+					$sql = 'INSERT INTO [table.txt]'.
+					' ([field.txt.layout],[field.txt.sort],[field.txt.text],[field.txt.title],[field.txt.menu],[field.txt.lang],[field.txt.plugin],[field.txt.options])'.
+					' VALUES (\'plain_text\',1,\'Sample text\',\'Sample title\',\''.$last.'\',1,\'TEXT\',\'#title=default#\');';
+					$db->run($sql, $res);
+					$res = null;
+				}
+			}
+
+			// Update the version in database for this module
+			$db->updateModuleVersion(get_class($this), self::MODULE_VERSION);
+		}
+	}
+
 }
-
-
-?>
