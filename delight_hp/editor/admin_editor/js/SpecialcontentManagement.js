@@ -575,64 +575,69 @@ var SpecialcontentManagement = {
 	},
 	
 	// Menuchooser
+	__menuChooserCalls : [],
 	_createMenuChooser: function(value, recursive, id) {
 		var id = id+'_menu', fld = document.createElement('input');
 		fld.setAttribute('type', 'hidden');
 		fld.setAttribute('id', id);
 		fld.value = value;
 		
-		AdminDialog.callFunction(this.adminAction, {
-			action: 'menuchooser',
-			entry: value,
-			element: id,
-			recursive: recursive
-		}, this);
+		// Only make one call in parallel and use the menu for all stored elements after
+		this.__menuChooserCalls.push({element:id, value:value, recursive:recursive});
+		if (this.__menuChooserCalls.length == 1) {
+			AdminDialog.callFunction(this.adminAction, {
+				action: 'menuchooser',
+				entry: value,
+				element: id,
+				recursive: recursive
+			}, this);
+		}
 		
 		return fld;
 	},
 	_createMenuChooserCall: function(cont) {
-		if (!cont.element || !$(cont.element)) {
-			return;
-		}
-		var c,m;
+		var c,m,conf;
 		
-		// Menu label
-		c = document.createElement('div');
-		c.setAttribute('container', cont.element+'_menu');
-		//c.setAttribute('id', cont.element+'_menu_display');
-		c.innerHTML = '<span id="'+cont.element+'_menu_display">...</span><input id="'+cont.element+'_recursive" type="checkbox" '+(cont.recursive>0 ? 'checked="checked"' :'')+' value="1" style="margin-left:20px;" /><span>'+AdminDialog.getLang('recursive')+'</span>';
-		c.style.cursor = 'pointer';
-		$(cont.element).parentNode.insertBefore(c, $(cont.element));
-		$(cont.element+'_menu_display').setAttribute('container', cont.element+'_menu');
-		$(cont.element+'_menu_display').observe('click', function(e) {
-			var d = $(this.getAttribute('container')).style.display;
-			$(this.getAttribute('container')).style.display = (d == 'block') ? 'none' : 'block';
-		});
-		
-		// MenuChooser
-		c = document.createElement('div');
-		c.setAttribute('id', cont.element+'_menu');
-		c.style.position = 'absolute';
-		c.style.display = 'none';
-		c.style.height = '250px';
-		c.style.width = '200px';
-		c.style.overflow = 'auto';
-		c.style.background = 'white';
-		c.style.border = '1px solid #000';
-		c.style.padding = '3px';
-		m = {
-				childs:[],
-				id:0,
-				text:AdminDialog.getLang('on_all_sites'),
-				selected:true
-		};
-		c.appendChild(this._doCreateMenu([m], 0, cont.element));
-		if (cont.menu && (cont.menu.length > 0)) {
-			c.appendChild(this._doCreateMenu(cont.menu, 0, cont.element));
+		// Add the menu on all stored config panes
+		while (conf = this.__menuChooserCalls.pop()) {
+			// Menu label
+			c = document.createElement('div');
+			c.setAttribute('container', conf.element+'_menu');
+			//c.setAttribute('id', conf.element+'_menu_display');
+			c.innerHTML = '<span id="'+conf.element+'_menu_display">...</span><input id="'+conf.element+'_recursive" type="checkbox" '+(conf.recursive>0 ? 'checked="checked"' :'')+' value="1" style="margin-left:20px;" /><span>'+AdminDialog.getLang('recursive')+'</span>';
+			c.style.cursor = 'pointer';
+			$(conf.element).parentNode.insertBefore(c, $(conf.element));
+			$(conf.element+'_menu_display').setAttribute('container', conf.element+'_menu');
+			$(conf.element+'_menu_display').observe('click', function(e) {
+				var d = $(this.getAttribute('container')).style.display;
+				$(this.getAttribute('container')).style.display = (d == 'block') ? 'none' : 'block';
+			});
+			
+			// MenuChooser
+			c = document.createElement('div');
+			c.setAttribute('id', conf.element+'_menu');
+			c.style.position = 'absolute';
+			c.style.display = 'none';
+			c.style.height = '250px';
+			c.style.width = '200px';
+			c.style.overflow = 'auto';
+			c.style.background = 'white';
+			c.style.border = '1px solid #000';
+			c.style.padding = '3px';
+			m = {
+					childs:[],
+					id:0,
+					text:AdminDialog.getLang('on_all_sites'),
+					selected:true
+			};
+			c.appendChild(this._doCreateMenu([m], 0, conf.element, conf.value));
+			if (cont.menu && (cont.menu.length > 0)) {
+				c.appendChild(this._doCreateMenu(cont.menu, 0, conf.element, conf.value));
+			}
+			$(conf.element).parentNode.insertBefore(c, $(conf.element));
 		}
-		$(cont.element).parentNode.insertBefore(c, $(cont.element));
 	},
-	_doCreateMenu: function(list, level, input) {
+	_doCreateMenu: function(list, level, input, selected) {
 		var t = this, cont = document.createElement('div'), l;
 		cont.style.marginLeft = (level*10)+'px';
 		list.each(function(c) {
@@ -640,7 +645,7 @@ var SpecialcontentManagement = {
 			l.setAttribute('id', 'menuChooserEntry_'+input+'_'+c.id);
 			l.setAttribute('container', input+'_menu');
 			l.setAttribute('menuid', c.id);
-			if (c.selected) {
+			if (c.id == selected) {
 				l.style.fontWeight = 'bold';
 				$(input+'_menu_display').innerHTML = c.text;
 			}
@@ -657,7 +662,7 @@ var SpecialcontentManagement = {
 			});
 			cont.appendChild(l);
 			if (c.childs && (c.childs.length > 0)) {
-				cont.appendChild(t._doCreateMenu(c.childs, level+1, input));
+				cont.appendChild(t._doCreateMenu(c.childs, level+1, input, selected));
 			}
 		});
 		return cont;
