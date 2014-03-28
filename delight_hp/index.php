@@ -3,8 +3,10 @@
 ob_start();
 require_once("./config/config.inc.php");
 
-if (!RELEASE) {
-	require_once('FirePHPCore/FirePHP.class.php');
+if ($_SERVER['APPLICATION_ENV'] == 'development') {
+	require_once('../FirePHPCore/FirePHP.class.php');
+	error_reporting(E_ALL);
+	ini_set("display_errors", 1);
 	$firephp = FirePHP::getInstance(true);
 	$firephp->setEnabled(true);
 }

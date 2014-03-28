@@ -202,7 +202,7 @@ class admin_1200_Settings extends admin_MAIN_Settings {
 	 * @return integer The UserID
 	 * @access private
 	 */
-	private function createUserOrChangeUsername($id, $name) {
+	private function createUserOrChangeUsername($id, &$name) {
 		$userCheck = pCheckUserData::getInstance();
 		if ($userCheck->checkAccess($this->_adminAccess)) {
 			$person = new pUserAccount($id);
@@ -215,7 +215,13 @@ class admin_1200_Settings extends admin_MAIN_Settings {
 
 			// If the User does not exist, create it with a random Password, else change the Username
 			if (!$person->isLoaded()) {
-				$person->registerUser($name, pGUID::getGUID(), '', false);
+				$state = 'username';
+				$name_add = '';
+				while ($state == 'username') {
+					$state = $person->registerUser($name . (string)$name_add, pGUID::getGUID(), '', false);
+					$name_add = empty($name_add) ? 1 : $name_add++;
+				}
+				$name . (string)$name_add;
 			} else {
 				$person->set('username', $name);
 			}
