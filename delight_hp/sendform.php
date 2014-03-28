@@ -601,7 +601,7 @@ function sendToTrackingServer(&$config) {
 				$content = $hunks[1];
 				unset($hunks);
 
-				print("<pre>");
+				/*print("<pre>");
 				print_r($data);
 				print("</pre>");
 				print("<pre>");
@@ -609,7 +609,7 @@ function sendToTrackingServer(&$config) {
 				//print_r($_SERVER);
 				//print_r($_POST);
 				print("</pre>");
-				exit();
+				exit();*/
 
 				$success = validateTrackingResponseHeader($headers) && validateTrackingResponseContent($headers, $content);
 				unset($headers);
