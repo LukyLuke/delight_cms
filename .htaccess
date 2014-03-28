@@ -1,3 +1,8 @@
+# ZendFramework
+SetEnv APPLICATION_ENV "development"
+php_value include_path ".:./delight_hp/php/zend/library"
+
+# Rewrite rules
 RewriteEngine  On
 RewriteBase    /
 

@@ -1,4 +1,7 @@
-
+setenv.add-environment  = (
+  "APPLICATION_ENV" => "development",
+  "ZF2_PATH" => "delight_hp/php/zend/library"
+)
 url.rewrite-once = (
   "^/sitemap.xml" => "/delight_hp/template/static/sitemap.xml",
   "^/admin/(.*)" => "/delight_hp/index.php?id=1&kang=de&adm=1&$1",
