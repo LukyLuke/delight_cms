@@ -58,8 +58,8 @@ $feed = str_replace('[FEED_ICON]', '<icon>http://'.$_SERVER['HTTP_HOST'].'/delig
 $feed = str_replace('[FEED_LOGO]', '<logo>http://'.$_SERVER['HTTP_HOST'].'/delight_hp/images/feed.png</logo>', $feed);
 
 // show it
-//header("Content-Type: application/atom+xml");
-header("Content-Type: text/html");
+header("Content-Type: application/atom+xml");
+//header("Content-Type: text/html; charset=utf-8");
 echo $feed;
 
 /**
@@ -158,20 +158,26 @@ function getAtomNewsFromSection(array $section, $lang='de', $num=null) {
  * @return string XHTML-Conform $data
  */
 function prepareXHTMLContent($data) {
+	// Remove comments, we not need them here
 	$data = preg_replace('/<!--.*?-->/smi', '', $data);
-	$data = str_replace('&amp;', '&', $data);
+	$data = html_entity_decode($data);
+
+	/*$data = str_replace('&amp;', '&', $data);
 	$data = str_replace('&bull;', '&#8226;', $data);
+
 	$match = array();
 	if (preg_match_all('/(&[a-z0-9]{2,8};)/smi', $data, $match, PREG_SET_ORDER)) {
 		foreach ($match as $v) {
 			$char = '&#'.ord(html_entity_decode($v[0])).';';
 			$data = str_replace($v[0], $char, $data);
 		}
-	}
+	}*/
+
 	$data = str_replace('&', '&amp;', $data);
 	$data = str_replace('&amp;#', '&#', $data);
 	$data = str_replace('&#43', '&#43;', $data);
 	$data = str_replace('&#43;;', '&#43;', $data);
+
 	return $data;
 }
 
