@@ -54,7 +54,7 @@ if ($l == MASTER_LANGUAGE) {
 }
 $i18n = pMessages::getLanguageInstance($l);
 
-// TODO:DEBRECATED - Remove after cleaned all Plugins and Classes from this variables
+// TODO: DEPRECATED: Remove after cleaned all Plugins and Classes from this variables
 $DB = new Database();
 $DB->ConnectToDatabase();
 $LANG = pMessages::getLanguageInstance();
@@ -131,7 +131,7 @@ $hasAccess = $menu->getMenuEntry()->checkLogin();
 // Check if a StaticFile existst based on the ShortLink from Plugins-Content
 $shortMenuFilePart = str_replace('/', '_DS_', substr($menu->getShortMenuName(), strpos($menu->getShortMenuName(), '/')));
 if (!empty($shortMenuFilePart)) {
-	$filePart = DIRECTORY_SEPARATOR.$i18n->getLanguageName().'-'.$menu->getMenuId().'-'.$sectionId.'-'.$pageOffset.'-'.$shortMenuFilePart.'.html';
+	$filePart = $i18n->getLanguageName().'-'.$menu->getMenuId().'-'.$sectionId.'-'.$pageOffset.'-'.$shortMenuFilePart.'.html';
 	if (defined('ABS_STATIC_DIR')) {
 		$_staticFile = ABS_STATIC_DIR.$filePart;
 	} else {
@@ -144,14 +144,14 @@ if (!empty($shortMenuFilePart)) {
 // Check for standard static files
 if (!file_exists($_staticFile)) {
 	if ((integer)$postId > 0) {
-		$filePart = DIRECTORY_SEPARATOR.$i18n->getLanguageName().'-'.$postId.'-'.$sectionId.'-'.$pageOffset.'-'.$template.'.html';
+		$filePart = $i18n->getLanguageName().'-'.$postId.'-'.$sectionId.'-'.$pageOffset.'-'.$template.'.html';
 		if (defined('ABS_STATIC_DIR')) {
 			$_staticFile = ABS_STATIC_DIR.$filePart;
 		} else {
 			$_staticFile = ABS_TEMPLATE_DIR.'static'.$filePart;
 		}
 	} else {
-		$filePart = DIRECTORY_SEPARATOR.$i18n->getLanguageName().'-'.$menu->getMenuId().'-'.$sectionId.'-'.$pageOffset.'-'.$template.'.html';
+		$filePart = $i18n->getLanguageName().'-'.$menu->getMenuId().'-'.$sectionId.'-'.$pageOffset.'-'.$template.'.html';
 		if (defined('ABS_STATIC_DIR')) {
 			$_staticFile = ABS_STATIC_DIR.$filePart;
 		} else {
