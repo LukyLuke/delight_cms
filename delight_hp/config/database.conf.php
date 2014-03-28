@@ -14,7 +14,7 @@
 	$DBSettings['master']['database'] = DB_DATABASE;
 
 // Tables
-	//$DBTables['per'] = "dhp_users";                 // registered Users                   OK
+	$DBTables['per'] = "dhp_users";                 // registered Users                   OK
 	$DBTables['plo'] = "dhp_loguser";               // Loging for Users                   OK
 // 	$DBTables['pla'] = "dhp_userslang";             // Languages for Users (access)
 // 	$DBTables['pdo'] = "dhp_userdownloadsections";  // DownlaodSections for Users
