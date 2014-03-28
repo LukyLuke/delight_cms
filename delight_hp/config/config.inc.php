@@ -1,7 +1,6 @@
 <?php
-/*
-	The Configuration-File
-*/
+// Change to the main application root in any case, this makes the life easier
+chdir(dirname(__DIR__));
 
 // we set the right TZ after we have the language - only for logfiles and things like this.
 if (function_exists('date_default_timezone_exists')) {
@@ -132,14 +131,6 @@ $ImageExtensions = array('jpg', 'jpeg', 'jpe', 'gif', 'png', 'swf');
 require_once(dirname(__FILE__).'/userconf.inc.php');
 require_once(dirname(__FILE__).'/globals.inc.php');
 require_once(dirname(__FILE__).'/database.conf.php');
-
-// For debuging with Firebug Extension and FirePHP
-if ($_SERVER['SERVER_NAME'] == 'cms.localhost') {
-	define('RELEASE', false);
-}
-if (!defined('RELEASE')) {
-	define('RELEASE', true);
-}
 
 /// Plugin-Constants
 // TEXT

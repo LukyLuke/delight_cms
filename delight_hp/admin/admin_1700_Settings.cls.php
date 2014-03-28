@@ -443,56 +443,45 @@ class admin_1700_Settings extends admin_MAIN_Settings {
 				$sql  = 'SELECT [men.id],[men.short],[men.parent] FROM [table.men],[table.mtx] WHERE [men.id]=[mtx.menu] AND [mtx.lang]='.$lang->languageId.' AND [mtx.active]=1;';
 				$db->run($sql, $res);
 				if ($res->getFirst()) {
+					$_menu = new pMenuEntry();
+
 					while ($res->getNext()) {
-						$_menuId  = $res->{$db->getFieldName('men.id')};
-						$_menuShort = $res->{$db->getFieldName('men.short')};
+						$_menu->load($res->{$db->getFieldName('men.id')}, $lang);
+						$_staticFile = trim(strtolower($lang->extendedLanguage)).'-'.$_menu->id.'-0-0-.html';
 
-						$_getLink = 'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/'.$lang->shortLanguage.'/'.$_menuId.'/doGetStaticPages=true';
-						$_staticFile = trim(strtolower($lang->extendedLanguage)).'-'.$_menuId.'-0-0-.html';
-						if (strlen($_menuShort) > 0) {
-							$_sitemapLink = 'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/'.$lang->short.'/'.$_menuShort.'/';
-						} else {
-							$_sitemapLink = 'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/'.$lang->short.'/'.$_menuId.'/';
-						}
-
-						// Append the URL to the Sitemap-XML
-						// The Mainmenu has Priority 1, subpages have 0.8
-						if ($res->{$db->getFieldName('men.parent')} == 0) {
-							$this->sitemapXmlAppend($lang, $_sitemapLink, '1.0');
-						} else {
-							$this->sitemapXmlAppend($lang, $_sitemapLink, '0.8');
+						// Append the URL to the Sitemap-XML only if there are no restricted access
+						if (empty($_menu->getAccessGroups(true))) {
+							// The Mainmenu has Priority 1, subpages have 0.8
+							if ($res->{$db->getFieldName('men.parent')} == 0) {
+								$this->sitemapXmlAppend($lang, $_menu->link, '1.0');
+							} else {
+								$this->sitemapXmlAppend($lang, $_menu->link, '0.8');
+							}
 						}
 
 						// Only add the site if it's not already registered
 						if (!in_array($_staticFile, $_realSites)) {
 							array_push($_realSites, $_staticFile);
-							array_push($_getPagesList, array($_getLink, $_staticFile));
-						}
+							array_push($_realSites, str_replace('.html', '-adm.html', $_staticFile));
 
-						// Login-Page
-						$_getLink .= '&adm=1';
-						$_staticFile = str_replace('.html', '-adm.html', $_staticFile);
-
-						// Only add the site if it's not already registered
-						if (!in_array($_staticFile, $_realSites)) {
-							array_push($_realSites, $_staticFile);
-							array_push($_getPagesList, array($_getLink, $_staticFile));
+							array_push($_getPagesList, array($_menu->getStaticPagesLink($lang->shortLanguage), $_staticFile));
+							array_push($_getPagesList, array($_menu->getStaticPagesLink($lang->shortLanguage) . '&adm=1', str_replace('.html', '-adm.html', $_staticFile)));
 						}
 
 						// Check for PluginContent
 						// $p is a list with: 0=>ShortMenu, 1=>PluginName, 2=>PluginFunction, 3=>PluginParameters
 						foreach ($_pluginsContents as $p) {
-							if ( ( empty($p[0]) || ($p[0] == $_menuShort)) && (array_key_exists(strtolower($p[1]), $_OBJECTS)) ) {
+							if ( (empty($p[0]) || ($p[0] == $_menu->short)) && (array_key_exists(strtolower($p[1]), $_OBJECTS)) ) {
 								$plg = $_OBJECTS[strtolower($p[1])];
 								if ($plg instanceof iPlugin) {
 									$plg->setContentParameters($p[3]);
-									$_pluginFileList = $plg->getStaticPagesList($lang->id, $_menuId, $_menuShort, true);
+									$_pluginFileList = $plg->getStaticPagesList($lang->id, $_menu->id, $_menu->short, true);
 
 									foreach ($_pluginFileList as $_f) {
 										// We just add this file if it's not already in list
 										// double-sites can be occure, because we can have images, downloads, etc. on multiple pages
-										$_plgFile = trim(strtolower($lang->extendedLanguage)).'-'.$_menuId.'-0-0-'.str_replace('/', '_DS_', $_f['file']).'.html';
-										$_plgLink = 'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/'.$lang->short.'/'.$_menuId.$_f['link'].'/doGetStaticPages=true';
+										$_plgFile = trim(strtolower($lang->extendedLanguage)).'-'.$_menu->id.'-0-0-'.str_replace('/', '_DS_', $_f['file']).'.html';
+										$_plgLink = 'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/'.$lang->shortLanguage.'/'.$_menu->id.$_f['link'].'/doGetStaticPages=true';
 										if (!in_array($_plgFile, $_realSites)) {
 											array_push($_realSites, $_plgFile);
 											array_push($_getPagesList, array($_plgLink, $_plgFile));
