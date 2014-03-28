@@ -450,7 +450,7 @@ class admin_1700_Settings extends admin_MAIN_Settings {
 						$_staticFile = trim(strtolower($lang->extendedLanguage)).'-'.$_menu->id.'-0-0-.html';
 
 						// Append the URL to the Sitemap-XML only if there are no restricted access
-						if (empty($_menu->getAccessGroups(true))) {
+						if (count($_menu->getAccessGroups(true)) > 0) {
 							// The Mainmenu has Priority 1, subpages have 0.8
 							if ($res->{$db->getFieldName('men.parent')} == 0) {
 								$this->sitemapXmlAppend($lang, $_menu->link, '1.0');
