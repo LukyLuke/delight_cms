@@ -1024,7 +1024,7 @@ abstract class MainPlugin {
 
 				// Create Back-Array for BIG-image
 				$back->id     = $image_id;
-				$back->src    = MAIN_DIRECTORY.$rel_path.$image_src;
+				$back->src    = MAIN_DIR.$rel_path.$image_src;
 				$back->file   = $image_src;
 				$back->name   = $image_name;
 				$back->type   = $image_dimension[2];
@@ -1052,7 +1052,7 @@ abstract class MainPlugin {
 					$back->thumb->height = $_tmpSize[1];
 					$back->thumb->type   = $small_dimension[2];
 				} else {
-					$back->thumb->src    = MAIN_DIRECTORY.$rel_path_small.$image_src;
+					$back->thumb->src    = MAIN_DIR.$rel_path_small.$image_src;
 					$back->thumb->width  = $small_dimension[0];
 					$back->thumb->height = $small_dimension[1];
 					$back->thumb->type   = $small_dimension[2];
@@ -1508,19 +1508,19 @@ abstract class MainPlugin {
 		$mime = $this->kdeMime->getMimeInfo($file, $messages->getShortLanguageName());
 		$mime['IconAbsolute'] = realpath(dirname($_SERVER['SCRIPT_FILENAME'])).'/template/images/mimetypes/'.$mime['Icon'].'.png';
 		if (file_exists($mime['IconAbsolute'])) {
-			$mime['IconRelative'] = constant('MAIN_DIRECTORY').'/template/images/mimetypes/'.$mime['Icon'].'.png';
+			$mime['IconRelative'] = MAIN_DIR.'/template/images/mimetypes/'.$mime['Icon'].'.png';
 
 		} else if (file_exists(realpath(dirname($_SERVER['SCRIPT_FILENAME'])).'/images/mimetypes/'.$mime['Icon'].'.png')) {
 			$mime['IconAbsolute'] = realpath(dirname($_SERVER['SCRIPT_FILENAME'])).'/images/mimetypes/'.$mime['Icon'].'.png';
-			$mime['IconRelative'] = constant('MAIN_DIRECTORY').'/images/mimetypes/'.$mime['Icon'].'.png';
+			$mime['IconRelative'] = MAIN_DIR.'/images/mimetypes/'.$mime['Icon'].'.png';
 
 		} else if (file_exists(realpath(dirname($_SERVER['SCRIPT_FILENAME'])).'/template/images/mimetypes/unknown.png')) {
 			$mime['IconAbsolute'] = realpath(dirname($_SERVER['SCRIPT_FILENAME'])).'/template/images/mimetypes/unknown.png';
-			$mime['IconRelative'] = constant('MAIN_DIRECTORY').'/template/images/mimetypes/unknown.png';
+			$mime['IconRelative'] = MAIN_DIR.'/template/images/mimetypes/unknown.png';
 
 		} else {
 			$mime['IconAbsolute'] = realpath(dirname($_SERVER['SCRIPT_FILENAME'])).'/images/mimetypes/unknown.png';
-			$mime['IconRelative'] = constant('MAIN_DIRECTORY').'/images/mimetypes/unknown.png';
+			$mime['IconRelative'] = MAIN_DIR.'/images/mimetypes/unknown.png';
 		}
 		return $mime;
 	}
@@ -1798,16 +1798,16 @@ abstract class MainPlugin {
 			return;
 		}
 
-		$imgDim = $this->_calcSquareSize($image_info[0], $image_info[1], constant("SCREENSHOT_WIDTH"), constant("SCREENSHOT_HEIGHT"));
+		$imgDim = $this->_calcSquareSize($image_info[0], $image_info[1], SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
 		$_w = $imgDim[0];
 		$_h = $imgDim[1];
 		$_x = $imgDim[2];
 		$_y = $imgDim[3];
 
 		// Create array from Background-Color
-		$backgroundColor = explode(",", constant("SCREENSHOT_BACKGROUND"));
+		$backgroundColor = explode(",", SCREENSHOT_BACKGROUND);
 
-		if (constant("SCREENSHOTS_USE_GD")) {
+		if (SCREENSHOTS_USE_GD) {
 			// Create a GD-Image from Orriginal
 			if ( ($image_info[2] == "2") || ($image_info[2] == "9") || ($image_info[2] == "10") || ($image_info[2] == "11") || ($image_info[2] == "12")) {
 				// if it's a JPEG
@@ -1824,14 +1824,12 @@ abstract class MainPlugin {
 			}
 
 			// Create an empty new Image with THUMBNAILED Size
-			if (constant("SCREENSHOTS_USE_BG")) {
-				/*  USE GD FUNCTIONS  */
-
+			if (SCREENSHOTS_USE_BG) {
 				// Create the defined Thumbnail
 				if (function_exists("imagecreatetruecolor") && ($image_info[2] != "1"))
-				$smallImg = ImageCreateTrueColor(constant("SCREENSHOT_WIDTH"), constant("SCREENSHOT_HEIGHT"));
+				$smallImg = ImageCreateTrueColor(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
 				else
-				$smallImg = ImageCreate(constant("SCREENSHOT_WIDTH"), constant("SCREENSHOT_HEIGHT"));
+				$smallImg = ImageCreate(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
 				$bgColor  = ImageColorAllocate($smallImg, $backgroundColor[0], $backgroundColor[1], $backgroundColor[2]);
 				ImageFill($smallImg, 0, 0, $bgColor);
 			} else {
@@ -1869,9 +1867,9 @@ abstract class MainPlugin {
 			if (trim($conv) != "") {
 				$cmd1 = '[ ! -d "'.dirname($small_image).'" ] && mkdir -p '.dirname($small_image).' && chmod 0777 '.dirname($small_image);
 
-				if (constant("SCREENSHOTS_USE_BG")) {
+				if (SCREENSHOTS_USE_BG) {
 					// convert -size 160x180 xc:white -draw "image over 20,0 121,180 'base.jpg'" base_convert.jpg
-					$cmd2  = $conv.' -size '.constant("SCREENSHOT_WIDTH").'x'.constant("SCREENSHOT_HEIGHT").' xc:white';
+					$cmd2  = $conv.' -size '.SCREENSHOT_WIDTH.'x'.SCREENSHOT_HEIGHT.' xc:white';
 					$cmd2 .= ' -draw "image over '.$_x.','.$_y.' '.$_w.','.$_h.' \''.$real_image.'\'" '.$small_image.'';
 				} else {
 					// convert -size 160x180 $real_image $small_image

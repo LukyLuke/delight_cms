@@ -71,5 +71,3 @@ if (empty($file)) {
 // Show the File
 header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($file)).' GMT' );
 @readfile($file);
-
-?>

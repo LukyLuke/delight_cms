@@ -169,16 +169,16 @@ class pLanguage {
 					return TEMPLATE_DIR.self::ICON_DIR.$this->shortLanguage.'.png';
 
 				} else if (file_exists(ABS_MAIN_DIR.$dir.$this->languageIcon)) {
-					return MAIN_DIRECTORY.self::ICON_DIR.$this->languageIcon;
+					return MAIN_DIR.self::ICON_DIR.$this->languageIcon;
 
 				} else if (file_exists(ABS_MAIN_DIR.$dir.$this->shortLanguage.'.gif')) {
-					return MAIN_DIRECTORY.self::ICON_DIR.$this->shortLanguage.'.gif';
+					return MAIN_DIR.self::ICON_DIR.$this->shortLanguage.'.gif';
 
 				} else if (file_exists(ABS_MAIN_DIR.$dir.$this->shortLanguage.'.png')) {
-					return MAIN_DIRECTORY.self::ICON_DIR.$this->shortLanguage.'.png';
+					return MAIN_DIR.self::ICON_DIR.$this->shortLanguage.'.png';
 
 				}
-				return MAIN_DIRECTORY.'/images/blank.gif';
+				return MAIN_DIR.'/images/blank.gif';
 				break;
 			case 'active':
 				return $this->active;

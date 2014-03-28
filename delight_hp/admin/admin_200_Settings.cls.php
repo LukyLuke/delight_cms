@@ -127,7 +127,7 @@ class admin_200_Settings extends admin_MAIN_Settings {
 		$userCheck = pCheckUserData::getInstance();
 		$lang = new pLanguage();
 		if ($userCheck->checkAccess("menu")) {
-			$_lnk = "/".$lang->short."/".$this->menuId."/adm=".((integer)constant("ADM_MENU_LINK") + 50)."&i=";
+			$_lnk = "/".$lang->short."/".$this->menuId."/adm=".((int)ADM_MENU_LINK + 50)."&i=";
 
 			// Create a Menu-Object and get the source
 			$_menu = new MENU($this->DB, $this->LANG);

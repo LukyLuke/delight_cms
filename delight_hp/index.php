@@ -3,7 +3,7 @@
 ob_start();
 require_once("./config/config.inc.php");
 
-if ($_SERVER['APPLICATION_ENV'] == 'development') {
+if (array_key_exists('APPLICATION_ENV', $_SERVER) && ($_SERVER['APPLICATION_ENV'] == 'development')) {
 	require_once('../FirePHPCore/FirePHP.class.php');
 	error_reporting(E_ALL);
 	ini_set("display_errors", 1);

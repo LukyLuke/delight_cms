@@ -18,7 +18,7 @@ abstract class plg1500_plugin {
 		$this->pluginName = $name;
 		$this->pluginSymbol = $symbol;
 		$this->statisticData = array();
-		$this->graphUrl = MAIN_DIRECTORY.'/graph/showCircle3D.graph.php?stat=';
+		$this->graphUrl = MAIN_DIR.'/graph/showCircle3D.graph.php?stat=';
 	}
 
 	/**

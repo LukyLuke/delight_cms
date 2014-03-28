@@ -156,8 +156,8 @@ class pParseTemplate {
 		$this->replaceAmpersand();
 
 		// Replace Language-Parameters and Date-Parameters
-		$this->templateHtml = str_replace('[PAGE_BASE]', MAIN_DIRECTORY, $this->templateHtml);
-		$this->templateHtml = str_replace('[SITE_BASE]', MAIN_DIRECTORY, $this->templateHtml);
+		$this->templateHtml = str_replace('[PAGE_BASE]', MAIN_DIR, $this->templateHtml);
+		$this->templateHtml = str_replace('[SITE_BASE]', MAIN_DIR, $this->templateHtml);
 
 		$this->templateHtml = str_replace('[SHORT]', $lang->short, $this->templateHtml);
 		$this->templateHtml = str_replace('[CHARSET]', $lang->charset,  $this->templateHtml);

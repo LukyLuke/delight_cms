@@ -1,31 +1,21 @@
-<?php
-  
-?>
-  
-<!DOCTYPE public "-//w3c//dtd html 4.01 transitional//en" 
-		"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE public "-//w3c//dtd html 4.01 transitional//en" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<title>about delight software gmbh</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-	<meta name="GENERATOR" content="Quanta Gold">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<style type="text/css">
-	<!--
-	span.first
-	{
+	span.first {
 		font-size: 13px;
 	}
   
-	div.subscript
-	{
+	div.subscript {
 		padding-top: 0px;
 		padding-left: 0px;
 		padding-right: 0px;
 		padding-bottom: 6px;
 	}
   
-	div.script
-	{
+	div.script {
 		font-family: Helvetica, Arial, sans-serif;
 		font-style: normal;
 		font-weight: bold;
@@ -57,7 +47,7 @@
 </head>
 <body>
 <p style="font-family: Helvetica, Arial, sans-serif; font-style: normal; font-variant: small-caps; font-weight: bold; font-size: 14px; color: #eaf1ff; background-color: #728393; text-decoration: none; vertical-align: middle; text-transform: capitalize; text-align: left; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: #6c7082; border-style: solid; width: 90%; height: 18px">
-Der Erlenk�nig f�r Programmierer
+Der Erlenkönig für Programmierer
 </p>
 <div class="script">
 <div class="subscript">
@@ -69,11 +59,11 @@ Es ist der Programmierer mit seinem Programm!
 im Osten wird der Himmel schon hell.
 </div>
 <div class="subscript">
-<span class="first">S</span>ein Haar ist ergraut, seine Haende zittern,<br>
-vom unablaessigen Kernspeicherfuettern.
+<span class="first">S</span>ein Haar ist ergraut, seine Hände zittern,<br>
+vom unablässigen Kernspeicherfüttern.
 </div>
 <div class="subscript">
-<span class="first">D</span>a - aus dem Kernspeicher ertoent ein Gefluester<br>
+<span class="first">D</span>a - aus dem Kernspeicher ertönt ein Geflüster<br>
 "Wer poltert in meinem Basisregister?"
 </div>
 <div class="subscript">
@@ -86,10 +76,10 @@ Da vorne schleicht sich ein Vorzeichen fort!
 </div>
 <div class="subscript">
 <span class="first">B</span>leib ruhig, bleib ruhig, mein liebes Kind,<br>
-ich hole es wieder. Ganz bestimmt.
+ich hole es wieder; Ganz bestimmt.
 </div>
 <div class="subscript">
-<span class="first">M</span>ein Meister, mein Meister, hoerst du das Grollen?<br>
+<span class="first">M</span>ein Meister, mein Meister, hörst du das Grollen?<br>
 Die wilden Bits durch den Kernspeicher tollen!
 </div>
 <div class="subscript">
@@ -98,10 +88,10 @@ die sperren wir in den Pufferbereich.
 </div>
 <div class="subscript">
 <span class="first">E</span>r tastet und hastet wie besessen,<br>
-Scheisse - jetzt hat er zu saven vergessen,
+Scheisse - jetzt hat er zu speichern vergessen,
 </div>
 <div class="subscript">
-<span class="first">D</span>er Programmierer schreit in hoechster Qual,<br>
+<span class="first">D</span>er Programmierer schreit in höchster Qual,<br>
 da zuckt durch das Fenster ein Sonnenstrahl.
 </div>
 <div class="subscript">

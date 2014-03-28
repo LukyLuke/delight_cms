@@ -127,11 +127,11 @@ class Database {
 			$link = $link."&SearchString=".$_GET['SearchString'];
 		}
 
-		$Curr  = (integer)$CurrentOffset;
-		$Page  = (integer)constant("SHOW_MAX_ROWS");
-		$Total = (integer)$this->GetMaxDataset($table,$DbConnection,$where);
+		$Curr  = (int)$CurrentOffset;
+		$Page  = (int)SHOW_MAX_ROWS;
+		$Total = (int)$this->GetMaxDataset($table,$DbConnection,$where);
 		$Total = ceil($Total / $Page);
-		$NavLine = (integer)constant("NAVIGATION_LINE");
+		$NavLine = (int)NAVIGATION_LINE;
 
 		// First Page
 		$NavigationList1 .= "<a href=\"".$link."&o=0\" class=\"menu\">";

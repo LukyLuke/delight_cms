@@ -6,19 +6,19 @@ class SCREENSHOT extends MainPlugin {
 	const PLAIN_LAYOUT = 'plainLayout';
 	const FULLSCREEN_LAYOUT = 'fullscreen';
 
-	var $contentFile;
-	var $_mainContent;
-	var $_imageContent;
-	var $_imageCleanContent;
-	var $_imagesPerLine;
-	var $_thumbnailContent;
-	var $_thumbnailLine;
-	var $_sectionContent;
-	var $_specialLinkDirection;
-	var $_sectionDelimiterImages;
-	var $_titleText;
-	var $_thumbMaxWidth;
-	var $_thumbMaxHeight;
+	protected $contentFile;
+	protected $_mainContent;
+	protected $_imageContent;
+	protected $_imageCleanContent;
+	protected $_imagesPerLine;
+	protected $_thumbnailContent;
+	protected $_thumbnailLine;
+	protected $_sectionContent;
+	protected $_specialLinkDirection;
+	protected $_sectionDelimiterImages;
+	protected $_titleText;
+	protected $_thumbMaxWidth;
+	protected $_thumbMaxHeight;
 
 	public function __construct() {
 		parent::__construct();
@@ -504,7 +504,7 @@ class SCREENSHOT extends MainPlugin {
 
 		// Show the SWF-Image if it's an Flash-File
 		if ($image->type == 4) {
-			$_tmp = str_replace("[IMAGE_SRC]", constant("SCREENSHOT_FLASH"),  $_tmp);
+			$_tmp = str_replace("[IMAGE_SRC]", SCREENSHOT_FLASH,  $_tmp);
 		} else {
 			$_tmp = str_replace("[IMAGE_SRC]", $image->thumb->src,  $_tmp);
 		}

@@ -707,7 +707,7 @@ abstract class admin_MAIN_Settings extends MainPlugin {
 		} else {
 			$row = array($this->DB->FieldOnly($tbl,'id') => "0");
 		}
-		return "../..".constant('MAIN_DIRECTORY')."/showImage.php?a=".$tbl."&b=".$fld."&c=".$row[$this->DB->FieldOnly($tbl,'id')];
+		return "../..".MAIN_DIR."/showImage.php?a=".$tbl."&b=".$fld."&c=".$row[$this->DB->FieldOnly($tbl,'id')];
 	}*/
 
 	/**

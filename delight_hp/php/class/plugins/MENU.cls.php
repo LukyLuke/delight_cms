@@ -85,7 +85,7 @@ class MENU extends MainPlugin {
 		if ($this->readTemplateFile()) {
 			if ((int)$this->_minParent == 0) {
 				if (substr_count($this->_content, "[0_MENU_") > 0) {
-					//for ($i = 0; $i < constant("MAX_MAIN_MENU_ENTRIES"); $i++)
+					//for ($i = 0; $i < MAX_MAIN_MENU_ENTRIES; $i++)
 					//$this->replaceMainMenuEntry($i, $adminData);
 					$this->replaceMainMenuEntry();
 				} else {

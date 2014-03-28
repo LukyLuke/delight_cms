@@ -55,7 +55,7 @@ class admin_10000_Settings extends admin_MAIN_Settings {
 			$_adminHtml = str_replace("[FORM_SECTION]",  $SectionId,  $_adminHtml);
 			$_adminHtml = str_replace("[FORM_ACTION]", "10050", $_adminHtml);
 			$_adminHtml = str_replace("[FORM_MENU]", $this->_menuId,  $_adminHtml);
-			$_adminHtml = str_replace("[FORM_LINK]", constant("MAIN_DIRECTORY")."/index.php", $_adminHtml);
+			$_adminHtml = str_replace("[FORM_LINK]", MAIN_DIR."/index.php", $_adminHtml);
 
 			$_adminHtml = str_replace("[USER_USERNAME]", $row[$this->DB->FieldOnly('per','user')], $_adminHtml);
 			$_adminHtml = str_replace("[USER_PASSWORD]", $row[$this->DB->FieldOnly('per','clear')], $_adminHtml);

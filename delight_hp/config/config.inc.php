@@ -31,7 +31,7 @@ define('DEFAULT_EDITOR_LANGUAGE', 'en');
 // Define all 'HowToDisplayText' Plugins
 // The Plugin-Files must be stored under php/class/PLUGINNAME.cls.php
 // The Classnames are Case-Sensitive. UPPERCASE Names are preffered...
-define('_textPlugins', 'MENU,LANG,TEXT,SCREENSHOT,DOWNLOADS,NEWS,SIMPLESHOP,SEARCH,IFRAME,LOGIN,GROUP,GLOBALTEXT');
+define('TEXT_PLUGINS', 'MENU,LANG,TEXT,SCREENSHOT,DOWNLOADS,NEWS,SIMPLESHOP,SEARCH,IFRAME,LOGIN,GROUP,GLOBALTEXT');
 //define('NEW_ADMIN_EDITOR', '1000,1100,1200,1300,1400,1700,2000,2100');
 
 // OBSOLETE Define all Plugins which sends JSON-Objects instead normal Text while saveing an TextBlock

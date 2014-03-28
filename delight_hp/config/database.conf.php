@@ -8,10 +8,10 @@
 */
 
 // Databases
-	$DBSettings['master']['host']     = constant('DB_HOST');
-	$DBSettings['master']['user']     = constant('DB_USER');
-	$DBSettings['master']['password'] = constant('DB_PASSWORD');
-	$DBSettings['master']['database'] = constant('DB_DATABASE');
+	$DBSettings['master']['host']     = DB_HOST;
+	$DBSettings['master']['user']     = DB_USER;
+	$DBSettings['master']['password'] = DB_PASSWORD;
+	$DBSettings['master']['database'] = DB_DATABASE;
 
 // Tables
 	//$DBTables['per'] = "dhp_users";                 // registered Users                   OK

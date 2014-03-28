@@ -1,7 +1,7 @@
 <?php
 
 // Call-URL is like this:
-// $url = "../../".constant('MAIN_DIRECTORY')."/showImage.php?a=TABLE&b=BIN-FIELD&c=IMG-ID";
+// $url = "../../".MAIN_DIR."/showImage.php?a=TABLE&b=BIN-FIELD&c=IMG-ID";
 
 	if (isset($_GET['a']) && isset($_GET['b']) && isset($_GET['c'])) {
 		require_once("config/config.inc.php");
@@ -33,7 +33,7 @@
 		}
 
 		if ($_img == null) {
-			$_img    = imageCreateTruecolor((int)constant("SHOPIMAGE_WIDTH"), (int)constant("SHOPIMAGE_HEIGHT"));
+			$_img    = imageCreateTruecolor((int)SHOPIMAGE_WIDTH, (int)SHOPIMAGE_HEIGHT);
 			$_back   = imageColorAllocate($_img, 255, 255, 255);
 			$_front1 = imageColorAllocate($_img, 100,100,100);
 			$_front2 = imageColorAllocate($_img, 150,150,150);

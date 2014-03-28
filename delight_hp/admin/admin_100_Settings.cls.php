@@ -237,7 +237,7 @@ class admin_100_Settings extends admin_MAIN_Settings {
 			// define hidden fields
 			$_hidden_fields = '
 				<input type="hidden" name="i" value="'.$this->_changeId.'" />
-				<input type="hidden" name="adm" value="'.((integer)constant("ADM_DELETE") + 50).'" />
+				<input type="hidden" name="adm" value="'.((int)ADM_DELETE + 50).'" />
 				<input type="hidden" name="m" value="'.pMenu::getMenuInstance()->getMenuId().'" />
 				<input type="hidden" name="lang" value="'.$lang->short.'" />
 				<input type="hidden" name="advanced" id="advancedEdit" value="0" />';
@@ -569,20 +569,18 @@ class admin_100_Settings extends admin_MAIN_Settings {
 			}
 		}
 
-		if (defined("_textPlugins")) {
-			$requestedPlugin = strtoupper(pURIParameters::get('textParser', '', pURIParameters::$STRING));
-			foreach (explode(",", constant("_textPlugins")) as $_insPlg) {
-				if (class_exists($_insPlg)) {
-					$OBJ = new $_insPlg($this->DB, $this->LANG);
-					if ($OBJ->_isTextPlugin) {
-						$_tmp = str_replace("[PLUGIN_NAME]", $_insPlg, $_plg);
-						if ($requestedPlugin == strtoupper($_insPlg)) {
-							$_tmp = preg_replace("/(\[SELECTED\:)(.*?)(\:)(.*?)(\])/smi", "\\2", $_tmp, -1);
-						} else {
-							$_tmp = preg_replace("/(\[SELECTED\:)(.*?)(\:)(.*?)(\])/smi", "\\4", $_tmp, -1);
-						}
-						$_pluginList .= $_tmp;
+		$requestedPlugin = strtoupper(pURIParameters::get('textParser', '', pURIParameters::$STRING));
+		foreach (explode(',', TEXT_PLUGINS) as $_insPlg) {
+			if (class_exists($_insPlg)) {
+				$OBJ = new $_insPlg($this->DB, $this->LANG);
+				if ($OBJ->_isTextPlugin) {
+					$_tmp = str_replace("[PLUGIN_NAME]", $_insPlg, $_plg);
+					if ($requestedPlugin == strtoupper($_insPlg)) {
+						$_tmp = preg_replace("/(\[SELECTED\:)(.*?)(\:)(.*?)(\])/smi", "\\2", $_tmp, -1);
+					} else {
+						$_tmp = preg_replace("/(\[SELECTED\:)(.*?)(\:)(.*?)(\])/smi", "\\4", $_tmp, -1);
 					}
+					$_pluginList .= $_tmp;
 				}
 			}
 		}
@@ -634,13 +632,6 @@ class admin_100_Settings extends admin_MAIN_Settings {
 		} else {
 			$sql = "UPDATE [table.txt] ";
 		}
-
-		// convert JSON to an Object and serialize it if its a JSON-ContentRequest
-		/* OBSOLETE
-		if (in_array($parsePlugin, explode(',', constant('JSON_SAVE_BLOCKS')))) {
-			$text = serialize($this->convertJSONtoObject($text));
-		}*/
-
 		$sql .= "SET [field.txt.text]='".mysql_real_escape_string($text)."',[field.txt.title]='".mysql_real_escape_string($title)."',[field.txt.layout]='".mysql_real_escape_string($layout)."',[field.txt.options]='".mysql_real_escape_string($options)."'";
 
 		if ((int)$this->_changeId == 0) {
@@ -777,42 +768,6 @@ class admin_100_Settings extends admin_MAIN_Settings {
 				$html = preg_replace('/(\[TEXT_ADMIN_FUNCTIONS\])(.*?)(\[\/TEXT_ADMIN_FUNCTIONS\])/smi', '', $html);
 				$html = preg_replace('/(\[ADMIN_REMOVE\])(.*?)(\[\/ADMIN_REMOVE\])/smi', '', $html);
 			}
-
-			/*$sql = 'SELECT [txt.plugin] FROM [table.txt] WHERE [txt.id]='.$textId.';';
-			$db->run($sql, $res);
-			if ($res->getFirst()) {
-				$fileData = '';
-				$file = str_replace("//", "/", ABS_TEMPLATE_DIR."/base.html");
-				if (file_exists($file)) {
-					$fileData = file_get_contents($file);
-				}
-				$fileData = substr($fileData, strpos($fileData, '[ADMIN_FUNCTIONS]') + 17);
-				$fileData = substr($fileData, 0, strpos($fileData, '[/ADMIN_FUNCTIONS]'));
-				$fileData = str_replace("[ADMIN_LINK_CREATE]",   "javascript:showCreateText();\" id=\"adm_newtext", $fileData);
-				$fileData = str_replace("[ADMIN_MENU_INDEX]",    md5(uniqid(rand(), true)), $fileData);
-				$fileData = str_replace("[ADMIN_TEXT_ID]",       $textId, $fileData);
-
-				$_txt = new $res->{$db->getFieldName('txt.plugin')}();
-				$_txt->setSelected($menu->getMenuId());  // OBSOLETE!!
-				$_txt->setTextId($textId);
-				$html = str_replace("[CONTENT_ENTRY]", $_txt->GetSource(''), $html);
-
-				$html = str_replace("[ADMIN_FUNCTIONS]",       $fileData, $html);
-				$html = str_replace("[TEXT_ADMIN_FUNCTIONS]",  "", $html);
-				$html = str_replace("[/TEXT_ADMIN_FUNCTIONS]", "", $html);
-				$html = str_replace("[ADMIN_MENU_INDEX]",      md5(uniqid(rand(), true)), $html);
-				$html = str_replace("[ADMINID]",               ' id="admcont_'.$textId.'"', $html);
-				$html = str_replace("[ADMIN_LINK_MOVEUP]",     "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MVUP")."&i=".$textId, $html);
-				$html = str_replace("[ADMIN_LINK_MOVEDOWN]",   "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MVDOWN")."&i=".$textId, $html);
-				$html = str_replace("[ADMIN_LINK_CREATE]",     "javascript:showCreateText();", $html);
-				$html = str_replace("[ADMIN_LINK_EDIT]",       $_txt->getEditFunction($textId), $html);
-				$html = str_replace("[ADMIN_LINK_CLOSE]",      $_txt->getCloseFunction($textId), $html);
-				$html = str_replace("[ADMIN_TEXT_ID]",         $textId, $html);
-
-				$html = str_replace('[ADMIN_REMOVE]',  '', $html);
-				$html = str_replace('[/ADMIN_REMOVE]', '', $html);
-			}
-			$res = null;*/
 		} else {
 			$html = '<div style="padding:20px;"><div class="error">no access</div></div>';
 		}

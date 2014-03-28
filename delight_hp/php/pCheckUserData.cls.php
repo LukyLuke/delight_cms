@@ -329,7 +329,7 @@ class pCheckUserData {
 				if (!$res->getFirst()) {
 					$sql = "INSERT INTO [table.per]".
 					" ([field.per.right],[field.per.user],[field.per.passwd],[field.per.clear],[field.per.company],[field.per.name],[field.per.surname],[field.per.address],[field.per.postalcode],[field.per.city],[field.per.country],[field.per.email],[field.per.internet],[field.per.info])".
-					" VALUES (".constant('RGT_FULLADMIN').",'admin',SHA1('admin'),'admin','your company','Admin','Admin','','','','','postmaster@yourdomain.local','http://www.yourdomain.local/','');";
+					" VALUES (".RGT_FULLADMIN.",'admin',SHA1('admin'),'admin','your company','Admin','Admin','','','','','postmaster@yourdomain.local','http://www.yourdomain.local/','');";
 					$res = null;
 					$db->run($sql, $res);
 					$res = null;

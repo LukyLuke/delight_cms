@@ -1,16 +1,8 @@
 <?php
-// Include all Plugins
-// Not needed anymore because we have __autoload defined
-/*require_once(dirname(__FILE__).DIRECTORY_SEPARATOR."MainPlugin.cls.php");
-foreach (explode(',', constant('_textPlugins')) as $__k => $_className) {
-	if (file_exists(dirname(__FILE__).DIRECTORY_SEPARATOR.$_className.".cls.php")) {
-		require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.$_className.".cls.php");
-	}
-}*/
 
 // Include the Admin-Plugins if user has Access
 $userCheck = pCheckUserData::getInstance();
-if ( ($userCheck->checkLogin() && (pURIParameters::get('adm',0,pURIParameters::$INT) > 99)) || pURIParameters::get('callDoCreateStaticSites',false,pURIParameters::$BOOLEAN) ) {
+if ( ($userCheck->checkLogin() && (pURIParameters::get('adm', 0, pURIParameters::$INT) > 99)) || pURIParameters::get('callDoCreateStaticSites', false, pURIParameters::$BOOLEAN) ) {
 	require_once("./admin/admin_MAIN_Settings.cls.php");
 	if (($od = opendir(dirname($_SERVER['SCRIPT_FILENAME'])."/admin/")) !== false) {
 		while (($file = readdir($od)) !== false) {
@@ -249,10 +241,10 @@ class SITE extends MainPlugin {
 							$this->_textHtml = str_replace("[ADMIN_MENU_INDEX]",      md5(uniqid(rand(), true)), $this->_textHtml); // just an random ID for the AdminMenu on each TextBlock
 
 							if (defined("ADM_CREATE") && defined("ADM_EDIT") && defined("ADM_DELETE") && defined("ADM_MVUP") && defined("ADM_MVDOWN")) {
-								//$this->_textHtml = str_replace("[ADMIN_LINK_CREATE]",   "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_CREATE"), $this->_textHtml);
-								//$this->_textHtml = str_replace("[ADMIN_LINK_EDIT]",     "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_EDIT")."&i=".$_textIdList[$i], $this->_textHtml);
-								$this->_textHtml = str_replace("[ADMIN_LINK_MOVEUP]",   "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MVUP")."&i=".$textEntryId, $this->_textHtml);
-								$this->_textHtml = str_replace("[ADMIN_LINK_MOVEDOWN]", "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MVDOWN")."&i=".$textEntryId, $this->_textHtml);
+								//$this->_textHtml = str_replace("[ADMIN_LINK_CREATE]",   "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_CREATE, $this->_textHtml);
+								//$this->_textHtml = str_replace("[ADMIN_LINK_EDIT]",     "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_EDIT."&i=".$_textIdList[$i], $this->_textHtml);
+								$this->_textHtml = str_replace("[ADMIN_LINK_MOVEUP]",   "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_MVUP."&i=".$textEntryId, $this->_textHtml);
+								$this->_textHtml = str_replace("[ADMIN_LINK_MOVEDOWN]", "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_MVDOWN."&i=".$textEntryId, $this->_textHtml);
 								$this->_textHtml = str_replace("[ADMIN_LINK_CREATE]",   "javascript:showCreateText();", $this->_textHtml);
 								$this->_textHtml = str_replace("[ADMIN_LINK_EDIT]",     $_txt->getEditFunction($textEntryId), $this->_textHtml);
 								$this->_textHtml = str_replace("[ADMIN_LINK_CLOSE]",    $_txt->getCloseFunction($textEntryId), $this->_textHtml);
@@ -405,17 +397,17 @@ class SITE extends MainPlugin {
 						if ($userCheck->checkAccess("menu")) {
 							if (defined("ADM_MENU_CREATE") && defined("ADM_MENU_EDIT") && defined("ADM_MENU_DELETE") && defined("ADM_MENU_MVUP") && defined("ADM_MENU_MVDOWN")) {
 								// Made with delightEditor-Popup
-								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_CREATE]", "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MENU_CREATE")."&menu=", $this->_textHtml);
-								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_EDIT]",   "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MENU_EDIT")."&menu=", $this->_textHtml);
-								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_DELETE]", "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MENU_DELETE")."&menu=", $this->_textHtml);
+								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_CREATE]", "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_MENU_CREATE."&menu=", $this->_textHtml);
+								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_EDIT]",   "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_MENU_EDIT."&menu=", $this->_textHtml);
+								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_DELETE]", "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_MENU_DELETE."&menu=", $this->_textHtml);
 
 								// TODO: Works currently, but there are some problems while creating static sites
-								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_LINK]", "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MENU_LINK")."&menu=", $this->_textHtml);
+								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_LINK]", "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_MENU_LINK."&menu=", $this->_textHtml);
 
 								// Direct link, there is only a Site-Refresh with some parameters
-								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_MOVEUP]",     "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MENU_MVUP")."&menu=", $this->_textHtml);
-								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_MOVEDOWN]",   "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MENU_MVDOWN")."&menu=", $this->_textHtml);
-								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_VISIBILITY]", "/".$lang->short."/".$menu->getShortMenuName()."/adm=".constant("ADM_MENU_VISIBILITY")."&menu=", $this->_textHtml);
+								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_MOVEUP]",     "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_MENU_MVUP."&menu=", $this->_textHtml);
+								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_MOVEDOWN]",   "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_MENU_MVDOWN."&menu=", $this->_textHtml);
+								$this->_textHtml = str_replace("[ADMIN_LINK_MENU_VISIBILITY]", "/".$lang->short."/".$menu->getShortMenuName()."/adm=".ADM_MENU_VISIBILITY."&menu=", $this->_textHtml);
 							}
 						}
 						$this->parseData = str_replace($_menuReplacement, $this->_textHtml, $this->parseData);
@@ -817,26 +809,24 @@ class SITE extends MainPlugin {
 				$entries = '';
 				$lnk = "/".$lang->getShortLanguageName()."/".$menu->getShortMenuName()."/adm=".ADM_CREATE;
 
-				if (defined("_textPlugins")) {
-					foreach (explode(",", constant("_textPlugins")) as $_insPlg) {
-						if (class_exists($_insPlg)) {
-							$OBJ = new $_insPlg();
-							if ($OBJ->isTextPlugin()) {
-								if (file_exists(ABS_TEMPLATE_DIR.'images/admin/texttype_'.strtolower($_insPlg).'.gif')) {
-									$_insPlgImg = TEMPLATE_DIR.'images/admin/texttype_'.strtolower($_insPlg).'.gif';
-								} else if (file_exists(ABS_TEMPLATE_DIR.'images/admin/texttype_'.strtolower($_insPlg).'.png')) {
-									$_insPlgImg = TEMPLATE_DIR.'images/admin/texttype_'.strtolower($_insPlg).'.png';
-								} else {
-									$_insPlgImg = MAIN_DIRECTORY.'/images/blank.gif';
-								}
-
-								$_tmp = str_replace('[TEXT_TYPE_NAME]', ucfirst(strtolower($_insPlg)), $match[2]);
-								$_tmp = str_replace('[TEXT_TYPE_IMAGE]', $_insPlgImg, $_tmp);
-								$_tmp = str_replace('[TEXT_TYPE_CREATE]', $lnk.'&textParser='.strtoupper($_insPlg), $_tmp);
-								$entries .= $_tmp;
+				foreach (explode(',', TEXT_PLUGINS) as $_insPlg) {
+					if (class_exists($_insPlg)) {
+						$OBJ = new $_insPlg();
+						if ($OBJ->isTextPlugin()) {
+							if (file_exists(ABS_TEMPLATE_DIR.'images/admin/texttype_'.strtolower($_insPlg).'.gif')) {
+								$_insPlgImg = TEMPLATE_DIR.'images/admin/texttype_'.strtolower($_insPlg).'.gif';
+							} else if (file_exists(ABS_TEMPLATE_DIR.'images/admin/texttype_'.strtolower($_insPlg).'.png')) {
+								$_insPlgImg = TEMPLATE_DIR.'images/admin/texttype_'.strtolower($_insPlg).'.png';
+							} else {
+								$_insPlgImg = MAIN_DIR.'/images/blank.gif';
 							}
-							unset($OBJ);
+
+							$_tmp = str_replace('[TEXT_TYPE_NAME]', ucfirst(strtolower($_insPlg)), $match[2]);
+							$_tmp = str_replace('[TEXT_TYPE_IMAGE]', $_insPlgImg, $_tmp);
+							$_tmp = str_replace('[TEXT_TYPE_CREATE]', $lnk.'&textParser='.strtoupper($_insPlg), $_tmp);
+							$entries .= $_tmp;
 						}
+						unset($OBJ);
 					}
 				}
 
@@ -904,9 +894,9 @@ class SITE extends MainPlugin {
 		// Replace Privacy-Policy-Link
 		if (preg_match("/(\[PRIVACY_POLICY_LINK\])(((.*?)(\[\/PRIVACY_POLICY_LINK\]))?)/smi", $rep, $match) && defined("PRIVACY_POLICY_LINK")) {
 			if ( (strlen(trim($match[5])) > 0) && (substr_count($match[2], "[PRIVACY_POLICY_LINK]") <= 0) ) {
-				$replacement = str_replace("[LINK_TEXT]", $match[4], constant("PRIVACY_POLICY_LINK"));
+				$replacement = str_replace("[LINK_TEXT]", $match[4], PRIVACY_POLICY_LINK);
 			} else {
-				$replacement = str_replace("[LINK_TEXT]", "privacy policy", constant("PRIVACY_POLICY_LINK"));
+				$replacement = str_replace("[LINK_TEXT]", "privacy policy", PRIVACY_POLICY_LINK);
 			}
 			$rep = str_replace($match[0], $replacement, $rep);
 		}

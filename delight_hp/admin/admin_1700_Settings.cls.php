@@ -414,7 +414,7 @@ class admin_1700_Settings extends admin_MAIN_Settings {
 				$this->sitemapXmlInit($lang);
 
 				// include all Text-Plugins...
-				foreach (explode(",", constant("_textPlugins")) as $v) {
+				foreach (explode(',', TEXT_PLUGINS) as $v) {
 					$_OBJECTS[strtolower($v)] = new $v($this->DB);
 				}
 				$_searchEnabled = (class_exists('SEARCH') && array_key_exists('search', $_OBJECTS) && ($_OBJECTS['search'] instanceof iPlugin));
