@@ -220,8 +220,8 @@
 			<field id="changes_done" value="Änderungen durchgeführt." />
 			<field id="closing_window" value="Das Dialogfenster wird nun geschlossen..." />
 			<field id="reload_window" value="Der Die Seite wird nun neu geladen damit die Änderungen sichtbar werden." />
-
 		</text>
+
 		<menu>
 			<field id="1000" value="Bilderverwaltung" />
 			<field id="1100" value="Downloadverwaltung" />
@@ -256,7 +256,6 @@
 			<field id="4000" value="" />
 			<field id="10000" value="Eigene Daten ändern" />
 			<field id="SIMPLESHOP" value="Einfaches Shop-System" />
-
 		</menu>
 	</lang>
 
@@ -475,8 +474,8 @@
 			<field id="changes_done" value="Changes done" />
 			<field id="closing_window" value="This Dialog gets closed in a couple seconds..." />
 			<field id="reload_window" value="The Page has to be reloaded in case of the changes..." />
-
 		</text>
+
 		<menu>
 			<field id="1000" value="Image-Management" />
 			<field id="1100" value="File-Management" />
@@ -729,8 +728,8 @@
 			<field id="changes_done" value="Changer conduit." />
 			<field id="closing_window" value="La fenêtre et fermer" />
 			<field id="reload_window" value="La page et charger pour signaler la modification." />
-
 		</text>
+
 		<menu>
 			<field id="1000" value="Image-Management" />
 			<field id="1100" value="Fichier-Management" />
@@ -983,8 +982,8 @@
 			<field id="changes_done" value="Variazioni effettuate." />
 			<field id="closing_window" value="La finestra di dialogo è chiuso..." />
 			<field id="reload_window" value="Il sito è ora il modo appena caricato che le modifiche siano visibili." />
-
 		</text>
+
 		<menu>
 			<field id="1000" value="Immagine-Administrazione" />
 			<field id="1100" value="File-Administrazione" />

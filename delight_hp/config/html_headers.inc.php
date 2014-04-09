@@ -1,19 +1,14 @@
 <?php
-// HTML-Header
-$HtmlBody = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
-//$HtmlBody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">';
 
-//    <meta http-eqiuv="expires"       content="0">
-/* The rest of the HTML-Header, showen in all Browser (also IE) */
-$HtmlBody = $HtmlBody.'
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="[SHORT]" lang="[SHORT]">
+$HtmlBody = '<!DOCTYPE html>
+<html lang="[SHORT]" xml:lang="[SHORT]" xmlns="http://www.w3.org/1999/xhtml" prefix="foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema#">
 	<head>
 		<title>[PAGE_TITLE]</title>
 		<meta http-equiv="Content-Type"  content="text/html; charset=utf-8" />
 		<meta http-equiv="pragma"        content="no-cache" />
 		<meta name="robots"              content="INDEX,FOLLOW" />
 		<meta name="date"                content="[CHANGE_DATE]" />
-		<meta name="revisit-after"       content="10 days" />
+		<meta name="revisit-after"       content="5 days" />
 		<meta name="robots"              content="index, follow" />
 		<meta name="title"               content="[PAGE_TITLE]" />
 		<meta name="description"         content="[PAGE_DESCRIPTION]" />
@@ -39,12 +34,13 @@ $HtmlBody = $HtmlBody.'
 		<meta name="DC.Language"         content="[SHORT]" />
 		<meta name="DC.Rights"           content="All rights reserved by delight software gmbh" />
 		<meta http-equiv="imagetoolbar"  content="no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 		<link rel="icon" type="image/png" href="[MAIN_DIR]images/favicon.png" />
+		<link rel="shortcut icon" type="image/png" href="[MAIN_DIR]images/favicon.png" />
 		<link rel="apple-itouch-icon" type="image/png" href="[MAIN_DIR]images/favicon.png" />
 		<style type="text/css">
 			.login.field { display: none; }
 		</style>
 ';
 
-$HtmlBodyEND  = '	</head>';
-?>
+$HtmlBodyEND = '	</head>';
