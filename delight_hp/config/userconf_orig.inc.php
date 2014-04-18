@@ -31,7 +31,7 @@ define('JS_SRC_MODE', true);
 define('DWP_PLUGIN_ACCESS_GRANTED', 'SEARCH');
 
 // Which Template to use
-define('TEMPLATE_DIR',          MAIN_DIR.'template/');
+define('TEMPLATE_DIR',          MAIN_DIR.'template/default/');
 
 // Absolute Template-Dirs
 define('ABS_TEMPLATE_DIR',       realpath(realpath(dirname($_SERVER['SCRIPT_FILENAME'])).DIRECTORY_SEPARATOR.'..'.TEMPLATE_DIR).DIRECTORY_SEPARATOR);
