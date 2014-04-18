@@ -1,4 +1,0 @@
-id           select_type        table                        type            possible_keys                         key            key_len      ref            rows         Extra
-1            PRIMARY            dtra_olforder_glass_orders   ALL              NULL                                 NULL           NULL         NULL           210175       Using where
-2            DEPENDENT SUBQUERY dtra_fetch_matching          index_subquery   data_id                              data_id        4            func           61648        Using index; Using where
-3            DEPENDENT SUBQUERY dtra_fetch                   unique_subquery  id,client_id,lastfetch,module_name   id             4            func           1            Using index; Using where
