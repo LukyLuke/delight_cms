@@ -1,0 +1,44 @@
+[HEADER]
+		<style type="text/css">
+				/* BEGIN: LayoutImport */
+					[CSS_IMPORT:"@import url('[MAIN_DIR][CSS_FILE]');
+					"]
+				/* END: LayoutImport */
+
+				@import url('[MAIN_DIR]css_base.css');
+				@import url('[MAIN_DIR]css_menu.css');
+				@import url('[MAIN_DIR]css_boxes.css');
+
+				[CSS_CONTENT]
+
+		</style>
+		<script type="text/javascript">
+			<!--
+				var v = parseFloat(navigator.appVersion);
+				var mv = parseInt(navigator.appVersion);
+				var uag = navigator.userAgent.toLowerCase();
+				var is_IE = false;
+				if ((uag.indexOf('msie') != -1) && (uag.indexOf('opera') == -1) && (uag.indexOf('khtml') == -1)) {
+					is_IE = true;
+				}
+			//-->
+		</script>
+[/HEADER]
+<body class="noWidth" style="padding:0px;margin:0px;padding-left:38px;">
+
+	<table cellpadding="0" cellspacing="0" style="width:100%;">
+		<colgroup>
+			<col style="width:100%;" />
+		</colgroup>
+
+		[TEXT_ENTRY]
+		<tr>
+			<td style="padding:10px;">
+				[CONTENT_ENTRY]
+			</td>
+		</tr>
+		[/TEXT_ENTRY]
+	</table>
+
+</body>
+</html>

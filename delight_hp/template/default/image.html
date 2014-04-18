@@ -1,0 +1,59 @@
+[HEADER]
+		<style type="text/css">
+			<!--
+				/* BEGIN: LayoutImport */
+					[CSS_IMPORT:"@import url('[CSS_FILE]');"]
+				/* END: LayoutImport */
+
+				@import url('[MAIN_DIR]css_base.css');
+				#imgbody {
+					background: white ! important;
+				}
+				#hoverNavigation {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: 0;
+					z-index: 10;
+				}
+				#hoverNavigation a, #hoverNavigation a:hover, #hoverNavigation a:link {
+					height: 100%;
+					width: 100px;
+					text-decoration: none;
+					border: none;
+				}
+				#hoverNavigation a img {
+					margin: 50px 0 0 0;
+					opacity: 0.2;
+				}
+				#hoverNavigation a:hover img {
+					opacity: 1;
+				}
+				#btnNext {
+					cursor: e-resize;
+					float: right;
+					margin-right: 2px;
+					text-align: right;
+				}
+				#btnPrev {
+					cursor: w-resize;
+					float: left;
+					margin-left: 2px;
+					text-align: left;
+				}
+
+				[CSS_CONTENT]
+
+			//-->
+		</style>
+		[SCRIPT_IMPORT:"<script src="[MAIN_DIR][SCRIPT_FILE]" type="text/javascript"></script>"]
+[/HEADER]
+	<body id="imgbody">
+
+		[TEXT_ENTRY]
+			[CONTENT_ENTRY]
+		[/TEXT_ENTRY]
+
+	</body>
+</html>

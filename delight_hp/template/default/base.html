@@ -1,0 +1,152 @@
+[HEADER]
+<meta property="og:title" content="[SITE_TITLE]" />
+<meta property="og:description" content="[SITE_DESCRIPTION]" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="[PAGE_LINK]" />
+[PAGE_CONTENT:OpenGraph_Image:{"type":"image","url":"true","empty":"","width":"200","height":"250"}]<meta property="og:image" content="[CONTENT]" />[/PAGE_CONTENT]
+[PAGE_CONTENT:OpenGraph_SiteName:{"empty":""}]<meta property="og:site_name" content="[CONTENT]" />[/PAGE_CONTENT]
+[PAGE_CONTENT:Facebook_Admins:{"empty":""}]<meta property="fb:admins" content="[CONTENT]" />[/PAGE_CONTENT]
+[PAGE_CONTENT:Facebook_PageID:{"empty":"","type":"number"}]<meta property="fb:page_id" content="[CONTENT]" />[/PAGE_CONTENT]
+[PAGE_CONTENT:Google_Verification:{"empty":""}]<meta name="google-site-verification" content="[CONTENT]" />[/PAGE_CONTENT]
+[PAGE_CONTENT:Bing_Verification:{"empty":""}]<meta name="msvalidate.01" content="[CONTENT]" />[/PAGE_CONTENT]
+
+<style type="text/css" media="all">
+	@import url('[MAIN_DIR]css_editor.css');
+	[CSS_IMPORT:"@import url('[CSS_FILE]');
+	"]
+	@import url('[MAIN_DIR]css_base.css');
+	@import url('[MAIN_DIR]css_window.cssx');
+	@import url('[MAIN_DIR]css_mobile.css');
+	@import url('[MAIN_DIR]css_tablets.css');
+	@import url('[MAIN_DIR]css_desktop.css');
+	
+	.header-left {
+		background-image:url('[PAGE_CONTENT:Layout_HeaderLeft:{"type":"image","width":189,"height":183,"url":"true"}][CONTENT][/PAGE_CONTENT]');
+	}
+	.header-right {
+		background-image:url('[PAGE_CONTENT:Layout_HeaderRight:{"type":"image","width":189,"height":183,"url":"true"}][CONTENT][/PAGE_CONTENT]');
+	}
+	[CSS_CONTENT]
+</style>
+<!--[if lt IE 7]>
+<link rel="stylesheet" href="[MAIN_DIR]css_IEfix.css" type="text/css" />
+<![endif]-->
+<script type="text/javascript">/*<![CDATA[*/
+var v = parseFloat(navigator.appVersion);
+var mv = parseInt(navigator.appVersion);
+var uag = navigator.userAgent.toLowerCase();
+var is_IE = false;
+if ((uag.indexOf('msie') != -1) && (uag.indexOf('opera') == -1) && (uag.indexOf('khtml') == -1)) {
+	is_IE = true;
+}
+var windowTitle = '[LANG_VALUE:msg_023]';
+var windowClose = '[LANG_VALUE:input_003]';
+/*]]>*/</script>
+<script src="[DATA_DIR]/window.js" type="text/javascript"></script>
+<script src="[DATA_DIR]/groupedTexts.js" type="text/javascript"></script>
+[SCRIPT_IMPORT:"<script src="[MAIN_DIR][SCRIPT_FILE]" type="text/javascript"></script>"]
+[/HEADER]
+	<body id="body">
+[ADMIN_REMOVE]
+	[ADMIN_EDITOR_SCRIPTS]
+[/ADMIN_REMOVE]
+		<div class="wrapper">
+
+				<section class="content-container">
+					<div class="content-inner-container">
+						<div class="container">
+							<div class="content-text">
+
+[ADMIN_MAIN_FUNCTIONS]<div id="AdminCreateFunctions" style="margin-bottom:3px;padding:2px;background-color:#efefef;border:1px solid #bcbcbc;">
+	<a href="[ADMIN_LINK_CREATE]">
+		<img src="[MAIN_DIR]/images/admin/new.gif" style="width:16px;height:16px;border-width:0px;vertical-align:middle;" title="[LANG_VALUE:adm_002]" alt="new text" /> [LANG_VALUE:adm_002]
+	</a>
+	<div id="adm_newtext_sub" style="margin-left:10px;display:none;position:absolute;z-index:1;width:160px;background-color:#efefef;border:1px outset #bcbcbc;">
+		<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+			[TEXT_TYPE_ENTRY]<tr>
+				<td style="padding:1px;background-color:#fefefe;width:26px;"><img src="[TEXT_TYPE_IMAGE]" style="width:24px;height:24px;" alt="texttype" /></td>
+				<td style="padding-left:3px;text-align:left;vertical-align:middle;" onmouseover="this.style.backgroundColor='#fefefe';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='transparent';this.style.cursor='normal';" onclick="location.href='[TEXT_TYPE_CREATE]';">[TEXT_TYPE_NAME]</td>
+			</tr>[/TEXT_TYPE_ENTRY]
+		</table>
+	</div>
+</div>[/ADMIN_MAIN_FUNCTIONS]
+
+[ADMIN_REMOVE]<div id="sortableContainer">[/ADMIN_REMOVE]
+[TEXT_ENTRY]
+	[CONTENT_ENTRY]
+[/TEXT_ENTRY]
+[ADMIN_REMOVE]</div>[/ADMIN_REMOVE]
+
+							</div>
+							<nav class="content-menu">
+								<div class="content-menu-inner" id="content-menu">[INCLUDE_MENU:"menu_main.tpl":1:65535:false]</div>
+								<div class="content-menu-handle" id="content-menu-handle" onclick="showHideContentMenu();"></div>
+								<script type="text/javascript">
+									var d = document.getElementById('content-menu');
+									function showHideContentMenu() {
+										d.style.width = ((d.clientWidth <= 10) ? 'auto' : '0px');
+									}
+								</script>
+							</nav>
+						</div>
+					</div>
+				</section>
+
+				<section class="header-container">
+					<div class="header-inner-container">
+						<div class="header-left"></div>
+						<div class="header-right"></div>
+						<div class="header-center">
+							<div class="container">
+								<div class="header-logo">
+									[PAGE_CONTENT:Layout_HeaderLogo:{"type":"image","width":189,"height":183}][CONTENT][/PAGE_CONTENT]
+								</div>
+								<nav class="header-menu">
+									[INCLUDE_MENU:"menu_main.tpl":0:0:true]
+								</nav>
+							</div>
+						</div>
+						<div class="responsive-menu">
+							<div class="responsive-menu-toggle">
+								<span class="responsive-menu-span">[PAGE_CONTENT:Layout_ResponsiveMenu:{"type":"string","empty":"Menu"}][CONTENT][/PAGE_CONTENT]</span>
+							</div>
+							<nav class="responsive-menu-content">
+								[INCLUDE_MENU:"menu_responsive.tpl":0:65535:true]
+							</nav>
+						</div>
+					</div>
+				</section>
+
+				<section class="footer-container">
+					<div class="footer-inner-container">
+						<div class="container">
+							<nav class="menu-footer">
+								[SHORT_LINK:"home"]<span style="[NOT_EXISTS:"background-color:rgb(250,200,200);"]white-space:nowrap;"><a href="[LINK]" class="anchor" title="[LINK_TEXT]">[LINK_TEXT]</a>&nbsp;&#124;&nbsp;</span>[/SHORT_LINK]
+								[SHORT_LINK:"contact"]<span style="[NOT_EXISTS:"background-color:rgb(250,200,200);"]white-space:nowrap;"><a href="[LINK]" class="anchor" title="[LINK_TEXT]">[LINK_TEXT]</a>&nbsp;&#124;&nbsp;</span>[/SHORT_LINK]
+								[SHORT_LINK:"references"]<span style="[NOT_EXISTS:"background-color:rgb(250,200,200);"]white-space:nowrap;"><a href="[LINK]" class="anchor" title="[LINK_TEXT]">[LINK_TEXT]</a>&nbsp;&#124;&nbsp;</span>[/SHORT_LINK]
+								[SHORT_LINK:"legal-notice"]<span style="[NOT_EXISTS:"background-color:rgb(250,200,200);"]white-space:nowrap;"><a href="[LINK]" class="anchor" title="[LINK_TEXT]">[LINK_TEXT]</a></span>[/SHORT_LINK]
+							</nav>
+							<div class="admin">
+								[LOGIN]<span onclick="window.location.href='[LOGIN_LINK]';">
+									<img src="[MAIN_DIR]/images/layout/login.png" alt="-" style="width:16px;height:16px;" />
+								</span>[/LOGIN]
+								[LOGOUT]<span onclick="window.location.href='[LOGOUT_LINK]';">
+									<img src="[MAIN_DIR]/images/layout/logout.png" alt="-" style="width:16px;height:16px;" />
+								</span>[/LOGOUT]
+							</div>
+							<div class="copyright">
+								[COPYRIGHT]
+							</div>
+						</div>
+						<span class="egg" onclick="window.open('http://www.delight.ch/easteregg/index.php','YouGotIt','menubar=no,location=no,statusbar=no,scrollbars=no,width=400,height=550'); return false;">&pi;</span>
+					</div>
+				</section>
+
+				<!--
+				[INCLUDE_LANG:"menu_language.tpl"]
+				-->
+		</div>
+		[INCLUDE_MENU:"menu_admin.tpl":0:0:true]
+	</body>
+</html>
+

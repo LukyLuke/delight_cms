@@ -1,0 +1,209 @@
+@CHARSET "UTF-8";
+
+*, html, p, div, li, ul, span, img, nav, section,
+table, tr, td, th, thead, tfoot, tbody,
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	border: none;
+	line-height: 1.3em;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+html#imgbody,
+body#imgbody,
+body.floatWindow {
+	overflow: auto;
+}
+body {
+	color: #303030;
+	background: #F5F5F5;
+	font: 0.9em/1 Bitstream Vera sans, Verdana, Arial, Helvetica, sans-serif;
+}
+
+a,
+a:link,
+a:visited,
+a:active {
+	color: #606060;
+	text-decoration: none;
+	border-width: 0px;
+}
+a:hover {
+	text-decoration: underline;
+}
+.showBig:hover {
+	cursor: pointer;
+}
+
+.textentry img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Main colors form the different containers */
+.content-container .container {
+	background-color: #F5F5F5;
+}
+.header-center .container {
+	background: #F5F5F5;
+}
+.footer-container .container {
+	background: #F5F5F5;
+}
+
+/* Text contents styling - don't do layout stuff here */
+.textcontent .textentry.boxed {
+	box-shadow: 2px 2px 8px 4px #D5D5D5;
+}
+.textentry.boxed.dark .textheader-container,
+.textentry.boxed.dark .textfooter-container,
+.textentry.boxed.dark .textcontent {
+	border-color: #C5C5C5;
+	background: none;
+}
+.textentry.boxed.dark.white .textheader-container,
+.textentry.boxed.dark.white .textfooter-container,
+.textentry.boxed.dark.white .textcontent {
+	background: #EEE;
+}
+
+.textentry.quote .textcontent {
+	border-left: 10px solid #C5C5C5;
+	background: #D5D5D5;
+}
+.textentry.quote .textcontent:before {
+	color: #C5C5C5;
+}
+.textentry.quote .texttitle h1,
+.textentry.quote .texttitle h2,
+.textentry.quote .texttitle h3 {
+	font-size: 1em;
+	font-weight: normal;
+	font-style: italic;
+}
+
+.textentry.notice .icon {
+	border-style: solid;
+	border-width: 0 10px;
+	border-color: #FFA858;
+	background: #FFDCA8;
+	color: #C05800;
+	padding-left: 50px;
+}
+.textentry.notice .icon.none {
+	padding-left: 0;
+}
+.textentry.notice .icon.info {
+	border-color: #6589B1;
+	background: url('images/icon-info.png') 0px 5px no-repeat #A0C6EB;
+	color: #3A4F66;
+}
+.textentry.notice .icon.success {
+	border-color: #578055;
+	background: url('images/icon-success.png') 0px 0px no-repeat #91D68F;
+	color: #3A5639;
+}
+.textentry.notice .icon.warning {
+	border-color: #D09A36;
+	background: url('images/icon-warning.png') 3px 3px no-repeat #F6EEB0;
+	color: #81641A;
+}
+.textentry.notice .icon.failed {
+	border-color: #A85757;
+	background: url('images/icon-failed.png') 3px 5px no-repeat #F2D0CA;
+	color: #5D3030;
+}
+.textentry.notice .icon.help {
+	border-color: #6589B1;
+	background: url('images/icon-help.png') 0px 5px no-repeat #A0C6EB;
+	color: #3A4F66;
+}
+
+/* Special footer things */
+.footer-container .admin span {
+	cursor: pointer;
+}
+.footer-container .egg {
+	text-align: left;
+	font-family: Arial;
+	font-size: 8pt;
+	text-transform: none;
+	color: #777777;
+	cursor: help;
+}
+
+/* General menu styling */
+.header-menu {
+	border: 1px solid #C5C5C5;
+	border-width: 1px 0;
+	background: #EEEEEE;
+}
+.header-menu li {
+	border: 1px dotted #C5C5C5;
+	border-width: 0 1px 0 0;
+}
+.header-menu li:hover {
+	background: #DDDDDD;
+}
+.content-menu,
+.content-menu-handle {
+	border: 1px solid #C5C5C5;
+	border-width: 0 1px 0 0;
+	background: #EEEEEE;
+}
+.content-menu-handle {
+	border-width: 1px 1px 1px 0;
+	border-radius: 3px;
+}
+.content-menu li:hover a.menu-entry {
+	font-weight: bold;
+}
+ul.submenu {}
+
+/* Menu translation and visibility */
+li.menu-entry a.translate span {
+	background: url('images/layout/babelfish.png') left center no-repeat !important;
+	padding-left: 18px !important;
+}
+li.menu-entry a.invisible span {
+	background: url('images/layout/hidden_for_users.png') left center no-repeat !important;
+	padding-left: 18px !important;
+}
+
+/* Floating Windows */
+div.floatWindow {
+	border: 2px solid #606060 !important;
+	border-top-width: 5px;
+}
+div.floatWindow .floatWindow-title {
+	background: #FFFFFF !important;
+	margin: 0 100px 3px 0 !important;
+	padding: 0 36px 0 0 !important;
+}
+div.floatWindow .floatWindow-title span {
+	background: #606060 !important;
+	padding: 4px !important;
+	color: #FFFFFF;
+	display: block;
+	height: 17px;
+	font-size: 10pt !important;
+}
+div.floatWindow .floatWindow-close {
+	background: #606060 !important;
+	margin: 0 0 0 0 !important;
+	padding: 0px 3px 2px 20px !important;
+	color: #FFFFFF;
+}
+div.floatWindow .floatWindow-close span {
+	font-size: 8pt !important;
+}
+
+/* XDebug */
+font[size='1'] {
+	position: absolute;
+	z-index: 9999;
+}

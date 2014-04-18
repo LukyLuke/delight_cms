@@ -1,0 +1,32 @@
+[HEADER]
+		<style type="text/css">
+				/* BEGIN: LayoutImport */
+					[CSS_IMPORT:"@import url('[MAIN_DIR][CSS_FILE]');
+					"]
+				/* END: LayoutImport */
+
+				@import url('[MAIN_DIR]css_base.css');
+				@import url('[MAIN_DIR]css_menu.css');
+				@import url('[MAIN_DIR]css_boxes.css');
+
+				[CSS_CONTENT]
+
+		</style>
+		<script type="text/javascript">
+			<!--
+				var v = parseFloat(navigator.appVersion);
+				var mv = parseInt(navigator.appVersion);
+				var uag = navigator.userAgent.toLowerCase();
+				var is_IE = false;
+				if ((uag.indexOf('msie') != -1) && (uag.indexOf('opera') == -1) && (uag.indexOf('khtml') == -1))
+					var is_IE = true;
+			//-->
+		</script>
+		[SCRIPT_IMPORT:"<script src="[MAIN_DIR][SCRIPT_FILE]" type="text/javascript"></script>"]
+[/HEADER]
+	<body class="floatWindow">
+	[TEXT_ENTRY]
+		[CONTENT_ENTRY]
+	[/TEXT_ENTRY]
+	</body>
+</html>

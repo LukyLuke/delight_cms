@@ -1,0 +1,88 @@
+/** windowframes **/
+td.winhleft, td.winhcenter, td.winhright {
+	font-size: 9pt;
+	height: 30px;
+	white-space: nowrap;
+	background-color: transparent;
+}
+td.winhleft {
+	background-image: url('/delight_hp/template/images/window/t1.png');
+	background-repeat: no-repeat;
+	background-porition: top right;
+	width: 3px;
+}
+td.winhcenter {
+	background-image: url('/delight_hp/template/images/window/t2.png');
+	background-repeat: repeat-x;
+	background-porition: top left;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+}
+td.winhright {
+	background-image: url('/delight_hp/template/images/window/t3.png');
+	background-repeat: no-repeat;
+	background-porition: top left;
+	width: 20px;
+}
+
+td.winmleft, td.wincleft {
+	background-image: url('/delight_hp/template/images/window/m1.png');
+	background-repeat: repeat-y;
+	background-porition: top right;
+	width: 3px;
+}
+td.winmcenter {
+	background-color: white;
+}
+td.winmright, td.wincright {
+	background-image: url('/delight_hp/template/images/window/m3.png');
+	background-repeat: repeat-y;
+	background-porition: top left;
+	width: 20px;
+}
+
+td.winccenter {
+	background-image: url('/delight_hp/template/images/window/c2.png');
+	background-repeat: repeat-x;
+	background-porition: top left;
+	height: 25px;
+	text-align: right;
+	padding-right: 5px;
+	padding-top: 1px;
+	overflow: hidden;
+}
+img.winclose {
+	width: 24px;
+	height: 24px;
+	border-width: 0px;
+	vertical-align: middle;
+}
+img.winclose:hover {
+	cursor: pointer;
+}
+
+td.winfleft, td.winfcenter, td.winfright {
+	line-height: 1px;
+	font-size: 1px;
+	white-space: nowrap;
+	height: 4px;
+	background-color: transparent;
+}
+td.winfleft {
+	background-image: url('/delight_hp/template/images/window/f1.png');
+	background-repeat: no-repeat;
+	background-porition: top right;
+	width: 3px;
+}
+td.winfcenter {
+	background-image: url('/delight_hp/template/images/window/f2.png');
+	background-repeat: repeat-x;
+	background-porition: top left;
+}
+td.winfright {
+	background-image: url('/delight_hp/template/images/window/f3.png');
+	background-repeat: no-repeat;
+	background-porition: top left;
+	width: 3px;
+}
