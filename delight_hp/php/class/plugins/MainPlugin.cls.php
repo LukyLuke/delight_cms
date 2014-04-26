@@ -919,10 +919,6 @@ abstract class MainPlugin {
 		$back['real_height'] = $obj->real_height;
 		$back['size'] = $obj->size;
 		$back['sectionid'] = $obj->section;
-		$back['thumb']['src'] = $obj->thumb->src;
-		$back['thumb']['width'] = $obj->thumb->width;
-		$back['thumb']['height'] = $obj->thumb->height;
-		$back['thumb']['type'] = $obj->thumb->type;
 		return $back;
 	}
 
@@ -958,11 +954,6 @@ abstract class MainPlugin {
 		$back->fulldate = '';
 		$back->section = 0;
 		$back->position = 0;
-		$back->thumb = new stdClass();
-		$back->thumb->src    = '';
-		$back->thumb->width  = 0;
-		$back->thumb->height = 0;
-		$back->thumb->type   = 0;
 
 		$db = pDatabaseConnection::getDatabaseInstance();
 		$res = null;
@@ -985,7 +976,6 @@ abstract class MainPlugin {
 			$rel_path = "/images/page/";
 			$rel_path_small = "/images/page/small/";
 			$abs_path = realpath(dirname($_SERVER['SCRIPT_FILENAME'])).$rel_path;
-			$abs_path_small = realpath(dirname($_SERVER['SCRIPT_FILENAME'])).$rel_path_small;
 			$image_src = $res->{$db->getFieldName('img.image')};
 			$image_id = $res->{$db->getFieldName('img.id')};
 			$image_section = $res->{$db->getFieldName('img.section')};
@@ -1005,20 +995,6 @@ abstract class MainPlugin {
 					$imgDimension = $this->_calcSquareSize($image_dimension[0], $image_dimension[1], SCREENSHOT_WIDTH_MAX, SCREENSHOT_HEIGHT_MAX);
 				} else {
 					$imgDimension = array($image_dimension[0], $image_dimension[1], 0, 0);
-				}
-
-				// Check if the small image exists
-				if (!file_exists($abs_path_small.$image_src)) {
-					$this->createSmallSizeImage($image_src);
-				}
-
-				// Get small-image dimension and calculate lower values if the image is bigger than defined
-				$small_dimension = @getimagesize($abs_path_small.$image_src);
-				$tmp = $this->_calcSquareSize($small_dimension[0], $small_dimension[1], $maxWidth, $maxHeight);
-				$small_dimension[0] = $tmp[0];
-				$small_dimension[1] = $tmp[1];
-				if (!array_key_exists(2, $small_dimension)) {
-					$small_dimension[2] = 'unknown';
 				}
 
 				// Create Back-Array for BIG-image
@@ -1041,21 +1017,6 @@ abstract class MainPlugin {
 				$back->mime      = $mime['MimeType'];
 				$back->mimecomment = $mime['Comment'];
 				$back->position    = $position;
-				$back->thumb = new stdClass();
-
-				// Check if this is a Flash/SWF and not really an image
-				if ( ($image_dimension[2] == 4) || ($image_dimension[2] == 13) ) {
-					$_tmpSize = getimagesize($_SERVER['DOCUMENT_ROOT'].SCREENSHOT_FLASH);
-					$back->thumb->src    = SCREENSHOT_FLASH;
-					$back->thumb->width  = $_tmpSize[0];
-					$back->thumb->height = $_tmpSize[1];
-					$back->thumb->type   = $small_dimension[2];
-				} else {
-					$back->thumb->src    = MAIN_DIR.$rel_path_small.$image_src;
-					$back->thumb->width  = $small_dimension[0];
-					$back->thumb->height = $small_dimension[1];
-					$back->thumb->type   = $small_dimension[2];
-				}
 
 				if ((int)$size > 0) {
 					switch (trim(strtolower($scale))) {
@@ -1778,114 +1739,6 @@ abstract class MainPlugin {
 		}
 
 		return $cont;
-	}
-
-	/**
-	 * Create a small Image for a Thumbnail-View or other things
-	 *
-	 * @param string $real_image Imagename to create the small one
-	 * @access protected
-	 */
-	protected function createSmallSizeImage($real_image) {
-		// Needed base-Variables
-		$small_image = realpath(dirname($_SERVER['SCRIPT_FILENAME']))."/images/page/small/".$real_image;
-		$real_image  = realpath(dirname($_SERVER['SCRIPT_FILENAME']))."/images/page/".$real_image;
-		$image_info  = @getImageSize($real_image);
-
-		// Check for a valid Image-Format (if not, break...)
-		if ( !( in_array((integer)$image_info[2], array(1,2,3,9,10,11,12)) ) ) {
-			return;
-		}
-
-		$imgDim = $this->_calcSquareSize($image_info[0], $image_info[1], SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
-		$_w = $imgDim[0];
-		$_h = $imgDim[1];
-		$_x = $imgDim[2];
-		$_y = $imgDim[3];
-
-		// Create array from Background-Color
-		$backgroundColor = explode(",", SCREENSHOT_BACKGROUND);
-
-		if (SCREENSHOTS_USE_GD) {
-			// Create a GD-Image from Orriginal
-			if ( ($image_info[2] == "2") || ($image_info[2] == "9") || ($image_info[2] == "10") || ($image_info[2] == "11") || ($image_info[2] == "12")) {
-				// if it's a JPEG
-				$imageReal = imageCreateFromJpeg($real_image);
-			} else if ($image_info[2] == "3") {
-				// if it's a PNG
-				$imageReal = imageCreateFromPng($real_image);
-			} else if ($image_info[2] == "1") {
-				// if it's a GIF
-				$imageReal = imageCreateFromGif($real_image);
-			} else {
-				// Other images are not suportet by this way, create an empty one
-				$imageReal = ImageCreate($image_info[0], $image_info[1]);
-			}
-
-			// Create an empty new Image with THUMBNAILED Size
-			if (SCREENSHOTS_USE_BG) {
-				// Create the defined Thumbnail
-				if (function_exists("imagecreatetruecolor") && ($image_info[2] != "1"))
-				$smallImg = ImageCreateTrueColor(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
-				else
-				$smallImg = ImageCreate(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
-				$bgColor  = ImageColorAllocate($smallImg, $backgroundColor[0], $backgroundColor[1], $backgroundColor[2]);
-				ImageFill($smallImg, 0, 0, $bgColor);
-			} else {
-				// Create the calculated Thumbnail
-				if (function_exists("imagecreatetruecolor") && ($image_info[2] != "1"))
-				$smallImg = ImageCreateTruecolor($_w, $_h);
-				else
-				$smallImg = ImageCreate($_w, $_h);
-				$bgColor  = ImageColorAllocate($smallImg, $backgroundColor[0], $backgroundColor[1], $backgroundColor[2]);
-				ImageFill($smallImg, 0, 0, $bgColor);
-
-				// Destroy the calculated _x and _y because the Image should be inserted at 0,0
-				$_x = 0;
-				$_y = 0;
-			}
-
-			// Copy the Original Image to the small one (copy it resampled if this function is available)
-			if (function_exists("ImageCopyResampled"))
-			imageCopyResampled($smallImg, $imageReal, $_x, $_y, 0, 0, $_w, $_h, (integer)$image_info[0], (integer)$image_info[1]);
-			else
-			imageCopyResized($smallImg, $imageReal, $_x, $_y, 0, 0, $_w, $_h, (integer)$image_info[0], (integer)$image_info[1]);
-
-			// Destroy the Original-Image
-			imageDestroy($imageReal);
-
-			// Write out the Image to the thumbnail-File
-			ImageColorDeallocate($smallImg, $bgColor);
-			imageJpeg($smallImg, $small_image);
-			imageDestroy($smallImg);
-
-		} else {
-			/*  USE IMAGEMAGICK - convert */
-
-			$conv = exec("whereis convert | awk '{print \$2}'");
-			if (trim($conv) != "") {
-				$cmd1 = '[ ! -d "'.dirname($small_image).'" ] && mkdir -p '.dirname($small_image).' && chmod 0777 '.dirname($small_image);
-
-				if (SCREENSHOTS_USE_BG) {
-					// convert -size 160x180 xc:white -draw "image over 20,0 121,180 'base.jpg'" base_convert.jpg
-					$cmd2  = $conv.' -size '.SCREENSHOT_WIDTH.'x'.SCREENSHOT_HEIGHT.' xc:white';
-					$cmd2 .= ' -draw "image over '.$_x.','.$_y.' '.$_w.','.$_h.' \''.$real_image.'\'" '.$small_image.'';
-				} else {
-					// convert -size 160x180 $real_image $small_image
-					$cmd2  = $conv.' -size '.$_w.'x'.$_h.' '.$real_image.' '.$small_image;
-				}
-
-				$cmd4 = 'chmod 0777 '.$small_image;
-				system($cmd1);
-				system($cmd2);
-				system($cmd4);
-			}
-		}
-
-		// reset the filepermissions
-		if (file_exists($small_image)) {
-			chmod($small_image, 0777);
-		}
 	}
 
 	/**

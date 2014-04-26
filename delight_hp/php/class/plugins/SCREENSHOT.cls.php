@@ -506,12 +506,12 @@ class SCREENSHOT extends MainPlugin {
 		if ($image->type == 4) {
 			$_tmp = str_replace("[IMAGE_SRC]", SCREENSHOT_FLASH,  $_tmp);
 		} else {
-			$_tmp = str_replace("[IMAGE_SRC]", $image->thumb->src,  $_tmp);
+			$_tmp = str_replace("[IMAGE_SRC]", $image->src,  $_tmp);
 		}
 
 		// Replace other variables
-		$_tmp = str_replace("[WIDTH]",          $image->thumb->width,  $_tmp);
-		$_tmp = str_replace("[HEIGHT]",         $image->thumb->height, $_tmp);
+		$_tmp = str_replace("[WIDTH]",          $image->real_width,  $_tmp);
+		$_tmp = str_replace("[HEIGHT]",         $image->real_height, $_tmp);
 		$_tmp = str_replace("[IMAGE_ID]",       $image->id,     $_tmp);
 		$_tmp = str_replace("[IMAGE_NAME]",     htmlentities($image->name), $_tmp);
 		$_tmp = str_replace("[REAL_IMAGE_SRC]", $image->src,    $_tmp);

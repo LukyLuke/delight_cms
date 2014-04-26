@@ -273,8 +273,6 @@ class admin_1000_Settings extends admin_MAIN_Settings {
 				$back .= '"size":'.$img->size.',';
 				$back .= '"mime":"'.$img->mime.'",';
 				$back .= '"mimecomment":"'.$img->mimecomment.'",';
-				$back .= '"thumb":"'.$img->thumb->src.'",';
-				$back .= '"thumb_dimension":['.$img->thumb->width.','.$img->thumb->height.'],';
 				$back .= '"title":"'.$this->_escapeJSONString($img->title).'",';
 				$back .= '"text":"'.$this->_escapeJSONString($img->text).'",';
 				$back .= '"date":"'.$this->_escapeJSONString(strftime('%d. %b. %Y', $img->timestamp)).'",';
