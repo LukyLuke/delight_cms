@@ -99,20 +99,20 @@ var windowClose = '[LANG_VALUE:input_003]';
 						<div class="header-center">
 							<div class="container">
 								<div class="header-logo">
-									[PAGE_CONTENT:Layout_HeaderLogo:{"type":"image","width":189,"height":183}][CONTENT][/PAGE_CONTENT]
+									<div class="header-entry">
+										[PAGE_CONTENT:Layout_HeaderLogo:{"type":"image","width":189,"height":183}][CONTENT][/PAGE_CONTENT]
+									</div>
+									<div class="responsive-menu-toggle header-entry">
+										<span class="responsive-menu-span">[PAGE_CONTENT:Layout_ResponsiveMenu:{"type":"string","empty":"Menu"}][CONTENT][/PAGE_CONTENT]</span>
+									</div>
 								</div>
 								<nav class="header-menu">
 									[INCLUDE_MENU:"menu_main.tpl":0:0:true]
 								</nav>
+								<nav class="responsive-menu">
+									[INCLUDE_MENU:"menu_main.tpl":0:65535:true]
+								</nav>
 							</div>
-						</div>
-						<div class="responsive-menu">
-							<div class="responsive-menu-toggle">
-								<span class="responsive-menu-span">[PAGE_CONTENT:Layout_ResponsiveMenu:{"type":"string","empty":"Menu"}][CONTENT][/PAGE_CONTENT]</span>
-							</div>
-							<nav class="responsive-menu-content">
-								[INCLUDE_MENU:"menu_responsive.tpl":0:65535:true]
-							</nav>
 						</div>
 					</div>
 				</section>

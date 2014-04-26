@@ -21,8 +21,7 @@
 		overflow: visible;
 	}
 	.content-menu-inner {
-		overflow-y: hidden;
-		overflow-x: scroll;
+		overflow-y: auto;
 		display: inline-block;
 	}
 	
@@ -31,7 +30,8 @@
 		display: block;
 		line-height: 0.8em;
 	}
-	.responsive-menu-content {
+	.responsive-menu,
+	.responsive-menu-toggle {
 		display: none;
 	}
 	

@@ -16,10 +16,12 @@
 	right: 0;
 }
 .header-container {
+	position: fixed;
 	top: 0;
 	height: 50px;
 }
 .footer-container {
+	position: fixed;
 	bottom: 0;
 	height: 1.5em;
 }
@@ -44,6 +46,14 @@
 .header-center {
 	bottom: 0;
 }
+.header-entry {
+	float: left;
+	display: inline-block;
+}
+.responsive-menu,
+.header-menu {
+	clear: both;
+}
 .header-container .header-logo img {
 	max-height: 100%;
 	max-width: 100%;
@@ -51,13 +61,38 @@
 	width: auto !important;
 	margin: 1px 0 0 3px;
 }
+.responsive-menu,
 .header-menu,
 .content-menu,
 .content-menu-handle {
 	display: none;
 }
+.responsive-menu {
+	display: inline-block;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 10%;
+	overflow: auto;
+	z-index: 1000;
+}
+.responsive-menu-toggle {
+	text-align: center;
+	float: right;
+}
 .responsive-menu-content {
-	display: block;
+ 	/*display: inline-block;
+	overflow: auto;
+	padding: 3px 10px;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 15%;*/
+}
+.responsive-menu .menu-info {
+	display: none;
 }
 
 .content-inner-container .container,
