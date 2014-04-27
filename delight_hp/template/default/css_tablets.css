@@ -84,8 +84,12 @@
 		margin: 0 3px;
 		display: inline-block;
 	}
-	.menu-entry-inner {
-		padding: 4px 5px;
+	.header-menu .menu-entry-inner {
+		padding: 4px 6px;
+		display: inline-block;
+	}
+	.content-menu .menu-entry-inner {
+		padding: 7px 0;
 		display: inline-block;
 	}
 	.menu-info {

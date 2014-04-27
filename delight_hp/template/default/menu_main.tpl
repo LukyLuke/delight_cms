@@ -21,6 +21,7 @@
 			<a href="[SUBMENU_LINK]" class="menu-entry [IN_MENU_BACKTRACE:"menu-active"][MENU_NOT_TRANSLATED:" translate"][MENU_NOT_VISIBLE:" invisible"]">
 				<span class="menu-entry-inner">[MENU_TITLE]</span>
 			</a>
+			<span class="submenu-toggle">▾</span>
 		</span>
 		[ADMIN_MENU]
 		[NO_SUBMENU]
@@ -36,6 +37,7 @@
 			<a href="[SUBMENU_LINK]" class="menu-entry [IN_MENU_BACKTRACE:"menu-active"] [MENU_NOT_TRANSLATED:"translate"] [MENU_NOT_VISIBLE:"invisible"]">
 				<span class="menu-entry-inner [IN_MENU_BACKTRACE:"menu-active"]">[MENU_IMAGE:32x32:false] [MENU_TITLE]</span>
 			</a>
+			<span class="submenu-toggle">▾</span>
 		</span>
 		<div class="menu-info">
 			<p class="menu-info-menu-name">[MENU_IMAGE:32x32:false] <strong>[MENU_TITLE]</strong></p>

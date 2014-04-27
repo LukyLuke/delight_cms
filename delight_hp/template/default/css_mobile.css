@@ -62,13 +62,14 @@
 	margin: 1px 0 0 3px;
 }
 .responsive-menu,
+.submenu-toggle,
 .header-menu,
 .content-menu,
 .content-menu-handle {
 	display: none;
 }
 .responsive-menu {
-	display: inline-block;
+	display: none;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -77,19 +78,42 @@
 	overflow: auto;
 	z-index: 1000;
 }
+.responsive-menu ul {
+	list-style: none;
+}
 .responsive-menu-toggle {
 	text-align: center;
 	float: right;
 }
-.responsive-menu-content {
- 	/*display: inline-block;
-	overflow: auto;
-	padding: 3px 10px;
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 15%;*/
+.responsive-menu .submenu {
+	margin-left: 10px;
+}
+.responsive-menu a.menu-entry img {
+	display: none;
+}
+
+.responsive-menu .menu-entry-outer {
+	display: block;
+	width: 100%;
+	clear: both;
+}
+.responsive-menu a.menu-entry {
+	display: block;
+	width: 90%;
+	float: left;
+}
+.responsive-menu .submenu-toggle {
+	display: block;
+	width: 10%;
+	float: left;
+	text-align: center;
+	padding: 7px 0;
+	cursor: pointer;
+}
+.responsive-menu .menu-entry-inner {
+	display: block;
+	width: 100%;
+	padding: 7px 0;
 }
 .responsive-menu .menu-info {
 	display: none;
