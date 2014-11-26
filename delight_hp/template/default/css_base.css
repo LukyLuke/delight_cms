@@ -44,6 +44,13 @@ a:hover {
 	height: auto;
 }
 
+.textentry ul li {
+	margin: 0 0 0 30px;
+}
+.textentry ul li ul li {
+	margin: 0 0 0 15px;
+}
+
 /* Main colors form the different containers */
 .content-container .container {
 	background-color: #F5F5F5;
