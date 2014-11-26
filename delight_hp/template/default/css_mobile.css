@@ -31,6 +31,12 @@
 	overflow: auto;
 }
 
+.content-inner-container,
+.content-inner-container .container {
+	height: 100%;
+	position: relative;
+}
+
 .header-center .container,
 .content-inner-container .container,
 .footer-inner-container .container {
