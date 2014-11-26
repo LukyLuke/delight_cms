@@ -78,13 +78,21 @@ a:hover {
 	background: #EEE;
 }
 
+.textentry.code .textcontent,
 .textentry.quote .textcontent {
 	border-left: 10px solid #C5C5C5;
 	background: #D5D5D5;
 }
+.textentry.code .textcontent {
+	background: #E5E5E5;
+}
+.textentry.code .textcontent:before,
 .textentry.quote .textcontent:before {
 	color: #C5C5C5;
 }
+.textentry.code .texttitle h1,
+.textentry.code .texttitle h2,
+.textentry.code .texttitle h3,
 .textentry.quote .texttitle h1,
 .textentry.quote .texttitle h2,
 .textentry.quote .texttitle h3 {

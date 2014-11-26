@@ -70,6 +70,33 @@ class TEXT extends MainPlugin {
 		return $this->getTextEntry($adminData);
 	}
 
+	/**
+	 * Highlight an XML string as HTML with same colors as kwrite.
+	 * 
+	 * @param string $s The XML String to highlight
+	 * @return HTML Markup
+	 */
+	protected function highlight_xml($s) {
+		$s = htmlspecialchars($s);
+		
+		// The whole opening and closing tag without the content: <name foo="bar"> ; </name> ; <name foo="bar" />
+		$s = preg_replace('#&lt;([/]*?)(.*)([\s]*?)&gt;#sU', '<span style="color:#00000;font-weight:bold;">&lt;\\1\\2\\3&gt;</span>', $s);
+		
+		// Peamble
+		$s = preg_replace('#&lt;([\?a-z]*?)(.*)([\?])&gt;#sU', '<span style="color:#000000;font-weight:bold;">&lt;\\1</span><span style="color:#000000;font-weight:normal;">\\2</span><span style="color:#000000;font-weight:bold;">\\3&gt;</span>', $s);
+		
+		// Tag nameswithout attributes
+		$s = preg_replace('#&lt;([^\s\?/=])(.*)([\[\s/]|&gt;)#iU', '&lt;<span style="color:#000000;font-weight:bold;">\\1\\2</span>\\3', $s);
+		$s = preg_replace('#&lt;([/])([^\s]*?)([\s\]]*?)&gt;#iU', '&lt;\\1<span style="color:#000000;font-weight:bold;">\\2</span>\\3&gt;', $s);
+		
+		// Attributes
+		$s = preg_replace('#([^\s]*?)\=(&quot;|\')(.*)(&quot;|\')#isU', '<span style="color:#40805E;font-weight:normal;">\\1=</span><span style="color:#BF2040;font-weight:normal;">\\2\\3\\4</span>', $s);
+		
+		// CData content
+		$s = preg_replace('#&lt;(\[CDATA\[)(.*)(\]])&gt;#isU', '<span style="color:#B08840;font-weight:bold;">&lt;\\1</span><span style="color:#000000;font-weight:normal;">\\2</span><span style="color:#B08840;font-weight:bold;">\\3&gt;</span>', $s);
+		return '<code>' . nl2br($s) . '</code>';
+	}
+
 	private function getSimpleTextEntry() {
 		// Read the ContentFile (cont_screenshots.tpl)
 		$this->_readContentFile(self::FULLSCREEN_LAYOUT);
@@ -100,6 +127,7 @@ class TEXT extends MainPlugin {
 		}
 
 		$html = str_replace('[TEXT]', $txt, $this->_templateContent);
+		$html = str_replace('[SOURCE]', $this->highlight_xml($txt), $this->_templateContent);
 		$html = str_replace('[TEXT_ID]', $text->id, $html);
 
 		if (strlen($text->title) > 0) {
@@ -148,7 +176,6 @@ class TEXT extends MainPlugin {
 		$_template = $_titleBefore.'<span id="title_'.$text->id.'">[TITLE]</span>'.$_titleAfter;
 
 		// Replace [TITLE] or strip out the CAT_TITLE...
-		//echo "STRLEN: ".strlen(trim($_title))."\n";
 		if ( (strlen($text->title) > 0) || ($userCheck->checkAccess('content')) ) {
 			if ( (strlen($text->title) <= 0) && ($userCheck->checkAccess('content'))) {
 				$text->title = '';
@@ -167,6 +194,7 @@ class TEXT extends MainPlugin {
 			$this->appendTextAdminAddons($_text, $text, $text->id);
 
 			$html = str_replace('[TEXT]', $_text,  $html);
+			$html = str_replace('[SOURCE]', $this->highlight_xml($_text),  $html);
 			$html = str_replace('[CAT_CONTENT]', '', str_replace('[/CAT_CONTENT]', '', $html));
 		} else {
 			$html = str_replace('[TEXT]', '', $html);
@@ -175,7 +203,6 @@ class TEXT extends MainPlugin {
 
 		// Replace Text-Options
 		$html = $this->ReplaceLayoutOptions($html, $text->options);
-//print_r($html);echo chr(10).chr(10).chr(10);
 		return $html;
 	}
 
@@ -241,7 +268,6 @@ class TEXT extends MainPlugin {
 			unset($cont);
 		}
 	}
-
 
 	/**
 	 * Check Database integrity
