@@ -126,6 +126,28 @@
 				<legend>{#delightform.config_legend_tab2}</legend>
 				<table border="0" cellpadding="0" cellspacing="3" width="100%" id="formtype_mail">
 					<tr>
+						<td>{#delightform.config_typemail_server}</td>
+						<td><input type="text" name="fld_smtpserver" value="" class="medium_input" />&nbsp;{#delightform.config_typemail_port}: <input type="text" name="fld_smtpport" value="" class="small_input" /></td>
+					</tr>
+					<tr>
+					<td>{#delightform.config_typemail_auth}</td>
+						<td>
+							<select name="fld_smtpauth">
+								<option value="" selected="selected">{#delightform.config_typemail_authnone}</option>
+								<option value="PLAIN">{#delightform.config_typemail_authplain}</option>
+								<option value="LOGIN">{#delightform.config_typemail_authlogin}</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typemail_username}</td>
+						<td><input type="text" name="fld_smtpuser" value="" class="medium_input" /></td>
+					</tr>
+					<tr>
+						<td>{#delightform.config_typemail_password}</td>
+						<td><input type="text" name="fld_smtppass" value="" class="medium_input" /></td>
+					</tr>
+					<tr>
 						<td>{#delightform.config_typemail_rcpt}</td>
 						<td><input type="text" name="fld_mailrcpt" value="" class="medium_input" /></td>
 					</tr>

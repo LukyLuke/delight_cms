@@ -156,18 +156,12 @@ function sendFormEmail(&$config) {
 	$maxChar = 70;
 	$fields = array_unique(explode(',', $config['mail_fields']));
 	$fieldNames = $config['mail_fieldnames'];
-	$contents = array();
-	$content = '';
-	$label = '';
-	$nl = chr(10);
-	$boundary = '=_bound'.md5(uniqid(time()));
-	$boundary_content = '=_cont'.md5(uniqid(time()));
 	$attach_type = array_key_exists('mailattachment', $config) ? $config['mailattachment'] : 'none';
 	$attach_fields = array();
 
 	// Initialize the Contents (text/plain and text/html)
-	$contents[0] = '';
-	$contents[1] = '';
+	$contentText = '';
+	$contentHtml = '';
 
 	if (strlen($config['mailpretext']) > 0) {
 		$formPreText = strip_tags($config['mailpretext']);
@@ -212,8 +206,8 @@ function sendFormEmail(&$config) {
 				}
 			}
 
-			$contents[0] .= html_entity_decode($label).':'.str_repeat(' ', $fieldMaxLength - strlen($label) + 3).html_entity_decode($value).$nl;
-			$contents[1] .= '<tr style="background-color:#'.($cnt%2 ? 'fcfcfc' : 'f0f0f0').';"><td>'.$label.'</td><td>'.nl2br($value).'</td></tr>'.$nl;
+			$contentText .= html_entity_decode($label).':'.str_repeat(' ', $fieldMaxLength - strlen($label) + 3).html_entity_decode($value).$nl;
+			$contentHtml .= '<tr style="background-color:#'.($cnt%2 ? 'fcfcfc' : 'f0f0f0').';"><td>'.$label.'</td><td>'.nl2br($value).'</td></tr>'.$nl;
 
 			// Replace the fieldvalue in pretext and posttext
 			$formPreText  = str_replace('['.substr($field, strpos($field, '_')+1).']', $value, $formPreText);
@@ -227,127 +221,62 @@ function sendFormEmail(&$config) {
 	}
 
 	// Append lines before and after the fields
-	$contents[0] = str_repeat('*', $maxChar).$nl.$contents[0].str_repeat('*', $maxChar);
-	$contents[1] = '<table cellpadding="4" cellspacing="0" border="0">'.$nl.'<tr style="font-weight:bold;background-color:#c1c1c1;"><td>Name:</td><td>Beschreibung:</td>'.$nl.$contents[1].'</table>';
+	$contentText = str_repeat('*', $maxChar).$nl.$contentText.str_repeat('*', $maxChar);
+	$contentHtml = '<table cellpadding="4" cellspacing="0" border="0">'.$nl.'<tr style="font-weight:bold;background-color:#c1c1c1;"><td>Name:</td><td>Beschreibung:</td>'.$nl.$contentHtml.'</table>';
 
 	// Append Pretext and Posttext
 	if (!empty($formPreText)) {
-		$contents[0] = strip_tags($formPreText).$nl.$nl.$contents[0];
-		$contents[1] = '<p>'.nl2br($formPreText).'<br /></p>'.$nl.$nl.$contents[1];
+		$contentText = strip_tags($formPreText).$nl.$nl.$contentText;
+		$contentHtml = '<p>'.nl2br($formPreText).'<br /></p>'.$nl.$nl.$contentHtml;
 	}
 	if (!empty($formPostText)) {
-		$contents[0] .= $nl.$nl.strip_tags($formPostText);
-		$contents[1] .= $nl.'<p><br /><br />'.nl2br($formPostText).'</p>';
+		$contentText .= $nl.$nl.strip_tags($formPostText);
+		$contentHtml .= $nl.'<p><br /><br />'.nl2br($formPostText).'</p>';
 	}
 
-	// Create the content to send
-	$content = '';
-	$content .= '--'.$boundary.$nl;
-	$content .= 'Content-Type: multipart/alternative;'.$nl;
-	$content .= chr(9).'boundary="'.$boundary_content.'"'.$nl.$nl;
+	$smtpServer = isset($config['smtpserver']) ? $config['smtpserver'] : 'localhost';
+	$smtpPort= isset($config['smtpport']) ? $config['smtpport'] : 25;
+	$authType = isset($config['smtpauth']) ? $config['smtpauth'] : 'PLAIN';
+	$authUser = isset($config['smtpuser']) ? $config['smtpuser'] : '';
+	$authPass = isset($config['smtppass']) ? $config['smtppass'] : '';
+	
+	// The mailer
+	$mail = new pMimeMail();
+	$mail->setSMTPServer($smtpServer);
+	$mail->setSMTPServerPort($smtpPort);
+	if (!empty($authUser) && !empty($authPass)) {
+		$mail->setAuthentication($authType, $authUser, $authPass);
+	}
+	$mail->setMailerName('delight cms formular mailer');
+	$mail->setMailSubject($config['mailsubject']);
+	$mail->setMailFrom($config['mailrcptname'], $config['mailrcpt']);
+	//$mail->setEmailContent('text', $contentText);
+	$mail->setEmailContent('html', $contentHtml);
+	$mail->addMailRecipient($config['mailrcptname']);
+	if ( ((int)$config['mailinform'] > 0) && ($config['mailsenderfield'] != 'null') && (array_key_exists('ed_'.$config['mailsenderfield'], $_POST))) {
+		$mail->addMailCCRecipient(preg_replace('/[^0-9a-z\.\@_-]/smi', '', $_POST['ed_'.$config['mailsenderfield']]));
+	}
 
-	$content .= '--'.$boundary_content.$nl;
-	$content .= 'Content-Type: text/plain; charset="utf-8"'.$nl;
-	$content .= 'Content-Transfer-Encoding: quoted-printable'.$nl.$nl;
-	$content .= iso88591_encode(html_entity_decode($contents[0]), false).$nl.$nl;
-
-	$content .= '--'.$boundary_content.$nl;
-	$content .= 'Content-Type: text/html; charset="utf-8"'.$nl;
-	$content .= 'Content-Transfer-Encoding: 8bit'.$nl.$nl;
-	$content .= $contents[1].$nl.$nl;
-	$content .= '--'.$boundary_content.'--'.$nl.$nl;
-
-	// Attach Data if requested
+	// Append csv or vcard as attachment
+	$attachment = null;
 	if ($attach_type != 'none') {
-		$filename = preg_replace('/[^a-z0-9_-]+/smi', '_', $config['mailsubject']);
-		$filename = $filename.'_'.date('Y-m-d_H-i-s');
-
-		$content .= '--'.$boundary.$nl;
 		switch ($attach_type) {
 			case 'csv':
-				$content .= 'Content-Type: text/csv;'.$nl;
-				$content .= chr(9).'charset="utf-8";'.$nl;
-				$content .= chr(9).'name="'.$filename.'.csv"'.$nl;
-				$content .= 'Content-Transfer-Encoding: base64'.$nl;
-				$content .= 'Content-Description: CSV Data from a delight cms Formular-Request'.$nl;
-				$content .= 'Content-Disposition: attachment;'.$nl;
-				$content .= chr(9).'filename="'.$filename.'.csv"'.$nl.$nl;
-				$content .= createCSV($attach_fields);
+				$attachment = createCSV($attach_fields);
+				$mail->addMailAttachment($attachment);
 				break;
-
 			case 'vcard':
-				$content .= 'Content-Type: text/directory;'.$nl;
-				$content .= chr(9).'charset="utf-8";'.$nl;
-				$content .= chr(9).'name="'.$filename.'.vcf"'.$nl;
-				$content .= 'Content-Transfer-Encoding: base64'.$nl;
-				$content .= 'Content-Description: VCard Data from a delight cms Formular-Request'.$nl;
-				$content .= 'Content-Disposition: attachment;'.$nl;
-				$content .= chr(9).'filename="'.$filename.'.vcf"'.$nl.$nl;
-				$content .= createVCF($attach_fields);
+				$attachment = createVCF($attach_fields);
+				$mail->addMailAttachment($attachment);
 				break;
-		}
 	}
 
-	$content .= '--'.$boundary.'--'.$nl;
-
-	// shorten lines from content to maximum $maxChar
-	$content = wordwrap($content, $maxChar, $nl);
-
-	// Create Headers
-	$headers = '';
-	$headers .= 'Mime-Version: 1.0'.$nl;
-	$headers .= 'Content-Type: multipart/related;'.$nl;
-	$headers .= chr(9).'boundary="'.$boundary.'"'.$nl;
-	$headers .= 'X-Mailer: delight cms formular mailer'.$nl;
-	//$headers .= 'Content-Transfer-Encoding: 8bit'.$nl;
-	//$headers .= 'To: '.str_replace(',', ' ', $_formConfig['mailrcptname']).' <'.$_formConfig['mailrcpt'].'>'.$nl;
-
-	// Get Customers name
-	$customer_name = '';
-	if (isset($_POST['ed_title']))      { $customer_name .= preg_replace('/[^a-zA-Z0-9]/smi', '', $_POST['ed_title']).' '; }
-	if (isset($_POST['ed_prefix']))     { $customer_name .= preg_replace('/[^a-zA-Z0-9]/smi', '', $_POST['ed_prefix']).' '; }
-	if (isset($_POST['ed_firstname']))  { $customer_name .= preg_replace('/[^a-zA-Z0-9]/smi', '', $_POST['ed_firstname']).' '; }
-	if (isset($_POST['ed_middlename'])) { $customer_name .= preg_replace('/[^a-zA-Z0-9]/smi', '', $_POST['ed_middlename']).' '; }
-	if (isset($_POST['ed_lastname']))   { $customer_name .= preg_replace('/[^a-zA-Z0-9]/smi', '', $_POST['ed_lastname']).' '; }
-	if (isset($_POST['ed_surname']))    { $customer_name .= preg_replace('/[^a-zA-Z0-9]/smi', '', $_POST['ed_surname']).' '; }
-
-	// Send the Mail to the Customer
-	if ( ((int)$config['mailinform'] > 0) && ($config['mailsenderfield'] != 'null') && (array_key_exists('ed_'.$config['mailsenderfield'], $_POST))) {
-		$customer = $headers;
-		$customer .= 'From: =?iso-8859-1?Q?\''.iso88591_encode($config['mailrcptname'], false).'\'?= <'.$config['mailrcpt'].'>'.$nl;
-		$customer .= 'Return-Path: '.$config['mailrcpt'].''.$nl;
-		$customer .= 'Reply-To: '.$config['mailrcpt'].''.$nl;
-		// Empfangsbestaetigung, aber nicht wirklich Standard...
-		//$customer .= 'Return-Receipt-To: '.$config['mailrcpt'].''.$nl;
-		$customer_email = preg_replace('/[^0-9a-z\.\@_-]/smi', '', $_POST['ed_'.$config['mailsenderfield']]);
-		if (empty($customer_name)) {
-			$customer_name = $customer_email;
-		}
-
-		// does not work with QMail...
-		//, '-r '.$config['mailrcpt']
-		mail('=?iso-8859-1?Q?\''.iso88591_encode($customer_name, false).'\'?= <'.$customer_email.'>', iso88591_encode($config['mailsubject'], true), $content, $customer);
-
-	} else {
-		$customer_email = $config['mailrcpt'];
-		if (empty($customer_name)) {
-			$customer_name = $customer_email;
-		}
+	// Send the message and remove the attachment file.
+	$sent = $mail->sendMail();
+	if (!is_null($attachment) && is_file($attachment)) {
+		@unlink($attachment);
 	}
-
-	// Send the Email to the Company
-	if (isset($_POST['ed_organization'])) {
-		$headers .= 'Organization: =?iso-8859-1?Q?\''.iso88591_encode($_POST['ed_organization'], false).'\'?='.$nl;
-	}
-	$headers .= 'From: =?iso-8859-1?Q?\''.iso88591_encode($customer_name, false).'\'?= <'.$customer_email.'>'.$nl;
-	$headers .= 'Return-Path: '.$customer_email.''.$nl;
-	$headers .= 'Reply-To: '.$customer_email.''.$nl;
-	// Empfangsbestaetigung, aber nicht wirklich Standard...
-	//$headers .= 'Return-Receipt-To: '.$customer_email.''.$nl;
-
-	// does not work with QMail...
-	//, '-r '.$customer_email
-	if (mail('=?iso-8859-1?Q?\''.iso88591_encode($config['mailrcptname'], false).'\'?= <'.$config['mailrcpt'].'>', iso88591_encode($config['mailsubject'], true), $content, $headers)) {
+	if ($sent) {
 		redirectToUrl($config['onsuccess']);
 	} else {
 		redirectToUrl($config['onfailure']);
