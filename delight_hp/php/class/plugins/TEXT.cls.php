@@ -126,8 +126,13 @@ class TEXT extends MainPlugin {
 			$txt = $text->text;
 		}
 
-		$html = str_replace('[TEXT]', $txt, $this->_templateContent);
-		$html = str_replace('[SOURCE]', $this->highlight_xml($txt), $this->_templateContent);
+		$html = $this->_templateContent;
+		if (substr_count($html, '[SOURCE]') > 0) {
+			$txt = $this->highlight_xml($txt);
+			$html = str_replace('[SOURCE]', '[TEXT]', $html);
+		}
+
+		$html = str_replace('[TEXT]', $txt, $html);
 		$html = str_replace('[TEXT_ID]', $text->id, $html);
 
 		if (strlen($text->title) > 0) {
@@ -190,11 +195,14 @@ class TEXT extends MainPlugin {
 		// Replace [TEXT] or strip out the CAT_CONTENT...
 		$text->text = $this->ReplaceTextVariables($text->text);
 		if ( (strlen($text->text) > 0) || ($userCheck->checkAccess('content')) ) {
-			$_text = $text->text;
-			$this->appendTextAdminAddons($_text, $text, $text->id);
+			$txt = $text->text;
+			if (substr_count($html, '[SOURCE]') > 0) {
+				$txt = $this->highlight_xml($txt);
+				$html = str_replace('[SOURCE]', '[TEXT]', $html);
+			}
 
-			$html = str_replace('[TEXT]', $_text,  $html);
-			$html = str_replace('[SOURCE]', $this->highlight_xml($_text),  $html);
+			$this->appendTextAdminAddons($txt, $text, $text->id);
+			$html = str_replace('[TEXT]', $txt,  $html);
 			$html = str_replace('[CAT_CONTENT]', '', str_replace('[/CAT_CONTENT]', '', $html));
 		} else {
 			$html = str_replace('[TEXT]', '', $html);
