@@ -28,10 +28,10 @@
 			var t = this;
 			this.connected = true;
 			
-			// Hide all sumbenus.
+			// Hide all submenus.
 			$(this.container).select('.submenu').invoke('toggle', false);
 			
-			// Connect all submenu enttries to their submenu containers to show them.
+			// Connect all submenu entries to their submenu containers to show them.
 			var elems = $(this.container).select('.submenu-toggle');
 			elems.each(function(item) {
 				var parent = $(item.parentNode);
@@ -71,7 +71,8 @@
 		
 		connectTabletsMenu: function() {
 			var menu = $('content-menu'), toggle = $('content-menu-toggle');
-			if (menu && toggle) {
+			var toggleHidden = toggle && (!toggle.visible() || (toggle.getStyle('display') == 'none'));
+			if (menu && toggle && !toggleHidden) {
 				menu.toggle(true);
 				toggle.observe('click', function(ev) {
 					menu.toggle();
