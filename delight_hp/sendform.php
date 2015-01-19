@@ -235,14 +235,15 @@ function sendFormEmail(&$config) {
 		$contentHtml .= $nl.'<p><br /><br />'.nl2br($formPostText).'</p>';
 	}
 
-	$smtpServer = isset($config['smtpserver']) ? $config['smtpserver'] : 'localhost';
-	$smtpPort= isset($config['smtpport']) ? $config['smtpport'] : 25;
-	$authType = isset($config['smtpauth']) ? $config['smtpauth'] : 'PLAIN';
-	$authUser = isset($config['smtpuser']) ? $config['smtpuser'] : '';
-	$authPass = isset($config['smtppass']) ? $config['smtppass'] : '';
+	$smtpServer = !empty($config['smtpserver']) ? $config['smtpserver'] : '127.0.0.1';
+	$smtpPort= !empty($config['smtpport']) ? $config['smtpport'] : 25;
+	$authType = !empty($config['smtpauth']) ? $config['smtpauth'] : 'PLAIN';
+	$authUser = !empty($config['smtpuser']) ? $config['smtpuser'] : '';
+	$authPass = !empty($config['smtppass']) ? $config['smtppass'] : '';
 	
 	// The mailer
 	$mail = new pMimeMail();
+	$mail->__doDebug();
 	$mail->setSMTPServer($smtpServer);
 	$mail->setSMTPServerPort($smtpPort);
 	if (!empty($authUser) && !empty($authPass)) {
@@ -652,5 +653,5 @@ function redirectToUrl($url) {
 		}
 		$url = 'http://'.$_SERVER['SERVER_NAME'].$port.$url;
 	}
-	header('Location: '.$url);
+	//header('Location: '.$url);
 }

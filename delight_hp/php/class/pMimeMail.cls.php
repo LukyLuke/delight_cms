@@ -328,12 +328,18 @@ class pMimeMail
 
 		// Set main Status and initiate connection with the SMTP server
 		$status = 0;
-		$this->SMTPhandle = @fsockopen($this->serverAddress, $this->serverPort);
+		$errno = 0;
+		$errstr = '';
+		$this->SMTPhandle = @fsockopen($this->serverAddress, $this->serverPort, $errno, $errstr);
 
 		// Check for correct response if false, end
 		$this->sendStateError = true;
 		if (!is_resource($this->SMTPhandle)) {
 			$this->sendStateError = true;
+			
+			$this->showDebug('<b>ERROR</b> in opening a socket:<br />');
+			$this->showDebug('Server ' . $this->serverAddress . ' on port ' . $this->serverPort . '<br />');
+			$this->showDebug('Error ' . $errno . ': ' . $errstr . '<br />');
 		} else {
 			// go through the datas from handle
 			while($this->lastState = fgets($this->SMTPhandle, 8192)) {
@@ -441,34 +447,34 @@ class pMimeMail
 		$content = $this->createMessage();
 
 		// Set the EHLO (Public-Domain)
-		$cmdList = array('EHLO ' . $this->ehloServerString);
+		$commands = array('EHLO ' . $this->ehloServerString);
 
 		// Check for the Authentication
 		if ($this->auth) {
 			if ($this->authType == 'LOGIN') {
-				array_push($cmdList, 'AUTH LOGIN', base64_encode($this->authUser), base64_encode($this->authPass));
+				array_push($commands, 'AUTH LOGIN', base64_encode($this->authUser), base64_encode($this->authPass));
 			} else if ($this->authType == 'PLAIN') {
-				array_push($cmdList, 'AUTH PLAIN ' . base64_encode($this->authUser . "\0" . $this->authUser . "\0" . $this->authPass));
+				array_push($commands, 'AUTH PLAIN ' . base64_encode($this->authUser . "\0" . $this->authUser . "\0" . $this->authPass));
 			}
 		}
 
 		// Mail From
-		array_push($cmdList, 'MAIL FROM: <' . $this->senderMail . '>');
+		array_push($commands, 'MAIL FROM: <' . $this->senderMail . '>');
 
 		// Add the recipients
 		for ($i = 0; $i < count($this->recipientAdresses); $i++) {
-			array_push($cmdList, 'RCPT TO: <' . $this->recipientAdresses[$i] . '>');
+			array_push($commands, 'RCPT TO: <' . $this->recipientAdresses[$i] . '>');
 		}
 
 		// Add the end of the Array
 		/*for ($lf = 0; $lf < count($Data); $lf++) {
-			array_push($cmdList, $Data[$lf]);
+			array_push($commands, $Data[$lf]);
 		}*/
 
 		// Add the Message
-		array_push($cmdList, 'DATA', $content, 'QUIT', '');
+		array_push($commands, 'DATA', $content, 'QUIT', '');
 
-		return $cmdList;
+		return $commands;
 	}
 
 	/**
