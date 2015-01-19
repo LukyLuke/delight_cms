@@ -243,7 +243,7 @@ function sendFormEmail(&$config) {
 	
 	// The mailer
 	$mail = new pMimeMail();
-	$mail->__doDebug();
+	//$mail->__doDebug();
 	$mail->setSMTPServer($smtpServer);
 	$mail->setSMTPServerPort($smtpPort);
 	if (!empty($authUser) && !empty($authPass)) {
@@ -653,5 +653,5 @@ function redirectToUrl($url) {
 		}
 		$url = 'http://'.$_SERVER['SERVER_NAME'].$port.$url;
 	}
-	//header('Location: '.$url);
+	header('Location: '.$url);
 }
