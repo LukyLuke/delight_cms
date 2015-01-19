@@ -153,6 +153,7 @@ function validateFormConfiguration(&$config) {
  * @param array &$config A Pointer to the Configuration
  */
 function sendFormEmail(&$config) {
+	$nl = pMimeMail::CRLF;
 	$maxChar = 70;
 	$fields = array_unique(explode(',', $config['mail_fields']));
 	$fieldNames = $config['mail_fieldnames'];
@@ -251,8 +252,8 @@ function sendFormEmail(&$config) {
 	$mail->setMailSubject($config['mailsubject']);
 	$mail->setMailFrom($config['mailrcptname'], $config['mailrcpt']);
 	//$mail->setEmailContent('text', $contentText);
-	$mail->setEmailContent('html', $contentHtml);
-	$mail->addMailRecipient($config['mailrcptname']);
+	$mail->setEmailContent($contentHtml, 'html');
+	$mail->addMailRecipient($config['mailrcpt']);
 	if ( ((int)$config['mailinform'] > 0) && ($config['mailsenderfield'] != 'null') && (array_key_exists('ed_'.$config['mailsenderfield'], $_POST))) {
 		$mail->addMailCCRecipient(preg_replace('/[^0-9a-z\.\@_-]/smi', '', $_POST['ed_'.$config['mailsenderfield']]));
 	}
@@ -269,6 +270,7 @@ function sendFormEmail(&$config) {
 				$attachment = createVCF($attach_fields);
 				$mail->addMailAttachment($attachment);
 				break;
+		}
 	}
 
 	// Send the message and remove the attachment file.
@@ -652,5 +654,3 @@ function redirectToUrl($url) {
 	}
 	header('Location: '.$url);
 }
-
-?>

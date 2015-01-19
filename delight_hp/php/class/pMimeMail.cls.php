@@ -228,14 +228,14 @@ class pMimeMail
 	private $errorMessage;
 
 	/**
-   * Class constructor
-   *
-   * @access public
-   */
+	 * Class constructor
+	 *
+	 * @access public
+	 */
 	public function __construct() {
 		// default authentication is disabled
 		$this->auth = false;
-		$this->authType = 'LOGIN';
+		$this->authType = '';
 		$this->authUser = '';
 		$this->authPass = '';
 		$this->POPAuth = array('user'=>'', 'password'=>'', 'server'=>'', 'port'=>'110');
@@ -277,6 +277,13 @@ class pMimeMail
 		$this->lastState = '';
 		$this->errorMessage = '';
 	}
+	
+	/**
+	 * Set the debug var to echo out debug strings
+	 */
+	public function __doDebug() {
+		$this->debug = true;
+	}
 
 	/**
 	 * Return the local server name
@@ -309,7 +316,7 @@ class pMimeMail
 		// Check for POP-Authentication
 		if (strtoupper($this->authType) == 'POP') {
 			if (!$this->doAuthPOPbeforeSMTP($this->POPAuth['server'], $this->POPAuth['port'], $this->POPAuth['user'], $this->POPAuth['password'])) {
-				$this->errorMessage = 'POP-Authentication failed'.self::CRLF;
+				$this->errorMessage = 'POP-Authentication failed' . self::CRLF;
 			}
 		}
 
@@ -332,20 +339,20 @@ class pMimeMail
 			while($this->lastState = fgets($this->SMTPhandle, 8192)) {
 				// Check if the returnd Status is the same as the status in State-Array
 				if (strcmp(substr($this->lastState, 0, 3), $this->responceStates[$status]) != 0) {
-					$this->showDebug('<b>ERROR</b> in step '.$status.'<br />');
-					$this->showDebug(' Required State : '.$this->responceStates[$status].'<br />');
-					$this->showDebug(' Received State : '.$this->lastState.'<br />');
+					$this->showDebug('<b>ERROR</b> in step ' . $status . '<br />');
+					$this->showDebug(' Required State : ' . $this->responceStates[$status] . '<br />');
+					$this->showDebug(' Received State : ' . $this->lastState . '<br />');
 
 					// There is occured an Error, so we close the Connection and break the sending-process
-					$this->errorMessage = 'SMTP-Server response: '.$this->lastState.self::CRLF;
+					$this->errorMessage = 'SMTP-Server response: ' . $this->lastState . self::CRLF;
 					@fclose($this->SMTPhandle);
 					break;
 				}
-				$this->showDebug(' Required State : '.$this->responceStates[$status].'<br />');
-				$this->showDebug(' Received State : '.$this->lastState.'<br />');
+				$this->showDebug(' Required State : ' . $this->responceStates[$status] . '<br />');
+				$this->showDebug(' Received State : ' . $this->lastState . '<br />');
 
 				// Check if the returnd Message is not zero-length and continue
-				if (strcmp(substr($this->lastState, 3, 1), " ") != 0) {
+				if (strcmp(substr($this->lastState, 3, 1), ' ') != 0) {
 					continue;
 				}
 
@@ -357,8 +364,8 @@ class pMimeMail
 				}
 
 				// Send Datas
-				$this->showDebug('<br> Send command: '.$commands[$status].'<br />');
-				fputs($this->SMTPhandle, $commands[$status++].self::CRLF);
+				$this->showDebug('<br> Send command: ' . str_replace('<', '&lt;', str_replace('>', '&gt;', $commands[$status])) . '<br />');
+				fputs($this->SMTPhandle, $commands[$status++] . self::CRLF);
 			}
 		}
 
@@ -397,15 +404,15 @@ class pMimeMail
 			// initialize the Header-String
 			switch (strtolower($type)) {
 				case 'to':
-					$back = "To: ";
+					$back = 'To: ';
 					break;
 
 				case 'cc':
-					$back = "Cc: ";
+					$back = 'Cc: ';
 					break;
 
 				case 'bcc':
-					$back = "Bcc: ";
+					$back = 'Bcc: ';
 					break;
 			}
 
@@ -434,23 +441,23 @@ class pMimeMail
 		$content = $this->createMessage();
 
 		// Set the EHLO (Public-Domain)
-		$cmdList = array("EHLO ".$this->ehloServerString);
+		$cmdList = array('EHLO ' . $this->ehloServerString);
 
 		// Check for the Authentication
 		if ($this->auth) {
 			if ($this->authType == 'LOGIN') {
-				array_push($cmdList, "AUTH LOGIN", base64_encode($this->authUser), base64_encode($this->authPass));
+				array_push($cmdList, 'AUTH LOGIN', base64_encode($this->authUser), base64_encode($this->authPass));
 			} else if ($this->authType == 'PLAIN') {
-				array_push($cmdList, "AUTH PLAIN ".base64_encode($this->authUser."\0".$this->authUser."\0".$this->authPass));
+				array_push($cmdList, 'AUTH PLAIN ' . base64_encode($this->authUser . "\0" . $this->authUser . "\0" . $this->authPass));
 			}
 		}
 
 		// Mail From
-		array_push($cmdList, "MAIL FROM: <".$this->senderMail.">");
+		array_push($cmdList, 'MAIL FROM: <' . $this->senderMail . '>');
 
 		// Add the recipients
 		for ($i = 0; $i < count($this->recipientAdresses); $i++) {
-			array_push($cmdList, "RCPT TO: <".$this->recipientAdresses[$i].">");
+			array_push($cmdList, 'RCPT TO: <' . $this->recipientAdresses[$i] . '>');
 		}
 
 		// Add the end of the Array
@@ -459,7 +466,7 @@ class pMimeMail
 		}*/
 
 		// Add the Message
-		array_push($cmdList, "DATA", $content, "QUIT","");
+		array_push($cmdList, 'DATA', $content, 'QUIT', '');
 
 		return $cmdList;
 	}
@@ -470,18 +477,18 @@ class pMimeMail
 	 * @access private
 	 */
 	private function createCodeArray() {
-		$this->responceStates = array("220", "250");
+		$this->responceStates = array('220', '250');
 		
-		if ($this->auth && ($this->authType == "LOGIN")) {
-			array_push($this->responceStates,"334", "334", "235");
-		} else if ($this->auth && ($this->authType == "PLAIN")) {
-			array_push($this->responceStates,"235");
+		if ($this->auth && ($this->authType == 'LOGIN')) {
+			array_push($this->responceStates,'334', '334', '235');
+		} else if ($this->auth && ($this->authType == 'PLAIN')) {
+			array_push($this->responceStates,'235');
 		}
 
 		for ($i = 0; $i < count($this->recipientAdresses); $i++) {
-			$this->responceStates[] = "250";
+			$this->responceStates[] = '250';
 		}
-		array_push($this->responceStates, "250", "354", "250", "221");
+		array_push($this->responceStates, '250', '354', '250', '221');
 	}
 
 	/**
@@ -492,22 +499,22 @@ class pMimeMail
 	private function createContent() {
 		// We need a newline before the Content begins (to seperate from the headers)
 		$content = self::CRLF;
-		$content .= "--".$this->contentBoundary.self::CRLF;
+		$content .= '--' . $this->contentBoundary.self::CRLF;
 
 		// Append the right ContentType for given Message
 		switch ($this->mailContentType) {
 			case 'html':
-				$content .= "Content-Type: text/html; charset=\"iso-8859-15\"".self::CRLF;
+				$content .= 'Content-Type: text/html; charset="iso-8859-15"' . self::CRLF;
 				break;
 
 			default:
-				$content .= "Content-Type: text/plain; charset=\"iso-8859-15\"".self::CRLF;
+				$content .= 'Content-Type: text/plain; charset="iso-8859-15"' . self::CRLF;
 				break;
 		}
 
 		// Append the real Mail-Content as quoted-printable
-		$content .= "Content-Transfer-Encoding: quoted-printable".self::CRLF;
-		$content .= self::CRLF.$this->mailContent.self::CRLF;
+		$content .= 'Content-Transfer-Encoding: quoted-printable' . self::CRLF;
+		$content .= self::CRLF . $this->mailContent . self::CRLF;
 
 		// Get each Attachement and Add it to the Content
 		foreach ($this->mailAttachments as $k => $attachment) {
@@ -521,9 +528,9 @@ class pMimeMail
 				$fileContent = chunk_split(base64_encode(file_get_contents($file)));
 
 				// If the Messageformat is HTML, create a ContentID
-				$ContentId = "";
-				if ($this->mailContentType == "html") {
-					$ContentId = "Content-ID: <".base64_encode($file)."@".$this->serverAddress.">".self::CRLF;
+				$ContentId = '';
+				if ($this->mailContentType == 'html') {
+					$ContentId = 'Content-ID: <' . base64_encode($file) . '@' . $this->serverAddress . '>' . self::CRLF;
 				}
 
 				// ADDED: 2007-05-05
@@ -531,20 +538,20 @@ class pMimeMail
 				$content .= self::CRLF;
 				
 				// Add the Filename and the Contenttype to the Content
-				$content .= "--".$this->contentBoundary.self::CRLF;
-				$content .= "Content-Transfer-Encoding: base64".self::CRLF;
-				$content .= "Content-Type: ".$attachment[1]."; charset=\"iso-8859-1\"; name=\"".$filename."\"".self::CRLF;
-				$content .= "Content-Disposition: attachement; filename=\"".$filename."\"".self::CRLF;
-				$content .= $ContentId.self::CRLF;
-				$content .= $fileContent.self::CRLF;
+				$content .= '--' . $this->contentBoundary . self::CRLF;
+				$content .= 'Content-Transfer-Encoding: base64' . self::CRLF;
+				$content .= 'Content-Type: ' . $attachment[1] . '; charset="iso-8859-1"; name="' . $filename . '"' . self::CRLF;
+				$content .= 'Content-Disposition: attachement; filename="' . $filename . '"' . self::CRLF;
+				$content .= $ContentId . self::CRLF;
+				$content .= $fileContent . self::CRLF;
 			} else {
-				$content .= "--".$this->contentBoundary.self::CRLF;
-				$content .= "Content-Type: text/plain; charset=\"iso-8859-1\";".self::CRLF;
-				$content .= $ContentId.self::CRLF;
-				$content .= "Image not available".self::CRLF;
+				$content .= '--' . $this->contentBoundary . self::CRLF;
+				$content .= 'Content-Type: text/plain; charset="iso-8859-1";' . self::CRLF;
+				$content .= $ContentId . self::CRLF;
+				$content .= 'Image not available' . self::CRLF;
 			}
 		}
-		$content .= self::CRLF."--".$this->contentBoundary."--";
+		$content .= self::CRLF . '--' . $this->contentBoundary . '--';
 		$this->mailContent = $content;
 	}
 	
@@ -565,12 +572,12 @@ class pMimeMail
 	 * @access public
 	 */
 	public function SetPriority($priority) {
-		$prio = array('','low','lower','normal','higher','high');
+		$prio = array('', 'low', 'lower', 'normal', 'higher', 'high');
 		
 		if ( ((int)$priority > 0) && ((int)$priority < 6) ) {
-			$this->mailPriority = "X-Priority: ".$priority." (".$prio[$priority].")".self::CRLF."Priority: ".$priority;
+			$this->mailPriority = 'X-Priority: ' . $priority . ' (' . $prio[$priority] . ')' . self::CRLF . 'Priority: ' . $priority;
 		} else {
-			$this->mailPriority = "X-Priority: 3 (".$prio[3].")".self::CRLF."Priority: 3";
+			$this->mailPriority = 'X-Priority: 3 (' . $prio[3] . ')' . self::CRLF . 'Priority: 3';
 		}
 	}
 	
@@ -721,13 +728,13 @@ class pMimeMail
 			$this->authUser = $authUser;
 			$this->authPass = $authPass;
 		} else if ($authType == 'POP') {
-			$this->auth = true;
 			$this->authType = $authType;
 			$this->POPAuth['user'] = $authUser;
 			$this->POPAuth['password'] = $authPass;
 			$this->POPAuth['server'] = $authServer;
 			$this->POPAuth['port'] = $authPort;
 		}
+		$this->auth = !empty($this->authType);
 	}
 
 	/**
@@ -747,10 +754,10 @@ class pMimeMail
 	 * @access private
 	 */
 	private function createMessage() {
-		$content = "";
+		$content = '';
 
 		// Set Return-Path
-		$content .= "Return-Path: <".$this->senderMail.">".self::CRLF;
+		$content .= 'Return-Path: <' . $this->senderMail . '>' . self::CRLF;
 
 		// Set the Boundry
 		$this->contentBoundary = $this->createNewBoundary();
@@ -760,58 +767,58 @@ class pMimeMail
 			case 'html':
 				$this->createHTMLMessage();
 				if (count($this->mailAttachments) > 0) {
-					$content .= "Content-Type: multipart/mixed; charset=\"iso-8859-15\"; boundary=\"".$this->contentBoundary."\"".self::CRLF;
+					$content .= 'Content-Type: multipart/mixed; charset="iso-8859-15"; boundary="' . $this->contentBoundary . '"' . self::CRLF;
 					$this->createContent();
 				} else {
-					$content .= "Content-Type: text/html; charset=\"iso-8859-15\"".self::CRLF;
+					$content .= 'Content-Type: text/html; charset="iso-8859-15"' . self::CRLF;
 				}
 				break;
 
 			case 'text':
 			default:
 				if (count($this->mailAttachments) > 0) {
-					$content .= "Content-Type: multipart/mixed; charset=\"iso-8859-15\"; boundary=\"".$this->contentBoundary."\"".self::CRLF;
+					$content .= 'Content-Type: multipart/mixed; charset="iso-8859-15"; boundary="' . $this->contentBoundary . '"' . self::CRLF;
 					$this->createContent();
 				} else {
-					$content .= "Content-Type: text/plain; charset=\"iso-8859-15\"".self::CRLF;
+					$content .= 'Content-Type: text/plain; charset="iso-8859-15"' . self::CRLF;
 				}
 				break;
 		}
 
 		// Add From
-		$content .= "From: ".$this->mailSenderName." <".$this->senderMail.">".self::CRLF;
+		$content .= 'From: ' . $this->mailSenderName . ' <' . $this->senderMail . '>' . self::CRLF;
 
 		// Set Reply-To
-		$content .= "Reply-To: ".$this->senderMail.self::CRLF;
+		$content .= 'Reply-To: ' . $this->senderMail . self::CRLF;
 
 		// Set Organization
 		if (strlen($this->mailOrganization) > 0) {
-			$content .= "Organization: ".$this->mailOrganization.self::CRLF;
+			$content .= 'Organization: ' . $this->mailOrganization . self::CRLF;
 		}
 
 		// Add all Recipients
-		$content .= $this->parseMailAddress("to",  $this->mailRecipientList);
-		$content .= $this->parseMailAddress("cc",  $this->mailCCRecipientList);
-		$content .= $this->parseMailAddress("bcc", $this->mailBCCRecipientList);
+		$content .= $this->parseMailAddress('to',  $this->mailRecipientList);
+		$content .= $this->parseMailAddress('cc',  $this->mailCCRecipientList);
+		$content .= $this->parseMailAddress('bcc', $this->mailBCCRecipientList);
 		
-		$this->showDebug('<br />Add TO : '.implode(',', $this->mailRecipientList).'<br />');
-		$this->showDebug('Add CC : '.implode(',', $this->mailCCRecipientList).'<br />');
-		$this->showDebug('Add BCC: '.implode(',', $this->mailBCCRecipientList).'<br />');
+		$this->showDebug('<br />Add TO : ' . implode(',', $this->mailRecipientList) . '<br />');
+		$this->showDebug('Add CC : ' . implode(',', $this->mailCCRecipientList) . '<br />');
+		$this->showDebug('Add BCC: ' . implode(',', $this->mailBCCRecipientList) . '<br />');
 
 		// Set the Subject
-		$content .= "Subject: ".$this->mailSubject.self::CRLF;
+		$content .= 'Subject: ' . $this->mailSubject . self::CRLF;
 
 		// Set the Date
-		$content .= "Date: ".date("r", $this->mailDate).self::CRLF;
+		$content .= 'Date: ' . date('r', $this->mailDate) . self::CRLF;
 
 		// Set useable Headers
-		$content .= "X-Sender: <".$this->senderMail.">".self::CRLF;
-		$content .= "X-Mailer: ".$this->mailerName.self::CRLF;
-		$content .= $this->mailPriority.self::CRLF;
-		$content .= "MIME-Version: 1.0".self::CRLF;
+		$content .= 'X-Sender: <' . $this->senderMail . '>' . self::CRLF;
+		$content .= 'X-Mailer: ' . $this->mailerName . self::CRLF;
+		$content .= $this->mailPriority . self::CRLF;
+		$content .= 'MIME-Version: 1.0' . self::CRLF;
 
 		// Insert the Content
-		$content .= self::CRLF.$this->mailContent.self::CRLF.".";
+		$content .= self::CRLF . $this->mailContent . self::CRLF . '.';
 
 		return $content;
 	}
@@ -829,93 +836,11 @@ class pMimeMail
 		if ( (preg_match_all($imgPattern, $this->mailContent, $match, PREG_SET_ORDER) !== false) && (count($match) > 0) ) {
 			foreach ($match as $k => $img) {
 				$file = $img[4];
-				$contId = "3D\"cid:".base64_encode($File)."@".$this->serverAddress."\"";
+				$contId = '3D"cid:' . base64_encode($file) . '@' . $this->serverAddress . '"';
 				$this->mailContent = str_replace($file, $contId, $this->mailContent);
 				$this->addMailAttachment($file);
 			}
 		}
-		
-		// Check if an Attribute is in Content
-		/*if (substr_count($content,"<img") > 0) {
-			$OldPos = 0;
-			do {
-				// Set the Content to lowerstring (only to Check the Required Tags)
-				$content = strtolower($this->mailContent);
-
-				// Check for the next Tag
-				$Open = strpos($content,"<img",$OldPos);
-				if (!(is_integer($Open))) {
-					break 1;
-				}
-
-				// Check for the ">" after the finded Tag
-				$Close = strpos($content,">",$Open);
-				if (!(is_integer($Close))) {
-					break 1;
-				}
-
-				// Check for "src=" between $Open and $Close
-				$SrcStart = strpos($content,"src=",$Open);
-				if (!(is_integer($SrcStart))) {
-					break 1;
-				}
-
-				// Check for a " " between $Open and $Close
-				$SrcEnd = strpos($content," ",$SrcStart);
-				if (!(is_integer($SrcEnd))) {
-					break 1;
-				}
-
-				if (($SrcStart > $Close) || ($SrcEnd > $Close)) {
-					break 1;
-				}
-
-				// Set the File
-				$OrigFile = substr($this->mailContent,($SrcStart + 4),($SrcEnd - $SrcStart - 4));
-				$File = str_replace("\"","",$OrigFile);
-				$File = str_replace("\'","",$File);
-
-				// Check the Type
-				$TypeArray = explode(".",$File);
-				switch ($TypeArray[count($TypeArray)-1]) {
-					case 'gif':  $Type = "image/gif";  break;
-					case 'jpg':  $Type = "image/jpeg"; break;
-					case 'jpeg': $Type = "image/jpeg"; break;
-					case 'jpe':  $Type = "image/jpeg"; break;
-					case 'png':  $Type = "image/png";  break;
-					case 'bmp':  $Type = "image/bmp";  break;
-				}
-
-				// Create the ContentId
-				$Id = "3D\"cid:".base64_encode($File)."@".$this->serverAddress."\"";
-
-				// DEBUG //
-				if ($this->debug) {
-					print("\n\n<pre>Position: <b>".$SrcStart."</b> to <b>".$SrcEnd."</b> - ");
-					print("Set <b>".$File."</b> to <b>".$Id."</b></pre>\n\n");
-				}
-				// END DEBUG //
-
-				// Check the Offset between Old and New String and reset $Close
-				$OLength = strlen($OrigFile);
-				$NLength = strlen($Id);
-				if ($OLength > $NLength) {
-					$OldPos = $SrcEnd - ($OLength - $NLength);
-				} else if ($OLength == $NLength) {
-					$OldPos = $SrcEnd;
-				} else {
-					$OldPos = $SrcEnd + ($NLength - $OLength);
-				}
-
-				// Reset the String
-				$this->Content = substr_replace($this->mailContent,$Id,($SrcStart + 4),($SrcEnd - $SrcStart - 4));
-
-				// Add the File to the Attachement-Array
-				array_push($this->mailAttachments,$File);
-				array_push($this->mailAttachments,$Type);
-
-			} while (true);
-		}*/
 	}
 
 	/**
@@ -929,7 +854,7 @@ class pMimeMail
 	 */
 	private function doAuthPOPbeforeSMTP($pServer, $pPort, $pUser, $pPasswd) {
 		// DEBUG
-		$this->showDebug("<br /><b><u>POP-before-SMTP: BEGIN</u></b><br />");
+		$this->showDebug('<br /><b><u>POP-before-SMTP: BEGIN</u></b><br />');
 
 		// Set main Status and initiate connection with the POP server
 		$popStat = true;
@@ -939,7 +864,7 @@ class pMimeMail
 		// Check for correct response if false, end
 		if (!$this->POPhandle) {
 			$popStat = false;
-			$this->showDebug(" - <b>FAILED to Connect to the POP-Server</b><br />");
+			$this->showDebug(' - <b>FAILED to Connect to the POP-Server</b><br />');
 		} else {
 			// Get banner (+OK)
 			$s = fgets($this->POPhandle, 1024);
@@ -988,7 +913,7 @@ class pMimeMail
 			}
 			
 		}
-		$this->showDebug("<b>POP-before-SMTP: END</b><br />");
+		$this->showDebug('<b>POP-before-SMTP: END</b><br />');
 		return $popStat;
 	}
 	
@@ -1016,9 +941,8 @@ class pMimeMail
 	 */
 	private function showDebug($msg) {
 		if ($this->debug) {
-			echo $msg.self::CRLF;
+			echo $msg . self::CRLF;
 			flush();
 		}
 	}
 }
-?>
