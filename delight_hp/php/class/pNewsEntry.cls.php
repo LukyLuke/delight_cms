@@ -35,8 +35,8 @@ class pNewsEntry extends pTextEntry {
 
 				// If this is an RSS-Feed-Definition we need to parse the Content as a INI-File
 				if ($this->textData['rss']) {
-					$ini = parse_ini_string($this->textData['text'], true);
-					if (array_key_exists('feed', $ini)) {
+					$ini = @parse_ini_string($this->textData['text'], true);
+					if (($ini !== FALSE) && array_key_exists('feed', $ini)) {
 						$this->textData['feed_list']->title         = array_key_exists('title', $ini['feed']) ? $ini['feed']['title'] : '';
 						$this->textData['feed_list']->summarize     = array_key_exists('summarize', $ini['feed']) ? $ini['feed']['summarize'] : 3600;
 						$this->textData['feed_list']->max_cache_age = array_key_exists('cacheage', $ini['feed']) ? $ini['feed']['cacheage'] : 86400;
@@ -72,11 +72,15 @@ class pNewsEntry extends pTextEntry {
 		$db = pDatabaseConnection::getDatabaseInstance();
 		$res = null;
 		if ($this->textData['rss']) {
-			if (is_array($this->textData['feed_list']->list) && (count($this->textData['feed_list']->list) > 0)) {
+			if (!property_exists($this->textData['feed_list'], 'feeds')) {
+				$this->textData['feed_list']->feeds = array();
+			}
+			if (!property_exists($this->textData['feed_list'], 'list')) {
+				$this->textData['feed_list']->list = array();
+			}
+			if (!is_array($this->textData['feed_list']->feeds) || (is_array($this->textData['feed_list']->list) && (count($this->textData['feed_list']->list) > 0))) {
 				return;
 			}
-
-			$this->textData['feed_list']->list = array();
 
 			foreach ($this->textData['feed_list']->feeds as $feed) {
 				$sql = 'SELECT * FROM [table.rssnews] WHERE [rssnews.uri]=\''.mysql_real_escape_string($feed).'\';';

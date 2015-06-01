@@ -241,15 +241,15 @@ class pImageEntry extends pTextEntry {
 			return $this->size['h'];
 
 		} else if ($name == 'real_width') {
-			$size = getimagesize($this->real);
+			$size = @getimagesize($this->real);
 			return $size[0];
 
 		} else if ($name == 'real_height') {
-			$size = getimagesize($this->real);
+			$size = @getimagesize($this->real);
 			return $size[1];
 
 		} else if ($name == 'size') {
-			return filesize($this->real);
+			return @filesize($this->real);
 
 		}
 		return parent::__get($name);
