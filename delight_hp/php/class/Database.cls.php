@@ -9,8 +9,8 @@ else
 
 // The Database Class
 class Database {
-	var $DBConnection;
-	var $DBState;
+	public $DBConnection;
+	public $DBState;
 
 	function Database() {
 		$this->DBConnection = array();
@@ -26,7 +26,11 @@ class Database {
 			array_push($this->DBState,"Error: ".mysql_error()." - ".mysql_errno());
 			print("Please wait, there is currently a Problem with the Database-Server.<br><br>Bite haben sie einen Moment geduld. Es ist ein Problem mit dem Datenbankserver aufgetreten.");
 		} else {
-			mysql_query('set sql_mode := ""', $this->DBConnection['master']);
+			mysql_query('SET sql_mode := "";', $this->DBConnection['master']);
+			mysql_query('SET collation_connection = ' . DB_CHARSET . '_general_ci;', $this->DBConnection['master']);
+			mysql_query('SET character_set_results = ' . DB_CHARSET . ';', $this->DBConnection['master']);
+			mysql_query('SET character_set_connection = ' . DB_CHARSET . ';', $this->DBConnection['master']);
+			mysql_query('SET character_set_client = ' . DB_CHARSET . ';', $this->DBConnection['master']);
 		}
 	}
 

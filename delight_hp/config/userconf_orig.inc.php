@@ -7,6 +7,7 @@ define('DB_USER',     'delight_cms');
 define('DB_PASSWORD', 'delight_cms_pass');
 define('DB_DATABASE', 'delight_cms');
 define('DB_HOST',     'localhost');
+define('DB_CHARSET',  'utf8');
 
 // Small-CMS installation
 define('CMS_SMALL', false);

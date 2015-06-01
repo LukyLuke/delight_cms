@@ -14,7 +14,11 @@ if (function_exists('date_default_timezone_exists')) {
 
 // The Table-Prefix for DatabaseTables
 $tablePrefix = 'dhp';
+if (!defined('DB_CHARSET')) {
+	define('DB_CHARSET', 'utf8');
+}
 
+// Main config things like pathes etc.
 define('WEB_ROOT', '/');
 define('MAIN_DIR', str_replace(DIRECTORY_SEPARATOR, '/', str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, dirname(DIRECTORY_SEPARATOR . str_replace($_SERVER['DOCUMENT_ROOT'], '', (substr(dirname($_SERVER['SCRIPT_FILENAME']), -3) == 'php') ? dirname(dirname($_SERVER['SCRIPT_FILENAME'])) : dirname($_SERVER['SCRIPT_FILENAME'])) . DIRECTORY_SEPARATOR. 'dirname') . DIRECTORY_SEPARATOR)));
 define('ABS_MAIN_DIR', realpath((substr(dirname($_SERVER['SCRIPT_FILENAME']), -3)=='php') ? dirname(dirname($_SERVER['SCRIPT_FILENAME'])) : dirname($_SERVER['SCRIPT_FILENAME'])).DIRECTORY_SEPARATOR );
